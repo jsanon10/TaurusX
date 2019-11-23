@@ -35,9 +35,9 @@ namespace TaurusBetaX
 
         private void CheckBox_CheckedChanged(object sender, XLabs.EventArgs<bool> e)
         {
-            if (chkDisclaimer.Checked == true)
+            if (chkDisclaimer.IsChecked == true)
                 btnDisclaimer.IsEnabled = true;
-            else if (chkDisclaimer.Checked == false)
+            else if (chkDisclaimer.IsChecked == false)
                 btnDisclaimer.IsEnabled = false;
         }
 

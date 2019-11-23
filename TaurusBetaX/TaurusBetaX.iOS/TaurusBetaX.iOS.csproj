@@ -235,4 +235,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\SampleVideo_360x240_1mb.mp4" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\white_toruflex2.jpg" />
+  </ItemGroup>
 </Project>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TaurusBetaX"
+             x:Class="TaurusBetaX.MyViewCell">
+
+
+    <StackLayout Orientation="Horizontal" BackgroundColor="White" Margin="15,10,15,0">
+        <Label x:Name="workoutName_label" Text="{Binding Path=Key}" TextColor="SteelBlue" HorizontalOptions="StartAndExpand"/>
+
+        <Label x:Name="workoutStatus_label" Text="{Binding Path=Value}" HorizontalOptions="EndAndExpand" FontSize="10" Margin="0,5,0,0"/>
+
+    </StackLayout>
+
+</ViewCell>

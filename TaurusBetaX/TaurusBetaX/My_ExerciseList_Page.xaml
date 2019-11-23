@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             BackgroundColor="White"
+             mc:Ignorable="d"
+             x:Class="TaurusBetaX.My_ExerciseList_Page">
+
+
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem Text="+Add" Clicked="Add_Exercise_Clicked"/>
+    </ContentPage.ToolbarItems>-->
+
+
+    <ListView x:Name="exercise_Listview" ItemSelected="Exercise_Listview_Selected" RowHeight="35">
+        <ListView.Header>
+            <StackLayout>
+                <StackLayout  BackgroundColor="#2196F3" Orientation="Horizontal" HeightRequest="33">
+                    <Button x:Name="navigate_back_button"  Image="back_button_blue.png" BackgroundColor="#2196F3" WidthRequest="45" HorizontalOptions="StartAndExpand" Clicked="Navigate_back_button_Clicked"/>
+                    <Label Text ="Edit Exercise(s)" TextColor="white" FontSize="14" FontFamily="Arial" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" BackgroundColor="#2196F3" Margin="0,0,0,0" />
+                    <Button x:Name="add_exercise_button" Text="+ Add" TextColor="White" FontSize="10" BackgroundColor="#2196F3" HorizontalOptions="EndAndExpand" WidthRequest="50"  Clicked="Add_exercise_button_Clicked"/>
+                </StackLayout >
+                <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" >
+                 <Label x:Name="workoutTitle" TextColor="Gray" FontSize="20" FontFamily="Arial" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" />
+                    <Label Text ="____________________________________" HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" />
+               </StackLayout>
+                </StackLayout>
+        </ListView.Header>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <!--<TextCell Text="{Binding Exercise}" TextColor="SteelBlue" Detail="{Binding Reps}"   DetailColor="red"/>-->
+                <ViewCell>
+                <StackLayout BackgroundColor="White" Orientation="Vertical" Margin="15,0,15,0">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Exercise}" TextColor="#f35e20" />
+                            <Label Text="{Binding Reps}" HorizontalOptions="EndAndExpand" TextColor="#503026" />
+                       </StackLayout>
+                </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+
+</ContentPage>

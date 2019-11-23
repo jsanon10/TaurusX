@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TaurusBetaX"
+             x:Class="TaurusBetaX.Repetition_Page">
+             
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <Label Text="Repetitions" HorizontalTextAlignment="Center"  FontSize="30" FontAttributes="Bold" TextColor="White" BackgroundColor="SteelBlue" WidthRequest="300"/>
+
+            </StackLayout>
+
+            <StackLayout VerticalOptions="CenterAndExpand">
+            <Label Text="Select the number of repetition you would like for this exercise"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+                <local:Toro_Picker x:Name="SetPicker" HorizontalOptions="Center" WidthRequest="50" Title="Pick a set count" VerticalOptions="Center" AbsoluteLayout.LayoutBounds="0, 0, 0, 0" SelectedIndexChanged="SetPicker_SelectedIndexChanged" >
+                </local:Toro_Picker>
+
+             </StackLayout>
+
+
+
+            <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" Margin="0,0,0,0">
+
+                <Button x:Name="workout_btn" Text="Back" HorizontalOptions="Start" BackgroundColor="Transparent" Font="arial" FontAttributes="Bold" TextColor="SteelBlue" Clicked="Workout_Selection_Clicked"/>
+
+                <Button x:Name="exercise_btn" Text="Continue" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Font="arial" FontAttributes="Bold" TextColor="SteelBlue" Clicked="Excercise_Button_Clicked"/>
+                
+            </StackLayout>
+
+
+                
+            
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

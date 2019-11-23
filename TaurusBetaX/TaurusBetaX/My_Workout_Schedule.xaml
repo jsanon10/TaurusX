@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms;assembly=XLabs.Forms"
+             x:Class="TaurusBetaX.My_Workout_Schedule">
+    <ContentPage.Content>
+        <StackLayout>
+                <StackLayout  BackgroundColor="#2196F3" Orientation="Horizontal" HeightRequest="33">
+                <Button x:Name="go_navigate_back_button"  Image="back_button_blue.png" BackgroundColor="#2196F3" WidthRequest="45" HorizontalOptions="StartAndExpand" Clicked="Go_navigate_back_button_Clicked"/>
+                <Label Text ="Set Schedule" TextColor="white" FontSize="14" FontFamily="Arial" FontAttributes="Bold" HorizontalOptions="Center" BackgroundColor="#2196F3" Margin="0,0,0,0" />
+                <Button x:Name="save_schedule_button"  Text="Save" TextColor="White" FontSize="10" BackgroundColor="#2196F3" HorizontalOptions="EndAndExpand" WidthRequest="50" Clicked="Save_schedule_button_Clicked"/>
+
+            </StackLayout>
+                <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" >
+                <!--<Label x:Name="goWorkoutTitle" TextColor="Gray" FontSize="20" FontFamily="Arial" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" />
+                <Label Text ="____________________________________" HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" />-->
+
+                <Label x:Name="workoutTitle" Text="" HorizontalOptions="Start"/>
+                <controls:CheckBox x:Name="sunday_box" DefaultText="Sunday" HorizontalOptions="FillAndExpand" FontSize="10" FontName="Arial" CheckedChanged="Sunday_box_CheckedChanged"/>
+                <controls:CheckBox x:Name="monday_box" DefaultText="Monday" HorizontalOptions="FillAndExpand" FontSize="10" FontName="Arial" CheckedChanged="Monday_box_CheckedChanged"/>
+                <controls:CheckBox x:Name="tuesday_box" DefaultText="Tuesday" HorizontalOptions="FillAndExpand" FontSize="10" FontName="Arial" CheckedChanged="Tuesday_box_CheckedChanged"/>
+                <controls:CheckBox x:Name="wednesday_box" DefaultText="Wednesday" HorizontalOptions="FillAndExpand" FontSize="10" FontName="Arial" CheckedChanged="Wednesday_box_CheckedChanged"/>
+                <controls:CheckBox x:Name="thursday_box" DefaultText="Thursday" HorizontalOptions="FillAndExpand" FontSize="10" FontName="Arial" CheckedChanged="Thursday_box_CheckedChanged"/>
+                <controls:CheckBox x:Name="friday_box" DefaultText="Friday" HorizontalOptions="FillAndExpand" FontSize="10" FontName="Arial" CheckedChanged="Friday_box_CheckedChanged"/>
+                <controls:CheckBox x:Name="saturday_box" DefaultText="Saturday" HorizontalOptions="FillAndExpand" FontSize="10" FontName="Arial" CheckedChanged="Saturday_box_CheckedChanged" />
+
+                <TimePicker x:Name="scheduled_time" HorizontalOptions="Center" PropertyChanged="Scheduled_time_PropertyChanged"/>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

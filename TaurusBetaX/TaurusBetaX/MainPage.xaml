@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TaurusBetaX"
+             x:Class="TaurusBetaX.MainPage"
+             BackgroundImage ="white_toruflex2.jpg">
+
+    <StackLayout HorizontalOptions="Center" VerticalOptions ="End">
+        <!-- Place new controls here -->
+
+        <Button Text="Try for Free" BackgroundColor="Transparent" Font="verdana" FontAttributes="Bold" TextColor="SteelBlue" Clicked="Freenium_btn_Clicked"/>
+
+        <Button Text="Buy $9.99" Clicked="Upgrade_btn_Clicked" WidthRequest="150" HeightRequest="35" BackgroundColor="Green"  Font="arial" FontAttributes="Bold" FontSize="11" TextColor="White"/>
+
+    </StackLayout>
+
+</ContentPage>

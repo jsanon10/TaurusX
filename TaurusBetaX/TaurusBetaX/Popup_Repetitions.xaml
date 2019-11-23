@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:TaurusBetaX"    
+             x:Class="TaurusBetaX.Popup_Repetitions">
+
+    <StackLayout Margin="12" Padding="24" Spacing="24" BackgroundColor="White" HorizontalOptions="Center" VerticalOptions="Center">
+
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <Entry x:Name="my_WorkoutEntry" HorizontalTextAlignment="Center" Placeholder="Name of my workout" MaxLength="22">
+            </Entry>
+        </StackLayout>
+
+
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <Label Text="Select an exercise to add to your list"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" 
+                   FontSize="12"/>
+
+            <local:Toro_Picker x:Name="SetExercisePicker"  FontSize="16" TextColor="SteelBlue" HorizontalOptions="Center" WidthRequest="200" Title="Pick an Exercise" VerticalOptions="Center" AbsoluteLayout.LayoutBounds="0, 0, 0, 0" SelectedIndexChanged="SetExercisePicker_SelectedIndexChanged" >
+            </local:Toro_Picker>
+
+        </StackLayout>
+
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <Label Text="Select the number of repetition"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                   FontSize="12"/>
+
+            <local:Toro_Picker x:Name="SetRepPicker"  TextColor="SteelBlue" FontSize="16" HorizontalOptions="Center" WidthRequest="50" Title="Pick a repetition count" VerticalOptions="Center" AbsoluteLayout.LayoutBounds="0, 0, 0, 0" SelectedIndexChanged="SetRepPicker_SelectedIndexChanged" >
+            </local:Toro_Picker>
+
+        </StackLayout>
+
+
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="EndAndExpand" Margin="0,0,0,0">
+
+            <Button x:Name="workout_btn" Text="Continue" HorizontalOptions="Start" BackgroundColor="Transparent" Font="arial" FontAttributes="Bold" TextColor="SteelBlue" Clicked="Workout_Selection_Clicked"/>
+
+            <!--<Button x:Name="exercise_btn" Text="Continue" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Font="arial" FontAttributes="Bold" TextColor="SteelBlue" Clicked="Excercise_Button_Clicked"/>-->
+
+        </StackLayout>
+
+
+
+
+
+    </StackLayout>
+
+
+</pages:PopupPage>

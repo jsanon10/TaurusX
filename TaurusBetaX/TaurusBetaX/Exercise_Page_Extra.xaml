@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:forms="clr-namespace:MediaManager.Forms;assembly=MediaManager.Forms"
+             BarBackgroundColor="SteelBlue"
+             BarTextColor="White"
+             SelectedItem="blue"
+             x:Class="TaurusBetaX.Exercise_Page_Extra">
+
+
+    <ContentPage Title="Instructions" Icon="baseline_info_black_18dp.png">
+
+        <ContentPage.Content>
+            <ScrollView>
+                <StackLayout>
+                    <Image x:Name ="directions_img1" />
+                    <Image x:Name ="directions_img2" />
+                </StackLayout>
+            </ScrollView>
+
+        </ContentPage.Content>
+    </ContentPage>
+
+
+    <ContentPage Title="Exercise"  Icon="fitness_fitness_60x.png"  >
+    
+    <ContentPage.Content>
+            <StackLayout BackgroundColor="White">
+            <StackLayout HeightRequest="100">
+                <Label x:Name="txtTimer"  Text="0" FontSize="50" HorizontalTextAlignment="Center"/>
+                <Label x:Name="txtStatus"  Text="" FontSize="15" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+            </StackLayout>
+            <StackLayout>
+                <forms:VideoView x:Name="vidView"
+                                 WidthRequest="350"
+                                 HeightRequest="190"
+                                 InputTransparent="True"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" HorizontalOptions="Center" Margin="0,0,0,0">
+                <Button x:Name="btnStart" Text="Start"  BackgroundColor="Transparent" WidthRequest="85" HeightRequest="45" Font="verdana" FontAttributes="Bold" TextColor="SteelBlue" Clicked="Start_Btn_Clicked"/>
+                <Button x:Name="btnPause" Text="Pause"  BackgroundColor="Transparent" WidthRequest="65" HeightRequest="45" Font="verdana" FontAttributes="Bold" TextColor="SteelBlue" Clicked="Pause_Btn_Clicked"/>
+                <Button x:Name="btnReset" Text="Reset"  BackgroundColor="Transparent" WidthRequest="75" HeightRequest="45" Font="verdana" FontAttributes="Bold" TextColor="SteelBlue" Clicked="Reset_Btn_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+    </ContentPage>
+
+
+
+
+</TabbedPage>

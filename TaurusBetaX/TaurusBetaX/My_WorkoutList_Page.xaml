@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:labelTextColorSample="clr-namespace:TaurusBetaX;assembly=TaurusBetaX"
+             xmlns:local="clr-namespace:TaurusBetaX"
+             BackgroundColor="White"
+             mc:Ignorable="d"
+             x:Name="MyRoot"
+             x:Class="TaurusBetaX.My_WorkoutList_Page">
+
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" Clicked="GoToExerciseList_Clicked"  />
+  
+    </ContentPage.ToolbarItems>-->
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <labelTextColorSample:StringToColorConverter x:Key="StringToColorConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ListView x:Name="workout_Listview" ItemTapped="Workout_Listview_ItemTapped">
+        <ListView.Header>
+            <StackLayout >
+                <StackLayout Orientation="Horizontal" HeightRequest="33" BackgroundColor="#2196F3">
+                    <Button x:Name="navigate_back_button"  Image="back_button_blue.png" BackgroundColor="#2196F3" WidthRequest="45"  HorizontalOptions="StartAndExpand" Clicked="Navigate_back_button_Clicked"/>
+                    <Button x:Name="add_workout_button" Text="+ New Workout" TextColor="White" FontSize="9" BackgroundColor="#2196F3" HorizontalOptions="EndAndExpand" WidthRequest="95"  Clicked="Add_workout_button_Clicked"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" >
+                    <Label Text="My Workout List" TextColor="Gray" FontSize="20" FontFamily="Arial" FontAttributes="Bold"  HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" />
+                    <Label Text ="____________________________________" HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" />
+                </StackLayout>
+            </StackLayout>
+        </ListView.Header>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+
+                <!--<local:MyViewCell/>-->
+                <ViewCell x:Name="myworkout_ViewCell">
+                    <StackLayout Orientation="Horizontal" BackgroundColor="White" Margin="15,10,15,0">
+                        <Label Text="{Binding Path=Key}" TextColor="SteelBlue" HorizontalOptions="StartAndExpand"/>
+                        
+                        <!--<Label x:Name="workoutStatus" Text="{Binding Path=Value}" HorizontalOptions="EndAndExpand" FontSize="10" Margin="0,5,0,0"/>-->
+
+                        <Label x:Name="workoutStatus" Text="{Binding Workout_Status}" HorizontalOptions="EndAndExpand" TextColor="Red" FontSize="10" Margin="0,5,0,0"/>
+
+                    </StackLayout>
+               </ViewCell>
+
+            </DataTemplate>
+        </ListView.ItemTemplate>
+        <ListView.Footer>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="End" HeightRequest="33">
+                <Label Text ="Workout Log" TextColor="#2196F3" FontSize="14" FontFamily="Arial" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,0,0,0" />
+            </StackLayout>
+        </ListView.Footer>
+    </ListView>
+</ContentPage>

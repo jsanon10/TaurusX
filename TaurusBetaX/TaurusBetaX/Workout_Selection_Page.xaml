@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TaurusBetaX.Workout_Selection_Page"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+            BackgroundImage ="big_fade_white.jpg"
+             Title="Select a Pelvic Muscle Workout">
+
+    
+
+    <!--<ListView x:Name="Selection_List" HasUnevenRows="True" Header="" Footer="">
+        <ListView.HeaderTemplate>
+            <DataTemplate>
+                <Grid Padding="12" BackgroundColor="SteelBlue">
+                    <Label Text="Workout Selection" TextColor="White" FontSize="28" FontAttributes="Bold"/>
+
+                </Grid>
+                
+            </DataTemplate>
+        </ListView.HeaderTemplate>
+        
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid Padding="12" >
+                        <Label x:Name ="Traditional_K_Button" Text="Traditional Kegel"  WidthRequest="190" HeightRequest="35" BackgroundColor="Transparent" Font="arial" FontAttributes="Bold" FontSize="11" TextColor="SteelBlue"/>
+                        <Label Text="{Binding .}" FontSize="12"/>
+                        
+
+                        </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+
+        <ListView.FooterTemplate>
+            <DataTemplate>
+                <Grid Padding="12" BackgroundColor="White">
+                <Button x:Name="intro_btn" Text="Back" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Transparent" Font="verdana" FontAttributes="Bold" TextColor="SteelBlue"  Clicked="Intro_Page_Btn_Clicked"/>
+                </Grid>
+
+            </DataTemplate>
+        </ListView.FooterTemplate>
+    </ListView>-->
+
+
+
+
+    <ContentPage.Content>
+
+    <StackLayout HorizontalOptions="Start">
+
+            <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
+                <Label Text="Pelvic Exercises" HorizontalTextAlignment="Center" FontSize="30" FontAttributes="Bold" TextColor="White" BackgroundColor="SteelBlue" WidthRequest="300"/>
+
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Margin="15,0,0,0">
+               
+                <!--<Button x:Name ="Traditional_K_Button" Text="Traditional Kegel"  WidthRequest="190" HeightRequest="35" Clicked="Traditional_K_Button_Clicked" BackgroundColor="Transparent" Font="arial" FontAttributes="Bold" FontSize="11" TextColor="SteelBlue"/>
+                <Image x:Name ="btnW1_1_img" HorizontalOptions="StartAndExpand" />-->
+
+                <Label x:Name ="Traditional_K_Button" Text="Traditional Kegel"  WidthRequest="120" HeightRequest="18" BackgroundColor="Transparent" Font="Geneva" FontSize="12" TextColor="SteelBlue"/>
+                <Label x:Name ="Traditional_K_Count" Text=""  WidthRequest="80" HeightRequest="16" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Font="Geneva" FontSize="10" TextColor="White"/>
+                
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Margin="15,0,0,0">
+
+                <!--<Button x:Name ="Reverse_K_Button" Text="Reverse Kegel" WidthRequest="200" HeightRequest="35"  Clicked="Reverse_K_Button_Clicked" BackgroundColor="Transparent"  Font="arial" FontAttributes="Bold" FontSize="11" TextColor="SteelBlue"/>
+                <Image x:Name ="btnW1_2_img" /-->
+
+                <Label x:Name ="Reverse_K_Button" Text="Reverse Kegel"  WidthRequest="120" HeightRequest="18" BackgroundColor="Transparent" Font="Geneva" FontSize="12" TextColor="SteelBlue"/>
+                <Label x:Name ="Reverse_K_Count" Text=""  WidthRequest="80" HeightRequest="16" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Font="Geneva" FontSize="10" TextColor="White"/>
+               
+                
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Margin="15,0,0,0">
+
+                <!--<Button x:Name ="Half_Squat_Button" Text="Low Heel Half Squats" WidthRequest="200" HeightRequest="35"  Clicked="Half_Squat_Button_Clicked" BackgroundColor="Transparent"  Font="arial" FontAttributes="Bold" FontSize="11" TextColor="SteelBlue"/>
+                <Image x:Name ="btnW1_3_img" />-->
+
+                <Label x:Name ="Half_Squat_Button" Text="Low Heel Half Squats"  WidthRequest="120" HeightRequest="18" BackgroundColor="Transparent" Font="Geneva" FontSize="12" TextColor="SteelBlue"/>
+                <Label x:Name ="Half_Squat_Count" Text=""  WidthRequest="80" HeightRequest="16" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Font="Geneva" FontSize="10" TextColor="White"/>
+
+
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Margin="15,0,0,0">
+
+                <!--<Button x:Name ="Full_Squat_Button" Text="Low Heel Full Squats" WidthRequest="200" HeightRequest="35"  Clicked="Full_Squat_Button_Clicked" BackgroundColor="Transparent"  Font="arial" FontAttributes="Bold" FontSize="11" TextColor="SteelBlue"/>
+                <Image x:Name ="btnW1_4_img" />-->
+                <Label x:Name ="Full_Squat_Button" Text="Low Heel Full Squats"  WidthRequest="120" HeightRequest="18" BackgroundColor="Transparent" Font="Geneva" FontSize="12" TextColor="SteelBlue"/>
+                <Label x:Name ="Full_Squat_Count" Text=""  WidthRequest="80" HeightRequest="16" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Font="Geneva" FontSize="10" TextColor="White"/>
+
+
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Margin="15,0,0,0">
+
+                <!--<Button x:Name ="Hold_Squat_Button" Text="Low Heel Hold Squat" WidthRequest="200" HeightRequest="35"  Clicked="Hold_Squat_Button_Clicked" BackgroundColor="Transparent"  Font="arial" FontAttributes="Bold" FontSize="11" TextColor="SteelBlue"/>
+                <Image x:Name ="btnW1_5_img" />-->
+                <Label x:Name ="Hold_Squat_Button" Text="Low Heel Hold Squat"  WidthRequest="120" HeightRequest="18" BackgroundColor="Transparent" Font="Geneva" FontSize="12" TextColor="SteelBlue"/>
+                <Label x:Name ="Hold_Squat_Count" Text=""  WidthRequest="80" HeightRequest="16" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Font="Geneva" FontSize="10" TextColor="White"/>
+
+
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" HorizontalOptions="Center" Margin="0,0,0,0">
+                
+                <Button x:Name="intro_btn" Text="" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Transparent" Font="verdana" FontAttributes="Bold" TextColor="SteelBlue"  Clicked="Intro_Page_Btn_Clicked"/>
+                <Button x:Name="exercise_btn" Text="Start" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Font="arial" FontAttributes="Bold" TextColor="Green" Clicked="Excercise_Button_Clicked"/>
+
+
+            </StackLayout>
+
+            </StackLayout>
+
+       
+
+
+    </ContentPage.Content>
+        <!--<StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" HorizontalOptions="Center" Margin="0,0,0,0">
+        <Button x:Name="intro_btn" Text="" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Transparent" Font="verdana" FontAttributes="Bold" TextColor="SteelBlue"  Clicked="Intro_Page_Btn_Clicked"/>
+    </StackLayout>-->
+
+
+</ContentPage>

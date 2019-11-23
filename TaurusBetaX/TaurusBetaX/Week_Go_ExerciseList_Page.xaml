@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             BackgroundColor="White"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:TaurusBetaX"  
+             x:Class="TaurusBetaX.Week_Go_ExerciseList_Page">
+
+
+    <ListView x:Name="goExercise_Listview" ItemSelected="Exercise_Listview_Selected" RowHeight="35">
+        <ListView.Header>
+            <StackLayout>
+                <StackLayout  BackgroundColor="#2196F3" Orientation="Horizontal" HeightRequest="33">
+                    <Button x:Name="go_navigate_back_button"  Image="back_button_blue.png" BackgroundColor="#2196F3" WidthRequest="45" HorizontalOptions="StartAndExpand" Clicked="Navigate_back_button_Clicked"/>
+                    <Label Text ="Start Workout" TextColor="white" FontSize="14" FontFamily="Arial" FontAttributes="Bold" HorizontalOptions="Center" BackgroundColor="#2196F3" Margin="0,0,0,0" />
+                    <Button x:Name="go_reset_button"  Text="Reset" TextColor="White" FontSize="10" BackgroundColor="#2196F3" HorizontalOptions="EndAndExpand" WidthRequest="50" Clicked="Go_reset_button_Clicked"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" >
+                    <Label x:Name="goWorkoutTitle" TextColor="Gray" FontSize="20" FontFamily="Arial" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" />
+                    <StackLayout Orientation="Horizontal">
+                    <Label Text ="Day(s) completed: " FontSize="9" HorizontalOptions="Start" Margin="0,0,0,0" />
+                    <Label x:Name="daysCompleted" Text ="0" FontSize="9" HorizontalOptions="Start" Margin="0,0,0,0" />
+                    </StackLayout>
+                    <Label Text ="____________________________________" HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" />
+                </StackLayout>
+            </StackLayout>
+        </ListView.Header> 
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell x:Name="goExercise_ViewCell">
+                    <StackLayout BackgroundColor="White" Orientation="Vertical" Margin="15,0,15,0">
+                        <StackLayout Orientation="Horizontal">
+                            <Image x:Name="checkMark_name" Source="{Binding Checkmark}" HeightRequest="20"></Image>
+                            <Label x:Name="exercise_name" Text="{Binding Exercise}" TextColor="#f35e20" />
+                            <Label x:Name="reps_name" Text="{Binding Reps}" HorizontalOptions="EndAndExpand" TextColor="#503026" />
+                        </StackLayout>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+</ContentPage>

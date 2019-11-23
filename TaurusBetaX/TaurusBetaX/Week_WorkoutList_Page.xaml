@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             BackgroundColor="White"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:TaurusBetaX"  
+             x:Class="TaurusBetaX.Week_WorkoutList_Page">
+
+
+
+    <ListView x:Name="workout_Listview" ItemTapped="Workout_Listview_ItemTapped">
+        <ListView.Header>
+            <StackLayout >
+                <StackLayout Orientation="Horizontal" HeightRequest="33" BackgroundColor="#2196F3">
+                    <Button x:Name="navigate_back_button"  Image="back_button_blue.png" BackgroundColor="#2196F3" WidthRequest="45"  HorizontalOptions="StartAndExpand" Clicked="Navigate_back_button_Clicked"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" >
+                    <Label Text="Four Weeks Training" TextColor="Gray" FontSize="20" FontFamily="Arial" FontAttributes="Bold"  HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" />
+                    <Label Text ="____________________________________" HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" />
+                </StackLayout>
+            </StackLayout>
+        </ListView.Header>
+
+        <!--<ListView.ItemTemplate>
+            <DataTemplate>
+
+                <TextCell Text="{Binding Path=Key}" TextColor="SteelBlue"/>
+
+
+            </DataTemplate>
+        </ListView.ItemTemplate>-->
+
+
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell x:Name="weekWorkout_ViewCell">
+                    <StackLayout BackgroundColor="White" Orientation="Vertical" Margin="15,0,15,0">
+                        <StackLayout Orientation="Horizontal">
+                            <!--<Label x:Name="exercise_name" Text="{Binding MyWorkout}" TextColor="SteelBlue" />
+                            <Label x:Name="reps_name" Text="{Binding WkDone_count}" HorizontalOptions="EndAndExpand" TextColor="red" FontSize="9" />-->
+                            <Label Text="{Binding Path=Key}" TextColor="SteelBlue"/>
+                            <Label x:Name="workout_done_count" Text="{Binding Path=Value}" HorizontalOptions="EndAndExpand" TextColor="OrangeRed" FontSize="9" />
+                            <Label Text="Day(s) completed" HorizontalOptions="End" TextColor="LightSlateGray" FontSize="8" />
+                            
+                            
+                        </StackLayout>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+
+
+        <ListView.Footer>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="End" HeightRequest="33">
+                <Label Text ="Workout Log" TextColor="#2196F3" FontSize="14" FontFamily="Arial" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,0,0,0" />
+            </StackLayout>
+        </ListView.Footer>
+
+        
+
+       
+    </ListView>
+</ContentPage>

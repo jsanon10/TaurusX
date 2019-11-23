@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          
+             x:Class="TaurusBetaX.FourWeeksPage_Free">
+
+    <MasterDetailPage.Master>
+        <ContentPage Padding="10" BackgroundColor="LightSteelBlue" Title="4 Week Program">
+            <ContentPage.Content>
+                <StackLayout Margin="5, 0, 5, 5" VerticalOptions="StartAndExpand">
+                    <Label Text="Toruflex" HorizontalTextAlignment="Center" FontSize="40" FontAttributes="Bold" VerticalOptions="StartAndExpand">
+                    </Label>
+                    <Label Text="4Weeks" HorizontalTextAlignment="Center" FontSize="24" FontAttributes="Bold" VerticalOptions="StartAndExpand">
+                    </Label>
+                    <Label Text="________________" HorizontalTextAlignment="Center">
+                    </Label>
+
+                    <Button Text="Week 1" WidthRequest="200" HeightRequest="40" BackgroundColor="Transparent" Font="arial" FontAttributes="Bold" FontSize="14" TextColor="SteelBlue" Clicked="Button_Clicked_1"></Button>
+                    <Button Text="Week 2" WidthRequest="200" HeightRequest="40" BackgroundColor="Transparent" Font="arial" FontAttributes="Bold" FontSize="14" TextColor="SteelBlue" Clicked="Button_Clicked_2"></Button>
+                    <Button Text="Week 3" WidthRequest="200" HeightRequest="40" BackgroundColor="Transparent" Font="arial" FontAttributes="Bold" FontSize="14" TextColor="SteelBlue" Clicked="Button_Clicked_3"></Button>
+                    <Button Text="Week 4" WidthRequest="200" HeightRequest="40" BackgroundColor="Transparent" Font="arial" FontAttributes="Bold" FontSize="14" TextColor="SteelBlue" Clicked="Button_Clicked_4"></Button>
+                    <Label Text="________________" HorizontalTextAlignment="Center">
+                    </Label>
+                    <Button Text="Back" BackgroundColor="LightSteelBlue" Clicked="Back_Button_Clicked"></Button>
+                    
+                </StackLayout>
+            </ContentPage.Content>
+        </ContentPage>
+    </MasterDetailPage.Master>
+
+    <MasterDetailPage.Detail>
+        <ContentPage Padding="10">
+            <ContentPage.Content>
+                <StackLayout Margin="5, 30, 5, 5">
+                    <Label Text="Detail Page">
+
+                    </Label>
+                </StackLayout>
+            </ContentPage.Content>
+        </ContentPage>
+
+    </MasterDetailPage.Detail>
+    
+</MasterDetailPage>

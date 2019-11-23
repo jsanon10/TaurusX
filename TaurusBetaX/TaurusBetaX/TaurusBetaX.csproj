@@ -1,0 +1,132 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Exercise_Page_Old.xaml.cs" />
+    <Compile Remove="FourWeeksPage.xaml.cs" />
+    <Compile Remove="FourWeeksPage_Free.xaml.cs" />
+    <Compile Remove="Repetition_Page.xaml.cs" />
+    <Compile Remove="Week1_Page.xaml.cs" />
+    <Compile Remove="Week1_Page_Free.xaml.cs" />
+    <Compile Remove="Week2_Page.xaml.cs" />
+    <Compile Remove="Week3_Page.xaml.cs" />
+    <Compile Remove="Week4_Page.xaml.cs" />
+    <Compile Remove="Workout_Selection_Page.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Exercise_Page_Old.xaml" />
+    <EmbeddedResource Remove="FourWeeksPage.xaml" />
+    <EmbeddedResource Remove="FourWeeksPage_Free.xaml" />
+    <EmbeddedResource Remove="Repetition_Page.xaml" />
+    <EmbeddedResource Remove="Week1_Page.xaml" />
+    <EmbeddedResource Remove="Week1_Page_Free.xaml" />
+    <EmbeddedResource Remove="Week2_Page.xaml" />
+    <EmbeddedResource Remove="Week3_Page.xaml" />
+    <EmbeddedResource Remove="Week4_Page.xaml" />
+    <EmbeddedResource Remove="Workout_Selection_Page.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="LowHeelSquat.mp4" />
+    <None Remove="workouts.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="LowHeelSquat.mp4" />
+    <EmbeddedResource Include="workouts.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="12.2.1" />
+    <PackageReference Include="Plugin.MediaManager" Version="0.8.9" />
+    <PackageReference Include="Plugin.MediaManager.Forms" Version="0.8.9" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
+    <PackageReference Include="Serilog" Version="2.9.0" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.6.292" />
+    <PackageReference Include="System.Collections" Version="4.3.0" />
+    <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
+    <PackageReference Include="Xam.Plugins.TextToSpeech" Version="4.0.0.7" />
+    <PackageReference Include="Xamarin.Forms" Version="4.3.0.991211" />
+    <PackageReference Include="XLabs.Forms" Version="2.0.5782" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="My_Workout_Schedule.xaml.cs">
+      <DependentUpon>My_Workout_Schedule.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Popup_Week_Workout.xaml.cs">
+      <DependentUpon>Popup_Week_Workout.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Week_Go_ExerciseList_Page.xaml.cs">
+      <DependentUpon>Week_Go_ExerciseList_Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="My_Go_ExerciseList_Page.xaml.cs">
+      <DependentUpon>My_Go_ExerciseList_Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Week_WorkoutList_Page.xaml.cs">
+      <DependentUpon>Week_WorkoutList_Page.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="DisclaimerPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="IntroPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MyViewCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="My_ExerciseList_Page.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="My_Go_ExerciseList_Page.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="My_Workout_Schedule.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="My_WorkoutList_Page.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Popup_Alert_Active_Page.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Popup_Exercise_ListView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Popup_Max_Day.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Popup_Repetitions.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Popup_View.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Popup_Wait_Hours.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Popup_Workout_ListView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DependencyServices\" />
+    <Folder Include="Views\" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="TaurusBetaX.Popup_Alert_Active_Page">
+    <ContentPage.Content>
+        <StackLayout Margin="12" Padding="24" Spacing="24" BackgroundColor="White" HorizontalOptions="Center" VerticalOptions="Center">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" >
+
+                <Label x:Name="week_Workout_Number" Text=""/>
+            </StackLayout>
+
+            <StackLayout VerticalOptions="End" HorizontalOptions="Center">
+                <Button x:Name="ok_button" Text="Ok" WidthRequest="125" HeightRequest="35" BackgroundColor="Green"  Font="arial" FontAttributes="Bold" FontSize="11" TextColor="White" Clicked="Ok_button_Clicked"/>
+
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</pages:PopupPage>

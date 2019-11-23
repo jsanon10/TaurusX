@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TaurusBetaX.Week1_Page"
+             BackgroundImage ="big_fade_white.jpg"
+             Title="Week 1 Workout">
+    
+        <ContentPage.Content>
+        <StackLayout HorizontalOptions="Start" Margin="0,0,0,0">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                <Button x:Name ="btnW1_1" Text="1 - Pre-Workout Tradidional Kegel (20x)   *"  WidthRequest="190" HeightRequest="33" Clicked="Button1_W1_Clicked" BackgroundColor="Transparent" Font="arial" FontAttributes="Italic" IsEnabled="False" FontSize="9" TextColor="SteelBlue"/>
+                <!--<Label Text="1 - Pre-Workout Tradidional Kegel (20x)   ">-->
+                <Image x:Name ="btnW1_1_img" HorizontalOptions="StartAndExpand" />
+               
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+
+                <Button x:Name ="btnW1_2" Text="2 - Pre-Workout Reverse Kegel (20X)       *" WidthRequest="200" HeightRequest="33"  Clicked="Button2_W1_Clicked"  BackgroundColor="Transparent"  Font="arial" FontAttributes="Italic" IsEnabled="False" FontSize="9" TextColor="SteelBlue"/>
+                <Image x:Name ="btnW1_2_img" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+
+                <Button x:Name ="btnW1_3" Text="3 - Low Heel Half Squats with Kegels (40x)*" WidthRequest="200" HeightRequest="33"  Clicked="Button3_W1_Clicked" BackgroundColor="Transparent"  Font="arial" FontAttributes="Italic" IsEnabled="False" FontSize="9" TextColor="SteelBlue"/>
+                <Image x:Name ="btnW1_3_img" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+
+                <Button x:Name ="btnW1_4" Text="4 - Low Heel Full Squats  Set # 1 (15x)   *" WidthRequest="200" HeightRequest="33"  Clicked="Button4_W1_Clicked" BackgroundColor="Transparent"  Font="arial" FontAttributes="Italic" IsEnabled="False" FontSize="9" TextColor="SteelBlue"/>
+                <Image x:Name ="btnW1_4_img" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+
+                <Button x:Name ="btnW1_5" Text="5 - Low Heel Full Squats  Set # 2 (10x)   *" WidthRequest="200" HeightRequest="33"  Clicked="Button5_W1_Clicked" BackgroundColor="Transparent"  Font="arial" FontAttributes="Italic" IsEnabled="False" FontSize="9" TextColor="SteelBlue"/>
+                <Image x:Name ="btnW1_5_img" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+
+                <Button x:Name ="btnW1_6" Text="6 - Low Heel Full Squats  Set # 3 (10x)   *" WidthRequest="200" HeightRequest="33"  Clicked="Button6_W1_Clicked" BackgroundColor="Transparent"  Font="arial" FontAttributes="Italic" IsEnabled="False" FontSize="9" TextColor="SteelBlue"/>
+                <Image x:Name ="btnW1_6_img" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+
+                <Button x:Name ="btnW1_7" Text="7 - Low Heel Full Squats Hold (20 seconds)*" WidthRequest="200" HeightRequest="33"  Clicked="Button7_W1_Clicked" BackgroundColor="Transparent"  Font="arial" FontAttributes="Italic" IsEnabled="False" FontSize="9" TextColor="SteelBlue"/>
+                <Image x:Name ="btnW1_7_img" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+
+                <Button x:Name ="btnW1_8" Text="8 - Post-Workout Reverse Kegel (20x)      *" WidthRequest="200" HeightRequest="33"  Clicked="Button8_W1_Clicked" BackgroundColor="Transparent"  Font="arial" FontAttributes="Italic" IsEnabled="False" FontSize="9" TextColor="SteelBlue"/>
+                <Image x:Name ="btnW1_8_img" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" >
+
+                <Button x:Name ="btnW1_9" Text="9 - Post-Workout Tradidional Kegel (20x)  *" WidthRequest="200" HeightRequest="33"  Clicked="Button9_W1_Clicked" BackgroundColor="Transparent" Font="arial" FontAttributes="Italic" IsEnabled="False" FontSize="9" TextColor="SteelBlue"/>
+                <Image x:Name ="btnW1_9_img" />
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

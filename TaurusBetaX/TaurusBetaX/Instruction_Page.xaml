@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             x:Class="TaurusBetaX.Instruction_Page">
+    <!--xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms;assembly=XLabs.Forms"-->
+   
+
+
+    <ContentPage.Content>
+        <!--<ScrollView>-->
+        <StackLayout BackgroundColor="White">
+            <StackLayout.Margin>
+                <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,44,0,0"/>
+            </StackLayout.Margin>
+            
+            <StackLayout  BackgroundColor="#002f5d" Orientation="Horizontal">
+                <StackLayout.HeightRequest>
+                    <OnPlatform x:TypeArguments="x:Double" Android ="66" iOS="65"/>
+                </StackLayout.HeightRequest>
+
+                <Button x:Name="go_navigate_back_button"  Image="dark_arrow_blue_back_small.png" BackgroundColor="#002f5d" WidthRequest="45" HorizontalOptions="StartAndExpand" Clicked="go_navigate_back_button_Clicked">
+                <Button.WidthRequest>
+                        <OnPlatform x:TypeArguments="x:Double" Android ="85" iOS="65"/>
+                    </Button.WidthRequest>
+                    <Button.Margin>
+                        <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="10,0,0,0"/>
+                    </Button.Margin>
+
+                    <Button.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double" Android ="15" iOS="65"/>
+                    </Button.HeightRequest>
+                </Button>
+                <Label Text ="Instructions" TextColor="white" FontSize ="{OnPlatform Android = 28, iOS = 24}" FontFamily="Arial" FontAttributes="Bold" HorizontalOptions="Center" BackgroundColor="#002f5d">
+                    <Label.Margin>
+                        <OnPlatform x:TypeArguments="Thickness" Android="5,12,0,0" iOS="0,17,17,0"/>
+                    </Label.Margin>
+                </Label>
+
+                <Button x:Name="blank_button"  Text="Reset" TextColor="#002f5d" FontSize="9" BackgroundColor="#002f5d" HorizontalOptions="EndAndExpand">
+                    <Button.WidthRequest>
+                        <OnPlatform x:TypeArguments="x:Double" Android ="85" iOS="65"/>
+                    </Button.WidthRequest>
+                    <Button.FontSize>
+                        <OnPlatform x:TypeArguments ="x:Double" Android="10" iOS="12"/>
+                    </Button.FontSize>
+                </Button>
+
+            </StackLayout>
+
+                <StackLayout HorizontalOptions="CenterAndExpand" BackgroundColor="White">
+                <StackLayout.Margin>
+                    <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,10,0,40"/>
+                </StackLayout.Margin>
+
+                <!--<Label x:Name="exercise_name" Text="" TextColor="Gray" HorizontalOptions="Center" FontAttributes="Bold" FontSize ="{OnPlatform Android = 14, iOS = 28}">
+                <Label.Margin>
+                        <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,12,0,20"/>
+                    </Label.Margin>
+                </Label>-->
+
+
+                <!--<ScrollView>
+                    <StackLayout Margin="0,10,0,30">
+                        <Image x:Name ="directions_img1" Margin="0,10,0,30" />
+                        <Image x:Name ="directions_img2" />
+                    </StackLayout>
+                </ScrollView>-->
+                    <WebView x:Name="webInstruction" HeightRequest="1000" WidthRequest="1000"  Navigated="webInstruction_Navigated"/>
+                    <Label x:Name="LoadingLabel" Text="LOADING......" FontAttributes="Bold" TextColor="Red" IsVisible="True"/>
+
+            </StackLayout>
+        </StackLayout>
+       <!--</ScrollView>-->
+    </ContentPage.Content>
+</ContentPage>

@@ -1,35 +1,45 @@
 ﻿using System;
 using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+//using TaurusBetaX.Droid.Implementations;
+//using TaurusBetaX.Helpers;
+using OpenId.AppAuth;
+using Org.Json;
 using System.IO;
 using MediaManager;
+using Microsoft.Identity.Client;
 using MediaManager.Forms;
 //using Plugin.MediaManager.Forms.Android;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-
-
-
+using Plugin.LocalNotifications;
 
 [assembly: ExportRenderer(typeof(Picker), typeof(PickerRenderer))]
 namespace TaurusBetaX.Droid
 {
-    [Activity(Label = "TaurusBetaX", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "Toruflex", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-    
+
+        internal static MainActivity Instance { get; private set; }
 
         protected override void OnCreate(Bundle bundle)
         {
+            //Keep screen ON
+            this.Window.SetFlags(WindowManagerFlags.KeepScreenOn, WindowManagerFlags.KeepScreenOn);
+
+            Instance = this;
+
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
-            //VideoViewRenderer.Init();
+           
             CrossMediaManager.Current.Init();
 
             Rg.Plugins.Popup.Popup.Init(this, bundle);
@@ -45,27 +55,25 @@ namespace TaurusBetaX.Droid
             ToolbarResource = Resource.Layout.Toolbar;
             //---------------------------------------------
 
+
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App(fullpath, csvpath));
+
+            LocalNotificationsImplementation.NotificationIconId = Resource.Drawable.transparent_favicon;
+
+            
+
+
         }
 
-
-
-
-
-
-
-        //private void PlayMethodInAndroidActivity()
+        //protected override void OnNewIntent(Intent intent)
         //{
-        //    var videoUrl = "android.resource://" + Resources.GetResourcePackageName(Resource.Raw.VideoFile.mp4) + "/" + Resource.Raw.VideoFile;
+        //    base.OnNewIntent(intent);
 
-        //    // this method in the _formsMediaManager may call to CrossMediaManager.Current.Play(videoUrl);
-        //    _formsMediaManager.PlayVideo(videoUrl.AbsoluteString);
-
-        //    // or if you want to add to a queue
-
-        //    // this method in the _formsMediaManager may call to  CrossMediaManager.Current.MediaQueue.Add(...);
-        //    _formsMediaManager.AddToVideoQueue(videoUrl);
+        //    if (intent != null && LoginProvider.Current != null)
+        //    {
+        //        LoginProvider.Current.NotifyOfCallback(intent);
+        //    }
         //}
     }
 }

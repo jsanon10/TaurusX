@@ -26,10 +26,13 @@ namespace TaurusBetaX
         int hours_wait;
         int minutes_wait;
         bool is_waiting;
+        bool is_paid;
 
-        public Popup_Wait_Hours(int hours, int minutes, int newID, string newWorkout, string newExercise, string newWorkType, int newCount, bool eX_done, bool wK_done, int ex_count, int wk_count, bool waiting)
+        public Popup_Wait_Hours(int hours, int minutes, int newID, string newWorkout, string newExercise, string newWorkType, int newCount, bool eX_done, bool wK_done, int ex_count, int wk_count, bool waiting, bool paid)
         {
             InitializeComponent();
+
+            is_paid = paid;
 
             hoursleft.Text = hours + " hour";
             minutesleft.Text = minutes + " minutes";
@@ -54,7 +57,7 @@ namespace TaurusBetaX
         {
             PopupNavigation.Instance.PopAsync();
 
-            App.Current.MainPage = new Exercise_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count, is_waiting, hours_wait, minutes_wait);
+            App.Current.MainPage = new Exercise_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count, is_waiting, hours_wait, minutes_wait, is_paid);
 
             
             //App.Current.MainPage = new Week_Go_ExerciseList_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count);

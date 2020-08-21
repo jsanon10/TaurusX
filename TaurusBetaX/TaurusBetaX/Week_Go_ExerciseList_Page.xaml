@@ -9,33 +9,96 @@
              x:Class="TaurusBetaX.Week_Go_ExerciseList_Page">
 
 
-    <ListView x:Name="goExercise_Listview" ItemSelected="Exercise_Listview_Selected" RowHeight="35">
+    <ListView x:Name="goExercise_Listview" ItemSelected="Exercise_Listview_Selected" SeparatorVisibility="None">
+        <ListView.RowHeight>
+            <OnPlatform x:TypeArguments ="x:Int32" Android="55" iOS="70"/>
+        </ListView.RowHeight>
         <ListView.Header>
             <StackLayout>
-                <StackLayout  BackgroundColor="#2196F3" Orientation="Horizontal" HeightRequest="33">
-                    <Button x:Name="go_navigate_back_button"  Image="back_button_blue.png" BackgroundColor="#2196F3" WidthRequest="45" HorizontalOptions="StartAndExpand" Clicked="Navigate_back_button_Clicked"/>
-                    <Label Text ="Start Workout" TextColor="white" FontSize="14" FontFamily="Arial" FontAttributes="Bold" HorizontalOptions="Center" BackgroundColor="#2196F3" Margin="0,0,0,0" />
-                    <Button x:Name="go_reset_button"  Text="Reset" TextColor="White" FontSize="10" BackgroundColor="#2196F3" HorizontalOptions="EndAndExpand" WidthRequest="50" Clicked="Go_reset_button_Clicked"/>
+                <StackLayout  BackgroundColor="#002f5d"  Orientation="Horizontal">
+
+                    <StackLayout.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double" Android ="66" iOS="65"/>
+                    </StackLayout.HeightRequest>
+
+                    <Button x:Name="go_navigate_back_button"  Image="dark_arrow_blue_back_small.png" BackgroundColor="#002f5d"  HorizontalOptions="StartAndExpand" Clicked="Navigate_back_button_Clicked">
+                        <Button.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double" Android ="85" iOS="65"/>
+                        </Button.WidthRequest>
+                        <Button.Margin>
+                            <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="10,0,0,0"/>
+                        </Button.Margin>
+
+                        <Button.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double" Android ="15" iOS="65"/>
+                        </Button.HeightRequest>
+                    </Button>
+                    <Label Text ="Start Workout" TextColor="white" FontFamily="Arial" FontAttributes="Bold" HorizontalOptions="Center" BackgroundColor="#002f5d">
+
+                        <Label.Margin>
+                            <OnPlatform x:TypeArguments="Thickness" Android="15,18,0,0" iOS="0,17,17,0"/>
+                        </Label.Margin>
+
+                            <Label.FontSize>
+                            <OnPlatform x:TypeArguments ="x:Double" Android="22" iOS="24"/>
+                        </Label.FontSize>
+                    </Label>
+                    <Button x:Name="go_reset_button"  Text="Reset" TextColor="White"  BackgroundColor="#002f5d" HorizontalOptions="EndAndExpand" Clicked="Go_reset_button_Clicked">
+                        <Button.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double" Android ="100" iOS="60"/>
+                        </Button.WidthRequest>
+                        <Button.FontSize>
+                            <OnPlatform x:TypeArguments ="x:Double" Android="18" iOS="15"/>
+                        </Button.FontSize>
+                    </Button>
                 </StackLayout>
+                
+                
                 <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" >
-                    <Label x:Name="goWorkoutTitle" TextColor="Gray" FontSize="20" FontFamily="Arial" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" />
+                    <Label x:Name="goWorkoutTitle" TextColor="Gray" FontFamily="Arial" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" Margin="0,0,0,0">
+                        <Label.FontSize>
+                            <OnPlatform x:TypeArguments ="x:Double" Android="25" iOS="28"/>
+                        </Label.FontSize>
+                        
+                    </Label>
                     <StackLayout Orientation="Horizontal">
-                    <Label Text ="Day(s) completed: " FontSize="9" HorizontalOptions="Start" Margin="0,0,0,0" />
-                    <Label x:Name="daysCompleted" Text ="0" FontSize="9" HorizontalOptions="Start" Margin="0,0,0,0" />
+                        <Label Text ="Day(s) completed: " HorizontalOptions="Start" Margin="0,0,0,0">
+                            <Label.FontSize>
+                                <OnPlatform x:TypeArguments ="x:Double" Android="14" iOS="12"/>
+                            </Label.FontSize>
+
+                        </Label>
+                        <Label x:Name="daysCompleted" Text ="0" HorizontalOptions="Start" Margin="0,0,0,0">
+                            <Label.FontSize>
+                                <OnPlatform x:TypeArguments ="x:Double" Android="14" iOS="12"/>
+                            </Label.FontSize>
+                        </Label>
+                        
                     </StackLayout>
-                    <Label Text ="____________________________________" HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" />
+                    <Label Text ="____________________________________" HorizontalOptions="CenterAndExpand" Margin="0,0,0,16" />
                 </StackLayout>
             </StackLayout>
         </ListView.Header> 
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell x:Name="goExercise_ViewCell">
-                    <StackLayout BackgroundColor="White" Orientation="Vertical" Margin="15,0,15,0">
+                    <StackLayout BackgroundColor="White" Orientation="Vertical" Margin="55,0,55,0">
                         <StackLayout Orientation="Horizontal">
-                            <Image x:Name="checkMark_name" Source="{Binding Checkmark}" HeightRequest="20"></Image>
-                            <Label x:Name="exercise_name" Text="{Binding Exercise}" TextColor="#f35e20" />
-                            <Label x:Name="reps_name" Text="{Binding Reps}" HorizontalOptions="EndAndExpand" TextColor="#503026" />
+                            <Image x:Name="checkMark_name" Source="{Binding Checkmark}" HeightRequest="40" VerticalOptions="Center"></Image>
+                            <Label x:Name="exercise_name" Text="{Binding Exercise}" TextColor="#f35e20"  VerticalOptions="Center">
+                                <Label.FontSize>
+                                    <OnPlatform x:TypeArguments ="x:Double" Android="18" iOS="22"/>
+                                </Label.FontSize>
+                            </Label>
+                            <Label x:Name="reps_name" Text="{Binding Reps}" HorizontalOptions="EndAndExpand" TextColor="#503026" VerticalOptions="Center">
+                                <Label.FontSize>
+                                    <OnPlatform x:TypeArguments ="x:Double" Android="16" iOS="18"/>
+                                </Label.FontSize>
+                                
+                            </Label>
+                           
                         </StackLayout>
+          
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>

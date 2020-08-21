@@ -24,7 +24,7 @@ namespace TaurusBetaX.iOS
             {
                 Control.TextAlignment = UITextAlignment.Center;
 
-                Control.Text = "---";
+                //Control.Text = "---";
 
                
 

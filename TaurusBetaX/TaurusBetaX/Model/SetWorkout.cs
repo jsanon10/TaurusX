@@ -52,6 +52,8 @@ namespace TaurusBetaX.Model
 
         public string Workout_Status { get; set; }
 
+        public bool VibrationOn { get; set; }
+
         public bool WorkoutReady { get; set; }
     }
 

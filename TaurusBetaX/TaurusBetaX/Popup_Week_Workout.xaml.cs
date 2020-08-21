@@ -38,6 +38,8 @@ namespace TaurusBetaX
         {
             InitializeComponent();
 
+            is_paid = paid;
+
             mWork = newWorkout;
             mWorkType = newWorkType;
         }
@@ -48,7 +50,7 @@ namespace TaurusBetaX
         {
             PopupNavigation.Instance.PopAsync();
 
-            App.Current.MainPage = new Week_Go_ExerciseList_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count);
+            App.Current.MainPage = new Week_Go_ExerciseList_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count, is_paid);
 
         }
 

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="TaurusBetaX.PopupReset">
+
+    <StackLayout Margin="12" Padding="24" Spacing="24" BackgroundColor="White" HorizontalOptions="Center" VerticalOptions="Center">
+        <StackLayout>
+            <Label Text="Are you sure you want to reset you workout list?"/>
+        </StackLayout>
+
+        <StackLayout>
+            <Button x:Name ="resetBtn" Text="Reset" WidthRequest="200" HeightRequest="35"  BackgroundColor="Green"  Font="arial" FontAttributes="Bold" FontSize="11" TextColor="White" Clicked="resetBtn_Clicked"/>
+        </StackLayout>
+
+        <StackLayout>
+            <Button x:Name ="cancelDeleteBtn" Text="Cancel" WidthRequest="200" HeightRequest="35" BackgroundColor="Green"  Font="arial" FontAttributes="Bold" FontSize="11" TextColor="White" Clicked="cancelDeleteBtn_Clicked"/>
+        </StackLayout>
+
+
+    </StackLayout>
+</pages:PopupPage>

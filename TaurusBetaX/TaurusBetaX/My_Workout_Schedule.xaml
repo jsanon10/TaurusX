@@ -4,32 +4,192 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms;assembly=XLabs.Forms"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
              x:Class="TaurusBetaX.My_Workout_Schedule">
-    <ContentPage.Content>
-        <StackLayout>
-                <StackLayout  BackgroundColor="#2196F3" Orientation="Horizontal" HeightRequest="33">
-                <Button x:Name="go_navigate_back_button"  Image="back_button_blue.png" BackgroundColor="#2196F3" WidthRequest="45" HorizontalOptions="StartAndExpand" Clicked="Go_navigate_back_button_Clicked"/>
-                <Label Text ="Set Schedule" TextColor="white" FontSize="14" FontFamily="Arial" FontAttributes="Bold" HorizontalOptions="Center" BackgroundColor="#2196F3" Margin="0,0,0,0" />
-                <Button x:Name="save_schedule_button"  Text="Save" TextColor="White" FontSize="10" BackgroundColor="#2196F3" HorizontalOptions="EndAndExpand" WidthRequest="50" Clicked="Save_schedule_button_Clicked"/>
+             <!--xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms;assembly=XLabs.Forms"-->
 
+    
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout>
+            <StackLayout.Margin>
+                <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,0.5,0,0"/>
+            </StackLayout.Margin>
+            
+            <StackLayout  BackgroundColor="#002f5d" Orientation="Horizontal" HeightRequest="33">
+                <StackLayout.HeightRequest>
+                   <OnPlatform x:TypeArguments="x:Double" Android ="66" iOS="62"/>
+                </StackLayout.HeightRequest>
+
+                <Button x:Name="go_navigate_back_button"  Image="dark_arrow_blue_back_small.png" BackgroundColor="#002f5d" WidthRequest="45" HorizontalOptions="StartAndExpand" Clicked="Go_navigate_back_button_Clicked">
+                    <Button.WidthRequest>
+                        <OnPlatform x:TypeArguments="x:Double" Android ="85" iOS="65"/>
+                    </Button.WidthRequest>
+                    <Button.Margin>
+                        <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="10,0,0,0"/>
+                    </Button.Margin>
+
+                    <Button.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double" Android ="15" iOS="65"/>
+                    </Button.HeightRequest>
+                </Button>
+
+
+
+                <Label Text ="Set Schedule" TextColor="white" FontSize ="{OnPlatform Android = 28, iOS = 20}" FontFamily="Arial" FontAttributes="Bold" HorizontalOptions="Center" BackgroundColor="#002f5d" Margin="7,0,0,0">
+                    <Label.Margin>
+                        <OnPlatform x:TypeArguments="Thickness" Android="5,7,0,0" iOS="5,20,0,0"/>
+                    </Label.Margin> 
+                </Label>
+                <Button x:Name="save_schedule_button"  Text="Save" TextColor="White" FontSize="{OnPlatform Android=15, iOS=15}" BackgroundColor="#002f5d" HorizontalOptions="EndAndExpand" WidthRequest="50" Clicked="Save_schedule_button_Clicked">
+
+                    <Button.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double" Android ="40" iOS="0" />
+                    </Button.HeightRequest>
+                    
+                    <Button.Margin>
+                        <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,0,0,0"/>
+                    </Button.Margin>
+
+                    <Button.WidthRequest>
+                        <OnPlatform x:TypeArguments="x:Double" Android ="85" iOS="65"/>
+                    </Button.WidthRequest>
+
+                </Button>
             </StackLayout>
-                <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" >
+                
+                <StackLayout HorizontalOptions="CenterAndExpand">
+                <StackLayout.Margin>
+                    <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,10,0,40"/>
+                </StackLayout.Margin>
                 <!--<Label x:Name="goWorkoutTitle" TextColor="Gray" FontSize="20" FontFamily="Arial" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" />
                 <Label Text ="____________________________________" HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" />-->
 
-                <Label x:Name="workoutTitle" Text="" HorizontalOptions="Start"/>
-                <controls:CheckBox x:Name="sunday_box" DefaultText="Sunday" HorizontalOptions="FillAndExpand" FontSize="10" FontName="Arial" CheckedChanged="Sunday_box_CheckedChanged"/>
-                <controls:CheckBox x:Name="monday_box" DefaultText="Monday" HorizontalOptions="FillAndExpand" FontSize="10" FontName="Arial" CheckedChanged="Monday_box_CheckedChanged"/>
-                <controls:CheckBox x:Name="tuesday_box" DefaultText="Tuesday" HorizontalOptions="FillAndExpand" FontSize="10" FontName="Arial" CheckedChanged="Tuesday_box_CheckedChanged"/>
-                <controls:CheckBox x:Name="wednesday_box" DefaultText="Wednesday" HorizontalOptions="FillAndExpand" FontSize="10" FontName="Arial" CheckedChanged="Wednesday_box_CheckedChanged"/>
-                <controls:CheckBox x:Name="thursday_box" DefaultText="Thursday" HorizontalOptions="FillAndExpand" FontSize="10" FontName="Arial" CheckedChanged="Thursday_box_CheckedChanged"/>
-                <controls:CheckBox x:Name="friday_box" DefaultText="Friday" HorizontalOptions="FillAndExpand" FontSize="10" FontName="Arial" CheckedChanged="Friday_box_CheckedChanged"/>
-                <controls:CheckBox x:Name="saturday_box" DefaultText="Saturday" HorizontalOptions="FillAndExpand" FontSize="10" FontName="Arial" CheckedChanged="Saturday_box_CheckedChanged" />
+                <Label x:Name="workoutTitle" Text="" TextColor="Gray" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize ="{OnPlatform Android = 25, iOS = 28}"/>
 
-                <TimePicker x:Name="scheduled_time" HorizontalOptions="Center" PropertyChanged="Scheduled_time_PropertyChanged"/>
+                <Label Text ="____________________________________" HorizontalOptions="CenterAndExpand">
+                    <Label.Margin>
+                        <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,12,0,20"/>
+                    </Label.Margin>
+                </Label>
+
+
+                <StackLayout VerticalOptions="CenterAndExpand">
+                    <StackLayout Orientation="Horizontal">
+
+                        <CheckBox x:Name="sunday_box" CheckedChanged="Sunday_box_CheckedChanged"/>
+                        <Label Text="Sunday" HorizontalOptions="FillAndExpand" FontFamily="Arial" >
+                            <Label.FontSize>
+                                <OnPlatform x:TypeArguments ="system:Double" Android="20" iOS="20"/>
+                            </Label.FontSize>
+                            <Label.Margin>
+                                <OnPlatform x:TypeArguments="Thickness" Android="0,7,0,0" iOS="0,11,0,0"/>
+                            </Label.Margin>
+
+                        </Label>
+                        <StackLayout.Margin>
+                            <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,20,0,0"/>
+                        </StackLayout.Margin>
+
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <CheckBox x:Name="monday_box"  CheckedChanged="Monday_box_CheckedChanged"/>
+                        <Label Text="Monday" HorizontalOptions="FillAndExpand"  FontFamily="Arial">
+                            <Label.FontSize>
+                                <OnPlatform x:TypeArguments ="system:Double" Android="20" iOS="20"/>
+                            </Label.FontSize>
+
+                            <Label.Margin>
+                                <OnPlatform x:TypeArguments="Thickness" Android="0,7,0,0" iOS="0,11,0,0"/>
+                            </Label.Margin>
+                        </Label>
+                        <StackLayout.Margin>
+                            <OnPlatform x:TypeArguments="Thickness" Android="0,20,0,0" iOS="0,20,0,0"/>
+                        </StackLayout.Margin>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <CheckBox x:Name="tuesday_box"  CheckedChanged="Tuesday_box_CheckedChanged"/>
+                        <Label Text="Tuesday" HorizontalOptions="FillAndExpand"  FontFamily="Arial">
+                            <Label.FontSize>
+                                <OnPlatform x:TypeArguments ="system:Double" Android="20" iOS="20"/>
+                            </Label.FontSize>
+                            <Label.Margin>
+                                <OnPlatform x:TypeArguments="Thickness" Android="0,7,0,0" iOS="0,11,0,0"/>
+                            </Label.Margin>
+                        </Label>
+                        <StackLayout.Margin>
+                            <OnPlatform x:TypeArguments="Thickness" Android="0,20,0,0" iOS="0,20,0,0"/>
+                        </StackLayout.Margin>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <CheckBox x:Name="wednesday_box" CheckedChanged="Wednesday_box_CheckedChanged"/>
+                        <Label Text="Wednesday" HorizontalOptions="FillAndExpand"  FontFamily="Arial">
+                            <Label.FontSize>
+                                <OnPlatform x:TypeArguments ="system:Double" Android="20" iOS="20"/>
+                            </Label.FontSize>
+                            <Label.Margin>
+                                <OnPlatform x:TypeArguments="Thickness" Android="0,7,0,0" iOS="0,11,0,0"/>
+                            </Label.Margin>
+                        </Label>
+                        <StackLayout.Margin>
+                            <OnPlatform x:TypeArguments="Thickness" Android="0,20,0,0" iOS="0,20,0,0"/>
+                        </StackLayout.Margin>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <CheckBox x:Name="thursday_box" CheckedChanged="Thursday_box_CheckedChanged"/>
+                        <Label Text="Thursday" HorizontalOptions="FillAndExpand" FontFamily="Arial">
+                            <Label.FontSize>
+                                <OnPlatform x:TypeArguments ="system:Double" Android="20" iOS="20"/>
+                            </Label.FontSize>
+                            <Label.Margin>
+                                <OnPlatform x:TypeArguments="Thickness" Android="0,7,0,0" iOS="0,11,0,0"/>
+                            </Label.Margin>
+                        </Label>
+                        <StackLayout.Margin>
+                            <OnPlatform x:TypeArguments="Thickness" Android="0,20,0,0" iOS="0,20,0,0"/>
+                        </StackLayout.Margin>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <CheckBox x:Name="friday_box" CheckedChanged="Friday_box_CheckedChanged"/>
+                        <Label Text="Friday" HorizontalOptions="FillAndExpand" FontFamily="Arial">
+                            <Label.FontSize>
+                                <OnPlatform x:TypeArguments ="system:Double" Android="20" iOS="20"/>
+                            </Label.FontSize>
+                            <Label.Margin>
+                                <OnPlatform x:TypeArguments="Thickness" Android="0,7,0,0" iOS="0,11,0,0"/>
+                            </Label.Margin>
+                        </Label>
+                        <StackLayout.Margin>
+                            <OnPlatform x:TypeArguments="Thickness" Android="0,20,0,0" iOS="0,20,0,0"/>
+                        </StackLayout.Margin>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <CheckBox x:Name="saturday_box" CheckedChanged="Saturday_box_CheckedChanged"/>
+                        <Label Text="Saturday" HorizontalOptions="FillAndExpand" FontFamily="Arial">
+                            <Label.FontSize>
+                                <OnPlatform x:TypeArguments ="system:Double" Android="20" iOS="20"/>
+                            </Label.FontSize>
+                            <Label.Margin>
+                                <OnPlatform x:TypeArguments="Thickness" Android="0,7,0,0" iOS="0,11,0,0"/>
+                            </Label.Margin>
+                        </Label>
+                        <StackLayout.Margin>
+                            <OnPlatform x:TypeArguments="Thickness" Android="0,20,0,0" iOS="0,20,0,40"/>
+                        </StackLayout.Margin>
+                    </StackLayout>
+                    <TimePicker x:Name="scheduled_time" HorizontalOptions="Center" Margin ="0,25,0,0" PropertyChanged="Scheduled_time_PropertyChanged"/>
+                </StackLayout>
+                
 
             </StackLayout>
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

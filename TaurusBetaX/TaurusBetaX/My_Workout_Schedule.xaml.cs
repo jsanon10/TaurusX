@@ -14,6 +14,8 @@ namespace TaurusBetaX
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class My_Workout_Schedule : ContentPage
     {
+        bool is_paid;
+
         int _MONDAY_ID = 1;
         int _TUESDAY_ID = 2;
         int _WEDNESDAY_ID = 3;
@@ -46,18 +48,19 @@ namespace TaurusBetaX
 
 
 
-        public My_Workout_Schedule(string newWorkout, bool xMonday, bool xTuesday, bool xWednesday, bool xThursday, bool xFriday, bool xSaturday, bool xSunday, string xTime, bool xScheduled, int xNotificationID)
+        public My_Workout_Schedule(string newWorkout, bool xMonday, bool xTuesday, bool xWednesday, bool xThursday, bool xFriday, bool xSaturday, bool xSunday, string xTime, bool xScheduled, int xNotificationID, bool paid)
         {
             InitializeComponent();
 
+            is_paid = paid;
 
-            sunday_box.Checked = xSunday;
-            monday_box.Checked = xMonday;
-            tuesday_box.Checked = xTuesday;
-            wednesday_box.Checked = xWednesday;
-            thursday_box.Checked = xThursday;
-            friday_box.Checked = xFriday;
-            saturday_box.Checked = xSaturday;
+            sunday_box.IsChecked = xSunday;
+            monday_box.IsChecked = xMonday;
+            tuesday_box.IsChecked = xTuesday;
+            wednesday_box.IsChecked = xWednesday;
+            thursday_box.IsChecked = xThursday;
+            friday_box.IsChecked = xFriday;
+            saturday_box.IsChecked = xSaturday;
 
             TimeSpan ts = TimeSpan.Parse(xTime);
 
@@ -83,7 +86,7 @@ namespace TaurusBetaX
 
         private void Go_navigate_back_button_Clicked(object sender, EventArgs e)
         {
-            App.Current.MainPage = new My_WorkoutList_Page();
+            App.Current.MainPage = new My_WorkoutList_Page(is_paid);
 
         }
 
@@ -95,21 +98,21 @@ namespace TaurusBetaX
 
                 var setworkouts = conn.Table<SetWorkout>().ToList();
 
-                //    conn.Execute("UPDATE SetWorkout SET Monday = '" + updated_monday + "' WHERE MyWorkout=?", mWork);
+                //conn.Execute("UPDATE SetWorkout SET Monday = '" + updated_monday + "' WHERE MyWorkout=?", mWork);
 
-                //    conn.Execute("UPDATE SetWorkout SET Tuesday = '" + updated_tuesday + "' WHERE MyWorkout=?", mWork);
+                //conn.Execute("UPDATE SetWorkout SET Tuesday = '" + updated_tuesday + "' WHERE MyWorkout=?", mWork);
 
-                //    conn.Execute("UPDATE SetWorkout SET Wednesday = '" + updated_wednesday + "' WHERE MyWorkout=?", mWork);
+                //conn.Execute("UPDATE SetWorkout SET Wednesday = '" + updated_wednesday + "' WHERE MyWorkout=?", mWork);
 
-                //    conn.Execute("UPDATE SetWorkout SET Thursday = '" + updated_thursday + "' WHERE MyWorkout=?", mWork);
+                //conn.Execute("UPDATE SetWorkout SET Thursday = '" + updated_thursday + "' WHERE MyWorkout=?", mWork);
 
-                //    conn.Execute("UPDATE SetWorkout SET Friday = '" + updated_friday + "' WHERE MyWorkout=?", mWork);
+                //conn.Execute("UPDATE SetWorkout SET Friday = '" + updated_friday + "' WHERE MyWorkout=?", mWork);
 
-                //    conn.Execute("UPDATE SetWorkout SET Saturday = '" + updated_saturday + "' WHERE MyWorkout=?", mWork);
+                //conn.Execute("UPDATE SetWorkout SET Saturday = '" + updated_saturday + "' WHERE MyWorkout=?", mWork);
 
-                //    conn.Execute("UPDATE SetWorkout SET Sunday = '" + updated_sunday + "' WHERE MyWorkout=?", mWork);
+                //conn.Execute("UPDATE SetWorkout SET Sunday = '" + updated_sunday + "' WHERE MyWorkout=?", mWork);
 
-                //    conn.Execute("UPDATE SetWorkout SET TimeIs = '" + myTime + "' WHERE MyWorkout=?", mWork);
+                //conn.Execute("UPDATE SetWorkout SET TimeIs = '" + myTime + "' WHERE MyWorkout=?", mWork);
 
 
 
@@ -211,16 +214,16 @@ namespace TaurusBetaX
 
                 }
 
-                App.Current.MainPage = new My_WorkoutList_Page();
+                App.Current.MainPage = new My_WorkoutList_Page(is_paid);
             }
             
 
         }
 
-        private void Sunday_box_CheckedChanged(object sender, XLabs.EventArgs<bool> e)
+        private void Sunday_box_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
 
-            if (sunday_box.Checked == true)
+            if (sunday_box.IsChecked == true)
             {
                 updated_sunday = true;
                 using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
@@ -236,7 +239,7 @@ namespace TaurusBetaX
                 checkBoxCount++;
 
             }
-            else if (sunday_box.Checked == false)
+            else if (sunday_box.IsChecked == false)
             {
                 updated_sunday = false;
                 using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
@@ -256,9 +259,9 @@ namespace TaurusBetaX
             }
         }
 
-        private void Monday_box_CheckedChanged(object sender, XLabs.EventArgs<bool> e)
+        private void Monday_box_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-            if (monday_box.Checked == true)
+            if (monday_box.IsChecked == true)
             {
                 updated_monday = true;
                 using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
@@ -275,7 +278,7 @@ namespace TaurusBetaX
 
 
             }
-            else if (monday_box.Checked == false)
+            else if (monday_box.IsChecked == false)
             {
                 updated_monday = false;
                 using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
@@ -297,9 +300,9 @@ namespace TaurusBetaX
 
         }
 
-        private void Tuesday_box_CheckedChanged(object sender, XLabs.EventArgs<bool> e)
+        private void Tuesday_box_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-            if (tuesday_box.Checked == true)
+            if (tuesday_box.IsChecked == true)
             {
                 updated_tuesday = true;
                 using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
@@ -315,7 +318,7 @@ namespace TaurusBetaX
                 checkBoxCount++;
 
             }
-            else if (tuesday_box.Checked == false)
+            else if (tuesday_box.IsChecked == false)
             {
                 updated_tuesday = false;
                 using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
@@ -337,9 +340,9 @@ namespace TaurusBetaX
 
         }
 
-        private void Wednesday_box_CheckedChanged(object sender, XLabs.EventArgs<bool> e)
+        private void Wednesday_box_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-            if (wednesday_box.Checked == true)
+            if (wednesday_box.IsChecked == true)
             {
                 updated_wednesday = true;
                 using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
@@ -354,7 +357,7 @@ namespace TaurusBetaX
                 checkBoxCount++;
 
             }
-            else if (wednesday_box.Checked == false)
+            else if (wednesday_box.IsChecked == false)
             {
                 updated_wednesday = false;
                 using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
@@ -376,9 +379,9 @@ namespace TaurusBetaX
 
         }
 
-        private void Thursday_box_CheckedChanged(object sender, XLabs.EventArgs<bool> e)
+        private void Thursday_box_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-            if (thursday_box.Checked == true)
+            if (thursday_box.IsChecked == true)
             {
                 updated_thursday = true;
                 using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
@@ -395,7 +398,7 @@ namespace TaurusBetaX
 
 
             }
-            else if (thursday_box.Checked == false)
+            else if (thursday_box.IsChecked == false)
             {
                 updated_thursday = false;
                 using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
@@ -417,9 +420,9 @@ namespace TaurusBetaX
 
         }
 
-        private void Friday_box_CheckedChanged(object sender, XLabs.EventArgs<bool> e)
+        private void Friday_box_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-            if (friday_box.Checked == true)
+            if (friday_box.IsChecked == true)
             {
                 updated_friday = true;
                 using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
@@ -435,7 +438,7 @@ namespace TaurusBetaX
                 checkBoxCount++;
 
             }
-            else if (friday_box.Checked == false)
+            else if (friday_box.IsChecked == false)
             {
                 updated_friday = false;
                 using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
@@ -457,9 +460,9 @@ namespace TaurusBetaX
 
         }
 
-        private void Saturday_box_CheckedChanged(object sender, XLabs.EventArgs<bool> e)
+        private void Saturday_box_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-            if (saturday_box.Checked == true)
+            if (saturday_box.IsChecked == true)
             {
                 updated_saturday = true;
                 using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
@@ -476,7 +479,7 @@ namespace TaurusBetaX
 
 
             }
-            else if (saturday_box.Checked == false)
+            else if (saturday_box.IsChecked == false)
             {
                 updated_sunday = false;
                 using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
@@ -508,6 +511,12 @@ namespace TaurusBetaX
             today_full = todayIs + selectedTime;
 
 
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            App.Current.MainPage = new My_WorkoutList_Page(is_paid);
+            return true;
         }
     }
 }

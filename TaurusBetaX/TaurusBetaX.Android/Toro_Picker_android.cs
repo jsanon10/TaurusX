@@ -39,7 +39,7 @@ namespace TaurusBetaX.Droid
             {
                 Control.Gravity = GravityFlags.CenterHorizontal;
                 //Xamarin.Forms.But
-                Control.Text = "---";
+                //Control.Text = "---";
 
 
 

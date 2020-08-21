@@ -2,6 +2,8 @@
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Microsoft.Identity.Client;
+
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace TaurusBetaX
@@ -10,23 +12,44 @@ namespace TaurusBetaX
     {
         public static string DatabaseLocation = string.Empty;
         public static string CsvLocation = string.Empty;
-         
+
+        //-------------b2c--------------------------
+        public static IPublicClientApplication AuthenticationClient { get; private set; }
+
+        public static object UIParent { get; set; } = null;
+        //------------------------------------------------------------------
+
         public App()
         {
             InitializeComponent();
 
             MainPage = new NavigationPage (new MainPage());
+
+            //--------------b2c----------------------------
+            //AuthenticationClient = PublicClientApplicationBuilder.Create(Constants.ClientId)
+            //   .WithIosKeychainSecurityGroup(Constants.IosKeychainSecurityGroups)
+            //   .WithB2CAuthority(Constants.AuthoritySignin)
+            //   .WithRedirectUri($"msal{Constants.ClientId}://auth")
+            //   .Build();
+
+            //MainPage = new NavigationPage(new LoginPage());
+            //------------------------------------------------
         }
 
         public App(string databaseLocation, string csvlocation)
         {
+
+
             InitializeComponent();
 
             DatabaseLocation = databaseLocation;
             CsvLocation = csvlocation;
 
-           MainPage = new MainPage();
-           //MainPage = new NavigationPage(new MainPage());
+
+            //MainPage = new MainPage();
+            //MainPage = new NavigationPage(new MainPage());
+
+            MainPage = new NavigationPage(new SplashPage());
 
         }
 
@@ -44,6 +67,5 @@ namespace TaurusBetaX
         {
             // Handle when your app resumes
         }
-
     }
 }

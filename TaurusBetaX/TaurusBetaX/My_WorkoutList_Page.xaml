@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:TaurusBetaX.ValueConverters;assembly=TaurusBetaX"
              xmlns:labelTextColorSample="clr-namespace:TaurusBetaX;assembly=TaurusBetaX"
              xmlns:local="clr-namespace:TaurusBetaX"
              BackgroundColor="White"
@@ -15,22 +16,72 @@
   
     </ContentPage.ToolbarItems>-->
 
+    <!--BackgroundColor="#002f5d"-->
+
     <ContentPage.Resources>
         <ResourceDictionary>
-            <labelTextColorSample:StringToColorConverter x:Key="StringToColorConverter"/>
+            <converters:PlatformToColorConverter x:Key="PlatformToColorConverter"></converters:PlatformToColorConverter>
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ListView x:Name="workout_Listview" ItemTapped="Workout_Listview_ItemTapped">
+
+    <ListView x:Name="workout_Listview" ItemTapped ="Workout_Listview_ItemTapped" SeparatorVisibility ="None" BackgroundColor ="White">
+
+        <ListView.RowHeight>
+            <OnPlatform x:TypeArguments ="x:Int32" Android="60" iOS="90"/>
+        </ListView.RowHeight>
         <ListView.Header>
             <StackLayout >
-                <StackLayout Orientation="Horizontal" HeightRequest="33" BackgroundColor="#2196F3">
-                    <Button x:Name="navigate_back_button"  Image="back_button_blue.png" BackgroundColor="#2196F3" WidthRequest="45"  HorizontalOptions="StartAndExpand" Clicked="Navigate_back_button_Clicked"/>
-                    <Button x:Name="add_workout_button" Text="+ New Workout" TextColor="White" FontSize="9" BackgroundColor="#2196F3" HorizontalOptions="EndAndExpand" WidthRequest="95"  Clicked="Add_workout_button_Clicked"/>
+                <StackLayout Orientation="Horizontal" BackgroundColor="#002f5d" HeightRequest="{OnPlatform Android = 66, iOS = 65}">
+
+                    <!--<StackLayout.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double" Android ="66" iOS="65"/>
+                    </StackLayout.HeightRequest>-->
+                    <StackLayout.Margin>
+                        <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,0,0,0"/>
+                    </StackLayout.Margin>
+
+                    <Button x:Name="navigate_back_button"  Image="dark_arrow_blue_back_small.png" BackgroundColor="#002f5d"  HorizontalOptions="StartAndExpand" Clicked="Navigate_back_button_Clicked">
+                        <Button.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double" Android ="85" iOS="65"/>
+                        </Button.WidthRequest>
+                        <Button.Margin>
+                            <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="10,0,0,0"/>
+                        </Button.Margin>
+
+                        <Button.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double" Android ="15" iOS="65"/>
+                        </Button.HeightRequest>
+                    </Button>
+
+                    <Image Source="Toruflex_dark_small.png" HorizontalOptions="Center">
+                        <Image.Margin>
+                            <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="38,0,0,0"/>
+                        </Image.Margin>
+                    </Image>
+
+                    <Button x:Name="add_workout_button" Text="+ New Workout" TextColor="White" BackgroundColor="#002f5d" HorizontalOptions="EndAndExpand" FontSize="{OnPlatform Android= 16, iOS= 12}"  Clicked="Add_workout_button_Clicked">
+                        <Button.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double" Android ="86" iOS="90"/>
+                        </Button.WidthRequest>
+
+                        <Button.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double" Android ="85" iOS="65"/>
+                        </Button.HeightRequest>
+
+                        <Button.Margin>
+                            <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,0,15,0"/>
+                        </Button.Margin>
+
+                    </Button>
                 </StackLayout>
                 <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" >
-                    <Label Text="My Workout List" TextColor="Gray" FontSize="20" FontFamily="Arial" FontAttributes="Bold"  HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" />
-                    <Label Text ="____________________________________" HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" />
+                    <Label Text="My Workout List" TextColor="Gray" FontFamily="Arial" FontAttributes="Bold"  HorizontalOptions="CenterAndExpand" Margin="0,0,0,0">
+                        <Label.FontSize>
+                            <OnPlatform x:TypeArguments ="x:Double" Android="28" iOS="28"/>
+                        </Label.FontSize>
+                    </Label>
+                    <Label Text ="____________________________________" HorizontalOptions="CenterAndExpand" Margin="0,20,0,25" />
                 </StackLayout>
             </StackLayout>
         </ListView.Header>
@@ -38,13 +89,29 @@
             <DataTemplate>
 
                 <!--<local:MyViewCell/>-->
-                <ViewCell x:Name="myworkout_ViewCell">
-                    <StackLayout Orientation="Horizontal" BackgroundColor="White" Margin="15,10,15,0">
-                        <Label Text="{Binding Path=Key}" TextColor="SteelBlue" HorizontalOptions="StartAndExpand"/>
-                        
-                        <!--<Label x:Name="workoutStatus" Text="{Binding Path=Value}" HorizontalOptions="EndAndExpand" FontSize="10" Margin="0,5,0,0"/>-->
+                <ViewCell x:Name="myworkout_ViewCell"  StyleId="white">
+                    <StackLayout Orientation="Horizontal" BackgroundColor="White" Margin="45,0,45,0">
+                        <Label Text="{Binding Path=Key}" TextColor="SteelBlue" HorizontalOptions="StartAndExpand" >
+                            <Label.FontSize>
+                                <OnPlatform x:TypeArguments ="x:Double" Android="18" iOS="18"/>
+                            </Label.FontSize>
+                        </Label>
 
-                        <Label x:Name="workoutStatus" Text="{Binding Workout_Status}" HorizontalOptions="EndAndExpand" TextColor="Red" FontSize="10" Margin="0,5,0,0"/>
+                        <Label x:Name="workoutStatus" Text="{Binding Path=Value}" TextColor="{Binding Path=Value, Converter={StaticResource PlatformToColorConverter}}" HorizontalOptions="End" FontSize="10">
+
+                            <Label.Margin>
+                                <OnPlatform x:TypeArguments="Thickness" Android="0,5,0,0" iOS="0,2,0,0"/>
+                            </Label.Margin>
+
+
+
+                            <Label.FontSize>
+                                <OnPlatform x:TypeArguments ="x:Double" Android="13" iOS="14"/>
+                            </Label.FontSize>
+
+                        </Label>
+
+                        <!--<Label x:Name="workoutStatus" Text="{Binding Workout_Status}" HorizontalOptions="EndAndExpand" TextColor="Red" FontSize="10" Margin="0,5,0,0"/>-->
 
                     </StackLayout>
                </ViewCell>
@@ -52,9 +119,10 @@
             </DataTemplate>
         </ListView.ItemTemplate>
         <ListView.Footer>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="End" HeightRequest="33">
-                <Label Text ="Workout Log" TextColor="#2196F3" FontSize="14" FontFamily="Arial" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,0,0,0" />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="End" HeightRequest="66">
+                <Button x:Name="defaultReset" Text="Reset to Default" BackgroundColor="Transparent" TextColor="#2196F3"  FontSize="14" FontFamily="Arial" FontAttributes="Bold" HorizontalOptions="Center" Clicked="defaultReset_Clicked"/>
             </StackLayout>
         </ListView.Footer>
     </ListView>
+  
 </ContentPage>

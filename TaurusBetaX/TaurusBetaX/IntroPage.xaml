@@ -1,20 +1,136 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             BackgroundImage ="big_fade_white.jpg"
              x:Class="TaurusBetaX.IntroPage">
+
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+      <ScrollView>
+        <StackLayout BackgroundColor="White">
+            <StackLayout Orientation="Horizontal" BackgroundColor="#002f5d">
 
-            <Button Text="4 Week Training" HorizontalOptions="Center" BackgroundColor="Transparent" Font="verdana" FontAttributes="Bold" TextColor="SteelBlue" Clicked="Button_Clicked"/>
+                <StackLayout.Margin>
+                    <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,44,0,0"/>
+                </StackLayout.Margin>
+
+                    <Button x:Name="go_navigate_back_button"  Image="dark_arrow_blue_back_small.png" BackgroundColor="#002f5d" HorizontalOptions="StartAndExpand" Clicked="go_navigate_back_button_Clicked">
+                        <Button.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double" Android ="85" iOS="65"/>
+                        </Button.WidthRequest>
+                        <Button.Margin>
+                            <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="10,0,0,0"/>
+                        </Button.Margin>
+
+                        <Button.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double" Android ="15" iOS="65"/>
+                        </Button.HeightRequest>
+                    </Button>
+
+                    <Image Source="Toruflex_dark_small.png" HorizontalOptions="CenterAndExpand"/>
+
+                <Button x:Name="blank_button2"  Text="Reset" TextColor="#002f5d" FontSize="9" BackgroundColor="#002f5d" HorizontalOptions="EndAndExpand">
+                    <Button.WidthRequest>
+                        <OnPlatform x:TypeArguments="x:Double" Android ="85" iOS="65"/>
+                    </Button.WidthRequest>
+                    <Button.FontSize>
+                        <OnPlatform x:TypeArguments ="x:Double" Android="10" iOS="12"/>
+                    </Button.FontSize>
+                </Button>
+
+                <StackLayout.HeightRequest>
+                    <OnPlatform x:TypeArguments="x:Double" Android ="66" iOS="65"/>
+                </StackLayout.HeightRequest>
 
 
-            <Button Text="My Workout List" HorizontalOptions="Center" BackgroundColor="Transparent" Font="verdana" FontAttributes="Bold" TextColor="SteelBlue" Clicked="Workout_Selection_Clicked"/>
+            </StackLayout>
+  
+
+            <StackLayout Margin="0,-6,0,0" BackgroundColor="White" >
+               
+               
+              <StackLayout Orientation ="Horizontal">
+                    <StackLayout>
+                            <Image Source = "{OnPlatform Android = calendar_CLIP_225.png, iOS = calendar_CLIP_300.png}"/>
+                    </StackLayout>
+                  
+                    <StackLayout Orientation="Vertical">
+                        
+                        <Label  FontFamily="Arial" TextColor="SteelBlue" Margin="12,5,0,0" HorizontalOptions="Start" VerticalOptions="Start" FontSize ="{OnPlatform Android = 80, iOS = 90}" WidthRequest="200"  FontAttributes="Bold" >
+                            <Label.FontSize>
+                                <OnPlatform x:TypeArguments ="x:Double" Android="18" iOS="22"/>
+                            </Label.FontSize>
+
+                            <Label.Text>
+                                4 Weeks Training
+                            </Label.Text>
+                        </Label>
+
+                        <Label  FontFamily="Arial" TextColor="Gray" Margin="12,5,0,20" HorizontalOptions="Start" VerticalOptions="Start" FontSize ="{OnPlatform Android = 18, iOS = 16}" WidthRequest="200" >
+                            <!--<Label  HorizontalOptions="FillAndExpand" FontFamily="Arial" TextColor="Gray" Margin="12,0,0,0">-->
+                            <Label.FontSize>
+                                <OnPlatform x:TypeArguments ="x:Double" Android="14" iOS="16"/>
+                            </Label.FontSize>
+
+                            <Label.Text>
+                                &#x0a;
+                            &#x0a; The “4 Weeks Training Program” assists you through a variety of daily exercises designed to gradually strengthen the 3 primary muscles that are essential to improve your erection in four weeks.
+                           </Label.Text>
+                        </Label>
+
+                        <StackLayout VerticalOptions="End">
+                            <Button x:Name="week_workout_button"  Text="Start" HorizontalOptions="Center" VerticalOptions="End" HeightRequest="{OnPlatform Android = 48, iOS = 50}" WidthRequest="{OnPlatform Android = 205, iOS = 190}" BackgroundColor="Transparent" Font="verdana" BorderColor="LightBlue" BorderWidth="1" FontAttributes="Bold" TextColor="Green" Clicked="Button_Clicked"/>
+                        </StackLayout>
+
+                    </StackLayout>
+               
+              </StackLayout>
             
-         
+           </StackLayout>
+
+                <StackLayout Margin="0,50,0,0" BackgroundColor="White">
+
+
+                <StackLayout Orientation ="Horizontal">
+                    <StackLayout>
+                            <Image Source = "{OnPlatform Android = checklist_CLIP_225.png, iOS = checklist_CLIP_300.png}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Vertical">
+
+                        <Label  FontFamily="Arial" TextColor="SteelBlue" Margin="12,5,0,0" HorizontalOptions="Start" VerticalOptions="Start" FontSize ="{OnPlatform Android = 80, iOS = 90}" WidthRequest="200"  FontAttributes="Bold" >
+                            <Label.FontSize>
+                                <OnPlatform x:TypeArguments ="x:Double" Android="18" iOS="22"/>
+                            </Label.FontSize>
+
+                            <Label.Text>
+                                My Workout List
+                            </Label.Text>
+                        </Label>
+
+                        <Label  FontFamily="Arial" TextColor="Gray" Margin="12,5,0,20" HorizontalOptions="Start" VerticalOptions="Start" FontSize ="{OnPlatform Android = 18, iOS = 16}" WidthRequest="200" >
+                            <Label.FontSize>
+                                <OnPlatform x:TypeArguments ="x:Double" Android="14" iOS="16"/>
+                            </Label.FontSize>
+
+                            <Label.Text>
+                                &#x0a;
+                            &#x0a; The Workout Selection option allows you to select individual exercises that you’ll be able to perform at your own pace and repetitions. You can use this option after the 4 Weeks program to customize your own weekly exercise routine.
+                            </Label.Text>
+                        </Label>
+
+                        <StackLayout VerticalOptions="EndAndExpand">
+                            <Button x:Name="workout_selection_button" Text="Start" HorizontalOptions="Center" VerticalOptions="End"  HeightRequest="{OnPlatform Android = 48, iOS = 50}" WidthRequest="{OnPlatform Android = 205, iOS = 190}" BackgroundColor="Transparent" Font="verdana" BorderColor="LightBlue" BorderWidth="1" FontAttributes="Bold" TextColor="Green" Clicked="Workout_Selection_Clicked"/>
+                        </StackLayout>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+            </StackLayout>
+
         </StackLayout>
+          
+      </ScrollView>
+
     </ContentPage.Content>
 </ContentPage>

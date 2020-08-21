@@ -1,4 +1,5 @@
 ﻿using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace TaurusBetaX
 
         private void Keepfree_btn_Clicked(object sender, EventArgs e)
         {
+            PopupNavigation.Instance.PopAsync();
 
         }
     }

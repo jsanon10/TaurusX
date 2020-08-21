@@ -28,9 +28,25 @@ namespace TaurusBetaX
 
         bool mMonday, mTuesday, mWednesday, mThursday, mFriday, mSaturday, mSunday;
 
-        public My_ExerciseList_Page(int newID, string newWorkout, string newExercise, string newWorkType, int newCount, string xTime, bool xScheduled, int xNotificationID)
+
+
+        private void exercise_Listview_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var selectedExercise = exercise_Listview.SelectedItem as SetWorkout;
+
+            if (selectedExercise != null)
+            {
+               
+                PopupNavigation.Instance.PushAsync(new Popup_Exercise_ListView(selectedExercise, is_paid, mID, mWork, mExercise, mWorkType, mCount, false, mTime, mSchedule, mNotificationID));
+            }
+
+        }
+
+        public My_ExerciseList_Page(int newID, string newWorkout, string newExercise, string newWorkType, int newCount, string xTime, bool xScheduled, int xNotificationID, bool paid)
         {
             InitializeComponent();
+
+            is_paid = paid;
 
             if (newWorkout == null)
             {
@@ -70,19 +86,6 @@ namespace TaurusBetaX
             }
         }
 
-        
-
-        private void Exercise_Listview_Selected(object sender, ItemTappedEventArgs e)
-        {
-            var selectedExercise = exercise_Listview.SelectedItem as SetWorkout;
-
-            if (selectedExercise != null)
-            {
-                //PopupNavigation.Instance.PushAsync(new Popup_Exercise_ListView(selectedExercise, is_paid, mID, mWork, mExercise, mCount, false));
-                PopupNavigation.Instance.PushAsync(new Popup_Exercise_ListView(selectedExercise, is_paid, mID, mWork, mExercise, mWorkType, mCount, false));
-            }
-
-        }
 
         private void Add_exercise_button_Clicked(object sender, EventArgs e)
         {
@@ -148,13 +151,22 @@ namespace TaurusBetaX
 
             }
 
+            mExercise = null;
+            mCount = 0;
+
             // App.Current.MainPage = new NavigationPage(new Popup_Exercise_ListView(selectedExercise, is_paid, mID, mWork, mExercise, mCount, false));
             PopupNavigation.Instance.PushAsync(new Popup_Repetitions(is_paid, mID, mWork, mExercise, mWorkType, mCount, true, mMonday, mTuesday, mWednesday, mThursday, mFriday, mSaturday, mSunday, mTime, mSchedule, mNotificationID));
         }
 
         private void Navigate_back_button_Clicked(object sender, EventArgs e)
         {
-            App.Current.MainPage = new My_WorkoutList_Page();
+            App.Current.MainPage = new My_WorkoutList_Page(is_paid);
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            App.Current.MainPage = new My_WorkoutList_Page(is_paid);
+            return true;
         }
     }
 }

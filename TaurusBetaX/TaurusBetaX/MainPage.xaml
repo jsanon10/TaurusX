@@ -1,17 +1,92 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
              xmlns:local="clr-namespace:TaurusBetaX"
-             x:Class="TaurusBetaX.MainPage"
-             BackgroundImage ="white_toruflex2.jpg">
+             x:Class="TaurusBetaX.MainPage">
 
-    <StackLayout HorizontalOptions="Center" VerticalOptions ="End">
-        <!-- Place new controls here -->
+    <RelativeLayout>
+        <Image Source="white_toruflex2.jpg" Opacity="0.3"
+                RelativeLayout.WidthConstraint=
+                  "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                RelativeLayout.HeightConstraint=
+                  "{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
 
-        <Button Text="Try for Free" BackgroundColor="Transparent" Font="verdana" FontAttributes="Bold" TextColor="SteelBlue" Clicked="Freenium_btn_Clicked"/>
 
-        <Button Text="Buy $9.99" Clicked="Upgrade_btn_Clicked" WidthRequest="150" HeightRequest="35" BackgroundColor="Green"  Font="arial" FontAttributes="Bold" FontSize="11" TextColor="White"/>
+        <Grid RelativeLayout.WidthConstraint=
+              "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+            RelativeLayout.HeightConstraint=
+              "{ConstraintExpression Type=RelativeToParent, Property=Height}">
 
-    </StackLayout>
+
+
+
+
+            <StackLayout HorizontalOptions="Center" VerticalOptions ="EndAndExpand" Margin="0,0,0,30">
+                <!-- Place new controls here -->
+
+                <Button Text="Try for Free" BackgroundColor="Transparent" Font="verdana" FontAttributes="Bold" TextColor="SteelBlue" Clicked="Freenium_btn_Clicked"/>
+
+                <Button Text="Buy $9.99" Clicked="Upgrade_btn_Clicked" WidthRequest="150" HeightRequest="35" BackgroundColor="Green"  Font="arial" FontAttributes="Bold" FontSize="11" TextColor="White"/>
+
+            </StackLayout>
+        </Grid>
+    </RelativeLayout>
 
 </ContentPage>
+
+
+
+
+
+
+
+
+<!--<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TaurusBetaX"
+             x:Class="TaurusBetaX.MainPage">
+
+
+    <RelativeLayout>
+
+        <Image Source="white_toruflex2.jpg" Opacity="0.3"
+                RelativeLayout.WidthConstraint=
+                  "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                RelativeLayout.HeightConstraint=
+                  "{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
+
+        <Grid RelativeLayout.WidthConstraint=
+              "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+            RelativeLayout.HeightConstraint=
+              "{ConstraintExpression Type=RelativeToParent, Property=Height}">
+
+
+            <StackLayout HorizontalOptions="Center" VerticalOptions ="EndAndExpand" Margin="0,0,0,20">
+                --><!-- Place new controls here --><!--
+                <Button
+                Text="Log in"
+                TextColor="White"
+                BackgroundColor="Orange"
+                BorderWidth="0"
+                VerticalOptions="End"
+                Margin="30"
+                WidthRequest="100"
+                Clicked="OnLogInButtonClicked"/>
+                <ActivityIndicator
+                x:Name="_activityIndicator"
+                IsVisible="{Binding IsBusy}"
+                IsRunning="True"
+                IsEnabled="True"
+                Color="Orange"/>
+
+
+            </StackLayout>
+        </Grid>
+        
+    </RelativeLayout>
+
+</ContentPage>-->

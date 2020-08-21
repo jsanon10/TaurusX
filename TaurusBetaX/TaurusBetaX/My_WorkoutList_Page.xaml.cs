@@ -56,18 +56,23 @@ namespace TaurusBetaX
         DateTime today_date = DateTime.Now.Date;
         DateTime today_full;
 
+        private void defaultReset_Clicked(object sender, EventArgs e)
+        {
+            PopupNavigation.Instance.PushAsync(new PopupReset(is_paid));
 
+        }
 
-        public My_WorkoutList_Page()
+        public My_WorkoutList_Page(bool paid)
         {
             InitializeComponent();
 
             
             this.BindingContext = MyViewModel.Instance;
+            is_paid = paid;
 
             // workout_Listview.la
 
-            
+
 
 
         }
@@ -82,7 +87,7 @@ namespace TaurusBetaX
 
                  var setworkouts = conn.Table<SetWorkout>().ToList();
 
-               
+               // conn.Execute("DELETE FROM SetWorkout WHERE Id=?", 24);
 
 
 
@@ -399,13 +404,6 @@ namespace TaurusBetaX
 
         }
 
-        private void GoToExerciseList_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-
-
         private void Workout_Listview_ItemTapped(object sender, ItemTappedEventArgs e)
         {
 
@@ -414,9 +412,6 @@ namespace TaurusBetaX
             mWork = kvp.Key;
             var selectedWorkout = workout_Listview.SelectedItem as SetWorkout;
 
-            
-            //TimeSpan tss = TimeSpan.Parse(selectedWorkout.TimeIs);
-            //today_full = today_date + tss;
 
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
             {
@@ -609,6 +604,12 @@ namespace TaurusBetaX
         private void Navigate_back_button_Clicked(object sender, EventArgs e)
         {
             App.Current.MainPage = new IntroPage(is_paid);
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            App.Current.MainPage = new IntroPage(is_paid);
+            return true;
         }
     }
 

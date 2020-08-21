@@ -34,6 +34,8 @@ namespace TaurusBetaX.Model
 
         public string Checkmark { get; set; }
 
+        public bool VibrationOn { get; set; }
+
         public string Yesterday { get; set; }    
     }
 

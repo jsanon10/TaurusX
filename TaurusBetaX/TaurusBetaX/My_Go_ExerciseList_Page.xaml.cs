@@ -33,10 +33,11 @@ namespace TaurusBetaX
 
         
 
-        public My_Go_ExerciseList_Page(int newID, string newWorkout, string newExercise, string newWorkType, int newCount, bool eX_done, bool wK_done, int ex_count, int wk_count)
+        public My_Go_ExerciseList_Page(int newID, string newWorkout, string newExercise, string newWorkType, int newCount, bool eX_done, bool wK_done, int ex_count, int wk_count, bool paid)
         {
             InitializeComponent();
 
+            is_paid = paid;
           
             goWorkoutTitle.Text = newWorkout;
             mWork = newWorkout;
@@ -122,7 +123,7 @@ namespace TaurusBetaX
                 mID = selectedExercise.Id;
       
                
-                App.Current.MainPage = new Exercise_Page_Extra(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count);
+                App.Current.MainPage = new Exercise_Page_Extra(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count, is_paid);
                 
             }
 
@@ -130,7 +131,7 @@ namespace TaurusBetaX
 
         private void Navigate_back_button_Clicked(object sender, EventArgs e)
         {
-            App.Current.MainPage = new My_WorkoutList_Page();
+            App.Current.MainPage = new My_WorkoutList_Page(is_paid);
         }
 
         private void Go_reset_button_Clicked(object sender, EventArgs e)
@@ -149,12 +150,20 @@ namespace TaurusBetaX
 
                 conn.Execute("UPDATE SetWorkout SET ExDone= false WHERE MyWorkout=?", mWork);
 
-                App.Current.MainPage = new My_Go_ExerciseList_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count);
+                App.Current.MainPage = new My_Go_ExerciseList_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count, is_paid);
 
 
 
             }
 
+
+
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            App.Current.MainPage = new My_WorkoutList_Page(is_paid);
+            return true;
         }
     }
 }

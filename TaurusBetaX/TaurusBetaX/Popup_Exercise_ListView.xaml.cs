@@ -27,11 +27,23 @@ namespace TaurusBetaX
         bool mSchedule;
         int mNotificationID;
 
+
+
+
+
         bool mMonday, mTuesday, mWednesday, mThursday, mFriday, mSaturday, mSunday;
 
-        public Popup_Exercise_ListView(SetWorkout selectedExercise, bool paid, int mID, string mWork, string mExercise, string mWorkType, int mCount, bool isNew)
+        private void instruction_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        public Popup_Exercise_ListView(SetWorkout selectedExercise, bool paid, int mID, string mWork, string mExercise, string mWorkType, int mCount, bool isNew, string xTime, bool xScheduled, int xNotificationID)
         {
             InitializeComponent();
+
+            is_paid = paid;
+
             this.selectedEx = selectedExercise;
 
             mWork = selectedExercise.MyWorkout;
@@ -40,8 +52,11 @@ namespace TaurusBetaX
             myID = selectedExercise.Id;
             myWorkType = selectedExercise.WorkoutType;
             myWork = mWork;
-        }
 
+            mTime = xTime;
+            mSchedule = xScheduled;
+            mNotificationID = xNotificationID;
+        }
 
         private void DeleteButton_Clicked(object sender, EventArgs e)
         {
@@ -51,9 +66,16 @@ namespace TaurusBetaX
                 int rows = conn.Delete(selectedEx);
                
                //Navigation.PushAsync(new My_ExerciseList_Page(0, null, null, 0));
-                App.Current.MainPage = new My_ExerciseList_Page(0, myWork, null, myWorkType, 0, mTime, mSchedule, mNotificationID);
+                App.Current.MainPage = new My_ExerciseList_Page(0, myWork, null, myWorkType, 0, mTime, mSchedule, mNotificationID, is_paid);
                 PopupNavigation.Instance.PopAsync();
             }
+
+        }
+
+        private void Instruction_Clicked(object sender, EventArgs e)
+        {
+            App.Current.MainPage = new Instruction_Page(myID, myWork, myWorkType, myExercise, mTime, mSchedule, mNotificationID, is_paid);
+            PopupNavigation.Instance.PopAsync();
 
         }
 

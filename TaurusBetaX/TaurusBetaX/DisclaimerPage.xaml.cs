@@ -29,8 +29,9 @@ namespace TaurusBetaX
         public void Button_Clicked(object sender, EventArgs e)
         {
 
-            App.Current.MainPage = new IntroPage(is_paid);
-           // App.Current.MainPage = new NavigationPage(new IntroPage(is_paid));
+            
+            App.Current.MainPage = new NewsPage(is_paid);
+            // App.Current.MainPage = new NavigationPage(new IntroPage(is_paid));
         }
 
         private void CheckBox_CheckedChanged(object sender, XLabs.EventArgs<bool> e)

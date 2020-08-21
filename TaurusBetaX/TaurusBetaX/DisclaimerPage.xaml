@@ -7,29 +7,59 @@
     
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout>
+            <StackLayout >
                 <StackLayout>
-                    
-                <Label FontSize="30" TextColor="White" BackgroundColor="SteelBlue" WidthRequest="300" FontAttributes="Bold" Text="Disclaimer" HorizontalTextAlignment="Center" />
+                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="#002f5d">
+                        <StackLayout.Margin>
+                            <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,45,0,0"/>
+                        </StackLayout.Margin>
+                        <StackLayout  BackgroundColor="#002f5d" Orientation="Horizontal" HeightRequest="33">
+                            <StackLayout.HeightRequest>
+                                <OnPlatform x:TypeArguments="x:Double" Android ="66" iOS="60"/>
+                            </StackLayout.HeightRequest>
+                            <Label FontSize ="{OnPlatform Android = 30, iOS = 40}" TextColor="White" BackgroundColor="#002f5d" WidthRequest="500" FontAttributes="Bold" Text="Disclaimer" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+                    </StackLayout>
 
-                <Label FontSize="10" Text="Please review the following User Agreement carefully before using Toruflex."/>
 
-                <Label FontSize="10" Text="We strongly recommends that you consult with your physician before beginning any exercise program."/>
 
-                <Label FontSize="10" Text="You should be in good physical condition and be able to participate in the exercise."/>
+                    <Label  HorizontalOptions="FillAndExpand" FontFamily="Arial" TextColor="Gray" Margin="14,0,14,12">
+                        <Label.FontSize>
+                            <OnPlatform x:TypeArguments ="x:Double" Android="14" iOS="18"/>
+                        </Label.FontSize>
 
-                <Label FontSize="10" Text="We are not a licensed medical care provider and represents that it has no expertise in diagnosing, examining, or treating medical conditions of any kind, or in determining the effect of any specific exercise on a medical condition."/>
-
-                <Label FontSize="10" Text="You should understand that when participating in any exercise or exercise program, there is the possibility of physical injury. If you engage in this exercise or exercise program, you agree that you do so at your own risk, are voluntarily participating in these activities, assume all risk of injury to yourself, and agree to release and discharge Toruflex from any and all claims or causes of action, known or unknown, arising out of Toruflex's negligence."/>
+                        <Label.Text>
+                            &#x0a;
+                            &#x0a; Please review the following User Agreement carefully before using Toruflex.
+                            &#x0a; We strongly recommends that you consult with your physician before beginning any exercise program. 
+                            &#x0a; You should be in good physical condition and be able to participate in the exercise.  
+                            &#x0a; We are not a licensed medical care provider and represents that it has no expertise in diagnosing, examining, or treating medical conditions of any kind, or in determining the effect of any specific exercise on a medical condition. &#x0a;You should understand that when participating in any exercise or exercise program, there is the possibility of physical injury. If you engage in this exercise or exercise program, you agree that you do so at your own risk, are voluntarily participating in these activities, assume all risk of injury to yourself, and agree to release and discharge Toruflex from any and all claims or causes of action, known or unknown, arising out of Toruflex's negligence.
+                        </Label.Text>
+                    </Label>
 
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
-                    <CheckBox x:Name="chkDisclaimer" IsChecked="False" CheckedChanged="CheckBox_CheckedChanged"/>
-                    <Label  Text="I've read and accept the terms and conditions" HorizontalOptions="Center" FontFamily="verdana" FontSize="12" BackgroundColor="Azure"/>
+                    <StackLayout.Margin>
+                        <OnPlatform x:TypeArguments="Thickness" Android="0,10,0,0" iOS="0,40,0,0"/>
+                    </StackLayout.Margin>
+                    <CheckBox x:Name="chkDisclaimer" IsChecked="False" CheckedChanged="CheckBox_CheckedChanged" Margin="12,0,0,0"> 
+                    <CheckBox.Scale>
+                        <OnPlatform x:TypeArguments ="x:Double" Android="1" iOS="1.7"/>
+                    </CheckBox.Scale>
+                     </CheckBox>
+                    
+                    <Label Text="I've read and accept the terms and conditions" Margin="0,3,14,0" HorizontalOptions="Center" FontFamily="verdana" FontAttributes="Bold" FontSize="12">
+                        <Label.FontSize> 
+                            <OnPlatform x:TypeArguments ="x:Double" Android="20" iOS="22"/>
+                        </Label.FontSize>
+                    </Label>
                 </StackLayout>
-                
-                <Button x:Name="btnDisclaimer" Text="Continue" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Transparent" Font="verdana" FontAttributes="Bold" TextColor="SteelBlue"  Clicked="Button_Clicked"/>
+
+                <Button x:Name="btnDisclaimer" Text="Continue" FontSize ="{OnPlatform Android = 35, iOS = 20}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Transparent" Font="verdana" FontAttributes="Bold" TextColor="SteelBlue"  Clicked="Button_Clicked">
+
+
+                </Button>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

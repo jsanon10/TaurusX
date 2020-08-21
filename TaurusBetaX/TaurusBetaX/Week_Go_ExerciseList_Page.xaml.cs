@@ -10,6 +10,7 @@ using TaurusBetaX.Model;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Plugin.LocalNotifications;
 //using Microsoft.Data.Sqlite;
 
 namespace TaurusBetaX
@@ -45,6 +46,13 @@ namespace TaurusBetaX
         int minute_difference;
         int next_hour;
         bool is_waiting;
+        int _READY_ID = 9;
+        DateTime todayIs = DateTime.Now.Date;
+
+        string week1 = "Week 1";
+        string week2 = "Week 2";
+        string week3 = "Week 3";
+        string week4 = "Week 4";
 
 
 
@@ -53,11 +61,11 @@ namespace TaurusBetaX
 
         
 
-        public Week_Go_ExerciseList_Page(int newID, string newWorkout, string newExercise, string newWorkType, int newCount, bool eX_done, bool wK_done, int ex_count, int wk_count)
+        public Week_Go_ExerciseList_Page(int newID, string newWorkout, string newExercise, string newWorkType, int newCount, bool eX_done, bool wK_done, int ex_count, int wk_count, bool paid)
         {
             InitializeComponent();
 
-
+            is_paid = paid;
             
             goWorkoutTitle.Text = newWorkout;
             mWork = newWorkout;
@@ -65,6 +73,15 @@ namespace TaurusBetaX
             is_workoutDone = wK_done;
             exDone_count = ex_count;
             wkDone_count = wk_count;
+
+
+            ViewCell cell = new ViewCell();
+
+            cell.Tapped += (sender, args) => {
+                cell.View.BackgroundColor = Color.Red;
+                //OnListViewTextCellTapped(cell);            //Run your actual `Tapped` event code
+                //cell.View.BackgroundColor = Color.Default; //Turn it back to the default color after your event code is done
+            };
 
 
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
@@ -93,26 +110,43 @@ namespace TaurusBetaX
 
                 foreach (var exYesterday in exerciseYesterday)
                 {
+                    //Convert the result of the last time you worked out into a String
                     yesterday_string = exYesterday.ToString();
+
+                    //Convert the string into a DateTime
                     yesterday_datetime = DateTime.Parse(yesterday_string);
                 }
 
 
+                //Assign the Today(Now) Datetime to the "today_string" string
                 today_string = today_datetime.ToString();
+
+                //Convert the 'yesterday_datetime' into a string
                 yesterday_datetime.ToString();
 
+                //Calculate the difference between "Now" and the "Last Time" you exercised
                 TimeSpan date_diff = today_datetime.Subtract(yesterday_datetime); // the difference increases at every onAppear
 
+                //Get the Day difference from "date_diff" and assign it to "day_diff" interger
                 int day_diff = date_diff.Days;
+
+                //Get the Hours difference from "date_diff" and assign it to "hour_diff" interger
                 int hour_diff = date_diff.Hours;
+
+                //Get the Minutes difference from "date_diff" and assign it to "min_diff" interger
                 int min_diff = date_diff.Minutes;
 
                 day_difference = day_diff;
+
+                //Convert the day difference into Hour
                 days_to_hours = day_difference * 24;
+
+                //Add the converted  Day to Hour  to the current hour difference
                 hour_difference = hour_diff + days_to_hours;
+
                 minute_difference = min_diff;
 
-
+                //
                 hours_countdown = 1 - hour_diff;
                 if (hours_countdown < 0)
                 {
@@ -227,6 +261,8 @@ namespace TaurusBetaX
                         conn.Execute("UPDATE WeekTraining SET Checkmark = '" + reset_checkmark + "' WHERE MyWorkout=?", mWork);
                         conn.Execute("UPDATE WeekTraining SET ExDone_count = '" + 0 + "' WHERE MyWorkout=?", mWork); 
                         conn.Execute("UPDATE WeekTraining SET WkDone= false WHERE MyWorkout=?", mWork);
+
+                       
                     }
 
                     
@@ -234,7 +270,9 @@ namespace TaurusBetaX
                     {
                         conn.Execute("UPDATE WeekTraining SET Active= false WHERE MyWorkout=?", mWork);
                         conn.Execute("UPDATE WeekTraining SET ExDone_count = '" + 0 + "' WHERE MyWorkout=?", mWork);
+
                         
+
                     }
                     
                     is_workoutDone = false;
@@ -291,15 +329,8 @@ namespace TaurusBetaX
                 mID = selectedExercise.Id;
 
 
-                App.Current.MainPage = new Exercise_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count, is_waiting, hours_countdown, minutes_countdown);
+                App.Current.MainPage = new Exercise_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count, is_waiting, hours_countdown, minutes_countdown, is_paid);
             }
-
-            //else
-            //{
-            //    //App.Current.MainPage = new Week_Go_ExerciseList_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count);
-
-            //   // PopupNavigation.Instance.PushAsync(new Popup_Wait_Hours(hours_countdown, minutes_countdown, mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count));
-            //}
 
         }
 
@@ -314,23 +345,158 @@ namespace TaurusBetaX
             {
                 conn.CreateTable<WeekTraining>();
 
-                conn.Execute("UPDATE WeekTraining SET Checkmark = '" + reset_checkmark + "' WHERE MyWorkout=?", mWork);
+                if(mWork == "Week 4")
+                {
+                    conn.Execute("UPDATE WeekTraining SET Checkmark = '" + reset_checkmark + "' WHERE MyWorkout=?", mWork);
 
-                conn.Execute("UPDATE WeekTraining SET ExDone_count = '" + 0 + "' WHERE MyWorkout=?", mWork);
+                    conn.Execute("UPDATE WeekTraining SET ExDone_count = '" + 0 + "' WHERE MyWorkout=?", mWork);
 
-                conn.Execute("UPDATE WeekTraining SET WkDone_count = '" + 0 + "' WHERE MyWorkout=?", mWork);
+                    conn.Execute("UPDATE WeekTraining SET WkDone_count = '" + 0 + "' WHERE MyWorkout=?", mWork);
 
-                conn.Execute("UPDATE WeekTraining SET ExDone = '" + false + "' WHERE MyWorkout=?", mWork);
+                    conn.Execute("UPDATE WeekTraining SET ExDone = '" + false + "' WHERE MyWorkout=?", mWork);
 
-                conn.Execute("UPDATE WeekTraining SET WkDone = '" + false + "' WHERE MyWorkout=?", mWork);
+                    conn.Execute("UPDATE WeekTraining SET WkDone = '" + false + "' WHERE MyWorkout=?", mWork);
 
-                conn.Execute("UPDATE WeekTraining SET Active= false WHERE MyWorkout=?", mWork);
+                    conn.Execute("UPDATE WeekTraining SET Active= false WHERE MyWorkout=?", mWork);
+
+                }
+
+                if (mWork == "Week 3")
+                {
+                    conn.Execute("UPDATE WeekTraining SET Checkmark = '" + reset_checkmark + "' WHERE MyWorkout=?", mWork);
+
+                    conn.Execute("UPDATE WeekTraining SET ExDone_count = '" + 0 + "' WHERE MyWorkout=?", mWork);
+
+                    conn.Execute("UPDATE WeekTraining SET WkDone_count = '" + 0 + "' WHERE MyWorkout=?", mWork);
+
+                    conn.Execute("UPDATE WeekTraining SET ExDone = '" + false + "' WHERE MyWorkout=?", mWork);
+
+                    conn.Execute("UPDATE WeekTraining SET WkDone = '" + false + "' WHERE MyWorkout=?", mWork);
+
+                    conn.Execute("UPDATE WeekTraining SET Active= false WHERE MyWorkout=?", mWork);
 
 
-                App.Current.MainPage = new Week_Go_ExerciseList_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count);
+                    conn.Execute("UPDATE WeekTraining SET Checkmark = '" + reset_checkmark + "' WHERE MyWorkout=?", week4);
+
+                    conn.Execute("UPDATE WeekTraining SET ExDone_count = '" + 0 + "' WHERE MyWorkout=?", week4);
+
+                    conn.Execute("UPDATE WeekTraining SET WkDone_count = '" + 0 + "' WHERE MyWorkout=?", week4);
+
+                    conn.Execute("UPDATE WeekTraining SET ExDone = '" + false + "' WHERE MyWorkout=?", week4);
+
+                    conn.Execute("UPDATE WeekTraining SET WkDone = '" + false + "' WHERE MyWorkout=?", week4);
+
+                    conn.Execute("UPDATE WeekTraining SET Active= false WHERE MyWorkout=?", week4);
+
+                }
+
+                if (mWork == "Week 2")
+                {
+                    conn.Execute("UPDATE WeekTraining SET Checkmark = '" + reset_checkmark + "' WHERE MyWorkout=?", mWork);
+
+                    conn.Execute("UPDATE WeekTraining SET ExDone_count = '" + 0 + "' WHERE MyWorkout=?", mWork);
+
+                    conn.Execute("UPDATE WeekTraining SET WkDone_count = '" + 0 + "' WHERE MyWorkout=?", mWork);
+
+                    conn.Execute("UPDATE WeekTraining SET ExDone = '" + false + "' WHERE MyWorkout=?", mWork);
+
+                    conn.Execute("UPDATE WeekTraining SET WkDone = '" + false + "' WHERE MyWorkout=?", mWork);
+
+                    conn.Execute("UPDATE WeekTraining SET Active= false WHERE MyWorkout=?", mWork);
+
+
+                    conn.Execute("UPDATE WeekTraining SET Checkmark = '" + reset_checkmark + "' WHERE MyWorkout=?", week3);
+
+                    conn.Execute("UPDATE WeekTraining SET ExDone_count = '" + 0 + "' WHERE MyWorkout=?", week3);
+
+                    conn.Execute("UPDATE WeekTraining SET WkDone_count = '" + 0 + "' WHERE MyWorkout=?", week3);
+
+                    conn.Execute("UPDATE WeekTraining SET ExDone = '" + false + "' WHERE MyWorkout=?", week3);
+
+                    conn.Execute("UPDATE WeekTraining SET WkDone = '" + false + "' WHERE MyWorkout=?", week3);
+
+                    conn.Execute("UPDATE WeekTraining SET Active= false WHERE MyWorkout=?", week3);
+
+
+                    conn.Execute("UPDATE WeekTraining SET Checkmark = '" + reset_checkmark + "' WHERE MyWorkout=?", week4);
+
+                    conn.Execute("UPDATE WeekTraining SET ExDone_count = '" + 0 + "' WHERE MyWorkout=?", week4);
+
+                    conn.Execute("UPDATE WeekTraining SET WkDone_count = '" + 0 + "' WHERE MyWorkout=?", week4);
+
+                    conn.Execute("UPDATE WeekTraining SET ExDone = '" + false + "' WHERE MyWorkout=?", week4);
+
+                    conn.Execute("UPDATE WeekTraining SET WkDone = '" + false + "' WHERE MyWorkout=?", week4);
+
+                    conn.Execute("UPDATE WeekTraining SET Active= false WHERE MyWorkout=?", week4);
+
+                }
+
+                if (mWork == "Week 1")
+                {
+                    conn.Execute("UPDATE WeekTraining SET Checkmark = '" + reset_checkmark + "' WHERE MyWorkout=?", mWork);
+
+                    conn.Execute("UPDATE WeekTraining SET ExDone_count = '" + 0 + "' WHERE MyWorkout=?", mWork);
+
+                    conn.Execute("UPDATE WeekTraining SET WkDone_count = '" + 0 + "' WHERE MyWorkout=?", mWork);
+
+                    conn.Execute("UPDATE WeekTraining SET ExDone = '" + false + "' WHERE MyWorkout=?", mWork);
+
+                    conn.Execute("UPDATE WeekTraining SET WkDone = '" + false + "' WHERE MyWorkout=?", mWork);
+
+                    conn.Execute("UPDATE WeekTraining SET Active= false WHERE MyWorkout=?", mWork);
+
+
+                    conn.Execute("UPDATE WeekTraining SET Checkmark = '" + reset_checkmark + "' WHERE MyWorkout=?", week2);
+
+                    conn.Execute("UPDATE WeekTraining SET ExDone_count = '" + 0 + "' WHERE MyWorkout=?", week2);
+
+                    conn.Execute("UPDATE WeekTraining SET WkDone_count = '" + 0 + "' WHERE MyWorkout=?", week2);
+
+                    conn.Execute("UPDATE WeekTraining SET ExDone = '" + false + "' WHERE MyWorkout=?", week2);
+
+                    conn.Execute("UPDATE WeekTraining SET WkDone = '" + false + "' WHERE MyWorkout=?", week2);
+
+                    conn.Execute("UPDATE WeekTraining SET Active= false WHERE MyWorkout=?", week2);
+
+
+                    conn.Execute("UPDATE WeekTraining SET Checkmark = '" + reset_checkmark + "' WHERE MyWorkout=?", week3);
+
+                    conn.Execute("UPDATE WeekTraining SET ExDone_count = '" + 0 + "' WHERE MyWorkout=?", week3);
+
+                    conn.Execute("UPDATE WeekTraining SET WkDone_count = '" + 0 + "' WHERE MyWorkout=?", week3);
+
+                    conn.Execute("UPDATE WeekTraining SET ExDone = '" + false + "' WHERE MyWorkout=?", week3);
+
+                    conn.Execute("UPDATE WeekTraining SET WkDone = '" + false + "' WHERE MyWorkout=?", week3);
+
+                    conn.Execute("UPDATE WeekTraining SET Active= false WHERE MyWorkout=?", week3);
+
+
+                    conn.Execute("UPDATE WeekTraining SET Checkmark = '" + reset_checkmark + "' WHERE MyWorkout=?", week4);
+
+                    conn.Execute("UPDATE WeekTraining SET ExDone_count = '" + 0 + "' WHERE MyWorkout=?", week4);
+
+                    conn.Execute("UPDATE WeekTraining SET WkDone_count = '" + 0 + "' WHERE MyWorkout=?", week4);
+
+                    conn.Execute("UPDATE WeekTraining SET ExDone = '" + false + "' WHERE MyWorkout=?", week4);
+
+                    conn.Execute("UPDATE WeekTraining SET WkDone = '" + false + "' WHERE MyWorkout=?", week4);
+
+                    conn.Execute("UPDATE WeekTraining SET Active= false WHERE MyWorkout=?", week4);
+
+                }
+
+                    App.Current.MainPage = new Week_Go_ExerciseList_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count, is_paid);
 
             }
 
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            App.Current.MainPage = new Week_WorkoutList_Page(is_paid);
+            return true;
         }
 
     }

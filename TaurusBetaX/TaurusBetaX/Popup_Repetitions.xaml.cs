@@ -33,6 +33,7 @@ namespace TaurusBetaX
         bool w_Saturday = false;
         bool w_Scheduled = false;
         int w_NotificationID = 10;
+        bool w_vibrateBool;
         string w_workoutStatus = "Un-Scheduled";
 
         string w_Time = "12:00:00";
@@ -48,6 +49,17 @@ namespace TaurusBetaX
                 w_ID = mID;
                 new_entry = isNew;
                 repInt = mCount;
+                w_Exercise = mExercise;
+                mCount_string = repInt.ToString();
+
+
+                SetExercisePicker.Title = w_Exercise;
+                SetRepPicker.Title = mCount_string;
+                SetExercisePicker.TextColor = Color.Red;
+                SetRepPicker.TextColor = Color.Red;
+
+
+
 
 
             if (mWork != null)
@@ -82,11 +94,25 @@ namespace TaurusBetaX
 
                 w_NotificationID = xNotification;
 
+                using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+                {
+                    conn.CreateTable<SetWorkout>();
+
+                    var setworkouts = conn.Table<SetWorkout>().ToList();
+
+                    var verifyVibrate = (from b in setworkouts
+                                         where b.MyWorkout.Equals(mWork)
+                                         select b.VibrationOn).ToList();
+
+                    w_vibrateBool = verifyVibrate[0];
+
+                }
             }
 
             else if (mWork == null)
             {
                 w_NotificationID = w_NotificationID * w_ID;
+                w_vibrateBool = false;
             }
 
             if (w_Scheduled == false)
@@ -126,12 +152,15 @@ namespace TaurusBetaX
             SetRepPicker.Items.Add("100");
 
 
-            SetExercisePicker.Items.Add("Traditional Kegel");
-            SetExercisePicker.Items.Add("Reverse Kegel");
-            SetExercisePicker.Items.Add("Combo Kegel");
-            SetExercisePicker.Items.Add("Low Heel Half Squats");
-            SetExercisePicker.Items.Add("Low Heel Full Squats");
-            SetExercisePicker.Items.Add("Low Heel Hold Squat");
+            SetExercisePicker.Items.Add("Bridges (Hip Raise)");
+            SetExercisePicker.Items.Add("BC Crunches (Long)");
+            SetExercisePicker.Items.Add("BC Crunches (Short)");
+            SetExercisePicker.Items.Add("Reverse Kegel (Long)");
+            SetExercisePicker.Items.Add("Reverse Kegel (Short)");
+            SetExercisePicker.Items.Add("Reverse Back Kegel");
+            SetExercisePicker.Items.Add("Heel Half Squats");
+            SetExercisePicker.Items.Add("Sumo Heel Squats");
+            SetExercisePicker.Items.Add("Hold Heel Squat");
 
         }
 
@@ -158,7 +187,7 @@ namespace TaurusBetaX
                     w_choice_type = "RKegel";
                     break;
 
-                case "Combo Kegel":
+                case "Reverse Back Kegel":
                     w_choice_type = "CKegel";
                     break;
 
@@ -166,11 +195,11 @@ namespace TaurusBetaX
                     w_choice_type = "Hold_Squat";
                     break;
 
-                case "Low Heel Full Squats":
+                case "Sumo Heel Squats":
                     w_choice_type = "FSquat";
                     break;
 
-                case "Low Heel Half Squats":
+                case "Half Heel Squats":
                     w_choice_type = "HSquat";
                     break;
 
@@ -225,6 +254,8 @@ namespace TaurusBetaX
 
                 Workout_Status = w_workoutStatus,
 
+                VibrationOn = w_vibrateBool,
+
                 WorkoutReady = true,
 
             };
@@ -237,29 +268,77 @@ namespace TaurusBetaX
 
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
             {
-                if (new_entry == true)
+                if (w_Workout == "")
                 {
-                    conn.CreateTable<SetWorkout>();
-                    int rows = conn.Insert(setworkout);
+                    w_Workout = null;
 
-                    w_ID = 0;
-                    
-                    
                 }
 
-                else
+                if (w_Workout != null && repInt != 0 && w_Exercise != null)
                 {
-                    conn.CreateTable<SetWorkout>();
-                    int rows = conn.Update(setworkout);
+                    if (new_entry == true)
+                    {
+                        conn.CreateTable<SetWorkout>();
+                        int rows = conn.Insert(setworkout);
+                        w_ID = 0;
+                    }
+                    else
+                    {
+                        conn.CreateTable<SetWorkout>();
+                        int rows = conn.Update(setworkout);
+                    }
+                    
+                    
+                    //-----------------------------------------------------
+                    //PopupNavigation.Instance.PopAsync(true);
+
+                    App.Current.MainPage = new My_ExerciseList_Page(w_ID, w_Workout, w_Exercise, w_choice_type, repInt, w_Time, w_Scheduled, w_NotificationID, is_paid);
+                    PopupNavigation.Instance.PopAsync();
                 }
+
+                if (repInt == 0 && w_Exercise == null && w_Workout == null)
+                {
+                    error_message.Text = "Missing: Workout name, Exercise and Set count ";
+                }
+
+                if (repInt == 0  && w_Exercise == null && w_Workout != null)
+                {
+                    error_message.Text = "Missing: Exercise and Set count ";
+                }
+
+                if (repInt != 0 && w_Exercise == null && w_Workout != null)
+                {
+                    error_message.Text = "Missing: Exercise ";
+                }
+
+                if (repInt == 0 && w_Exercise != null && w_Workout != null)
+                {
+                    error_message.Text = "Missing: Set count ";
+                }
+
+                if (repInt != 0 && w_Exercise != null && w_Workout == null)
+                {
+                    error_message.Text = "Missing: Workout name";
+                }
+
+                if (repInt == 0 && w_Exercise != null && w_Workout == null)
+                {
+                    error_message.Text = "Missing: Workout name and Set count";
+                }
+
+                if (repInt != 0 && w_Exercise == null && w_Workout == null)
+                {
+                    error_message.Text = "Missing: Workout name and Exercise";
+                }
+
+
+
+
+
 
             }
 
-            //-----------------------------------------------------
-            //PopupNavigation.Instance.PopAsync(true);
-   
-            App.Current.MainPage = new My_ExerciseList_Page(w_ID, w_Workout, w_Exercise, w_choice_type, repInt, w_Time, w_Scheduled, w_NotificationID);
-            PopupNavigation.Instance.PopAsync();
+
 
 
         }

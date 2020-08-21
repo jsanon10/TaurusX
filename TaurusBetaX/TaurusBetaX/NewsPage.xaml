@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="TaurusBetaX.NewsPage">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <StackLayout Orientation="Horizontal" BackgroundColor="#002f5d">
+
+                <StackLayout.Margin>
+                    <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,44,0,0"/>
+                </StackLayout.Margin>
+
+                <Button x:Name="backButton"   Image="dark_arrow_blue_back_small.png" TextColor="#002f5d" FontSize="9" BackgroundColor="#002f5d" HorizontalOptions="StartAndExpand" Clicked="backButton_Clicked">
+                    <Button.WidthRequest>
+                        <OnPlatform x:TypeArguments="x:Double" Android ="85" iOS="65"/>
+                    </Button.WidthRequest>
+
+                    <Button.Margin>
+                        <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="10,0,0,0"/>
+                    </Button.Margin>
+                    <Button.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double" Android ="15" iOS="65"/>
+                    </Button.HeightRequest>
+                </Button>
+
+                <Button x:Name="forwardButton"  Image ="dark_arrow_blue_forward_small.png" FontSize="9" BackgroundColor="#002f5d" HorizontalOptions="StartAndExpand" Clicked="forwardButton_Clicked">
+                    <Button.WidthRequest>
+                        <OnPlatform x:TypeArguments="x:Double" Android ="85" iOS="65"/>
+                    </Button.WidthRequest>
+                    <Button.FontSize>
+                        <OnPlatform x:TypeArguments ="x:Double" Android="10" iOS="12"/>
+                    </Button.FontSize>
+                </Button>
+
+                
+                <Button x:Name="startButton" Text="Start" FontAttributes="Bold" FontFamily="Arial" TextColor="white" BackgroundColor="#002f5d" HorizontalOptions="EndAndExpand" Clicked="startButton_Clicked">
+                    <Button.WidthRequest>
+                        <OnPlatform x:TypeArguments="x:Double" Android ="85" iOS="65"/>
+                    </Button.WidthRequest>
+                    <Button.FontSize>
+                        <OnPlatform x:TypeArguments ="x:Double" Android="14" iOS="20"/>
+                    </Button.FontSize>
+                </Button>
+
+               
+
+                <StackLayout.HeightRequest>
+                    <OnPlatform x:TypeArguments="x:Double" Android ="66" iOS="65"/>
+                </StackLayout.HeightRequest>
+
+          </StackLayout>
+
+            <StackLayout HorizontalOptions="CenterAndExpand" BackgroundColor="White">
+                <StackLayout.Margin>
+                    <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,10,0,40"/>
+                </StackLayout.Margin>
+
+                <WebView x:Name="webInstruction" HeightRequest="1000" WidthRequest="1000"  Navigated="webInstruction_Navigated"/>
+                <Label x:Name="LoadingLabel" Text="LOADING......" FontAttributes="Bold" TextColor="Red" IsVisible="True"/>
+            </StackLayout>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

@@ -101,8 +101,27 @@ namespace TaurusBetaX
 
             //else
             //{
-            PopupNavigation.Instance.PushAsync(new Popup_Week_Workout(selectedWorkout, is_paid, mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, false));
+            //PopupNavigation.Instance.PushAsync(new Popup_Week_Workout(selectedWorkout, is_paid, mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, false));
             //}
+
+            if (is_paid == true)
+            { 
+                App.Current.MainPage = new Week_Go_ExerciseList_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count, is_paid);
+            
+            }
+            else if (is_paid == false && mWork != "Week 1")
+            {
+
+                PopupNavigation.Instance.PushAsync(new Popup_View());
+
+            }
+            else if (is_paid == false && mWork == "Week 1")
+            {
+
+                App.Current.MainPage = new Week_Go_ExerciseList_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count, is_paid);
+
+            }
+
 
 
         }
@@ -135,6 +154,12 @@ namespace TaurusBetaX
         private void Navigate_back_button_Clicked(object sender, EventArgs e)
         {
             App.Current.MainPage = new IntroPage(is_paid);
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            App.Current.MainPage = new IntroPage(is_paid);
+            return true;
         }
     }
 

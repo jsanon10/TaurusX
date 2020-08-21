@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Foundation;
+using OpenId.AppAuth;
 using UIKit;
 //using Plugin.MediaManager.Forms.iOS;
 using Xamarin.Forms;
@@ -10,6 +11,7 @@ using Xamarin.Forms.Platform.iOS;
 using UserNotifications;
 using MediaManager;
 using MediaManager.Forms.Platforms.iOS;
+
 
 namespace TaurusBetaX.iOS
 {
@@ -19,7 +21,10 @@ namespace TaurusBetaX.iOS
     [Register("AppDelegate")]
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
     {
-        //
+
+        // The authorization flow session which receives the return URL from SFSafariViewController.
+        public IAuthorizationFlowSession CurrentAuthorizationFlow { get; set; }
+
         // This method is invoked when the application has loaded and is ready to run. In this 
         // method you should instantiate the window, load the UI into it and then make the window
         // visible.
@@ -28,6 +33,13 @@ namespace TaurusBetaX.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            //Tabbed page
+
+            //Keep screen ON
+            UIApplication.SharedApplication.IdleTimerDisabled = true;
+            //-----------------------------------------------------------
+
+
             //---------------------notification--------------------------------------------------------
             if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
             {
@@ -70,6 +82,22 @@ namespace TaurusBetaX.iOS
 
             return base.FinishedLaunching(app, options);
         }
-      
+
+        //public override bool OpenUrl(
+        //   UIApplication application, NSUrl url,
+        //   string sourceApplication, NSObject annotation)
+        //{
+        //    // Sends the URL to the current authorization flow (if any) which will process it if it relates to
+        //    // an authorization response.
+        //    if (CurrentAuthorizationFlow?.ResumeAuthorizationFlow(url) == true)
+        //    {
+        //        return true;
+        //    }
+
+        //    // Your additional URL handling (if any) goes here.
+
+        //    return false;
+        //}
+
     }
 }

@@ -11,10 +11,15 @@
         <StackLayout  Margin="12" Padding="24" Spacing="24" BackgroundColor="White" HorizontalOptions="Center" VerticalOptions="Center">
 
 
-            <Label x:Name="update_text" Text ="Update this exercise from your workout"/>
+            <Label x:Name="update_text" Text ="View the Instructions, Update or Delete this exercise from your workout"/>
+            
+            
+            <Button x:Name="instruction" Text="Instruction" WidthRequest="125" HeightRequest="35" BackgroundColor="Green"  Font="arial" FontAttributes="Bold" FontSize="11" TextColor="White" Clicked="Instruction_Clicked"/>
+            
             <Button x:Name="updateButton" Text="Update" WidthRequest="125" HeightRequest="35" BackgroundColor="Green"  Font="arial" FontAttributes="Bold" FontSize="11" TextColor="White" Clicked="UpdateButton_Clicked"/>
 
             <Button x:Name="deleteButton" Text="Delete" WidthRequest="125" HeightRequest="35" BackgroundColor="Red"  Font="arial" FontAttributes="Bold" FontSize="11" TextColor="White" Clicked="DeleteButton_Clicked" />
+            
             </StackLayout>
     </ContentPage.Content>
     

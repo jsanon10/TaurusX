@@ -1,55 +1,153 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TabbedPage  xmlns="http://xamarin.com/schemas/2014/forms"
+<controls:CustomTabbedPage  xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:forms="clr-namespace:MediaManager.Forms;assembly=MediaManager.Forms"
-             BarBackgroundColor="SteelBlue"
-             BarTextColor="White"
-             SelectedItem="blue"
+             xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"            
+             BarBackgroundColor="White"
+             BarTextColor="SteelBlue"
+             SelectedTabColor="SteelBlue"
+             UnselectedTabColor="LightGray" 
+             xmlns:local="clr-namespace:TaurusBetaX;assembly=TaurusBetaX"
+             xmlns:controls="clr-namespace:TaurusBetaX"
              x:Class="TaurusBetaX.Exercise_Page">
 
+    
 
-    <ContentPage Title="Instructions" Icon="baseline_info_black_18dp.png">
+    <ContentPage x:Name="instruction_page" Title="Instructions"  Icon="{OnPlatform Android = Information_icon_vector_60.png, iOS = Information_icon_vector_60.png}">
 
         <ContentPage.Content>
-            <ScrollView>
+            <!--<ScrollView HorizontalScrollBarVisibility="Default">
+                <StackLayout BackgroundColor="White">
+                    <StackLayout>
+                        <local:PinchToZoomContainer>
+                            <local:PinchToZoomContainer.Content>
+                                <Image x:Name ="directions_img1" Margin="0,10,0,30" />
+                            </local:PinchToZoomContainer.Content>
+                        </local:PinchToZoomContainer>
+                    </StackLayout>
+
+                    <StackLayout BackgroundColor="White">
+                        <local:PinchToZoomContainer>
+                            <local:PinchToZoomContainer.Content>
+                                <Image x:Name ="directions_img2" Margin="0,10,0,30" />
+                                
+                            </local:PinchToZoomContainer.Content>
+                        </local:PinchToZoomContainer>
+                    </StackLayout>
+                </StackLayout>
+
+
+                --><!--<StackLayout>
+                <StackLayout.Margin>
+                    <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,50,0,40"/>
+                </StackLayout.Margin>
+                <ScrollView>
                 <StackLayout>
-                    <Image x:Name ="directions_img1" />
+                    <Image x:Name ="directions_img1" Margin="0,10,0,30" />
                     <Image x:Name ="directions_img2" />
                 </StackLayout>
             </ScrollView>
+            </StackLayout>--><!--
+            </ScrollView>-->
 
+            <StackLayout HorizontalOptions="CenterAndExpand" BackgroundColor="White">
+                <StackLayout.Margin>
+                    <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,10,0,40"/>
+                </StackLayout.Margin>
+
+                <WebView x:Name="webInstruction" HeightRequest="1000" WidthRequest="1000"  Navigated="webInstruction_Navigated"/>
+                <Label x:Name="LoadingLabel" Text="LOADING......" FontAttributes="Bold" TextColor="Red" IsVisible="True"/>
+            </StackLayout>
         </ContentPage.Content>
     </ContentPage>
 
 
-    <ContentPage Title="Exercise"  Icon="fitness_fitness_60x.png"  >
-    
-    <ContentPage.Content>
-            <StackLayout BackgroundColor="White">
-            <StackLayout HeightRequest="100" BackgroundColor="White">
-                <Label x:Name="txtTimer"  Text="0" FontSize="50" HorizontalTextAlignment="Center"/>
-                <Label x:Name="txtStatus"  Text="" FontSize="15" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+    <ContentPage x:Name="exercise_page" Title="Exercise" Icon= "{OnPlatform Android = Exercise_icon_vector_60.png, iOS = Exercise_icon_vector_60.png}">
+
+        <ContentPage.Content>
+
+            <ScrollView>
+                <StackLayout BackgroundColor="White">
+
+                <StackLayout HeightRequest="100">
+                    <StackLayout.Margin>
+                        <OnPlatform x:TypeArguments="Thickness" Android="0,10,0,0" iOS="0,100,0,0"/>
+                    </StackLayout.Margin>
+
+                    <StackLayout Orientation="Horizontal" >
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                                <Button x:Name="vibrateButton" Text="  " BackgroundColor="Transparent" WidthRequest="100" HeightRequest="20" ImageSource="small_vibrate_phone.jpg" Font="verdana" Clicked="vibrateButton_Clicked" >
+                                    <Button.Margin>
+                                        <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,0,0,0"/>
+                                    </Button.Margin>
+                                </Button>
+                            </StackLayout>
+
+                            <StackLayout HorizontalOptions="Center">
+                                <Label x:Name="txtTimer"  Text="0" HorizontalTextAlignment="Center">
+                                    <Label.FontSize>
+                                        <OnPlatform x:TypeArguments ="x:Double" Android="100" iOS="100"/>
+                                    </Label.FontSize>
+                                </Label>
+                            </StackLayout>
+                        
+                            <StackLayout Orientation="Vertical" HorizontalOptions="EndAndExpand">
+                                <Button Text="" BackgroundColor="Transparent" WidthRequest="100" HeightRequest="20">
+                                    <Button.Margin>
+                                        <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,0,0,0"/>
+                                    </Button.Margin>
+                                </Button>
+                            </StackLayout>
+
+                    </StackLayout>
+
+                    <Label x:Name="txtStatus"  Text="" FontAttributes="Bold" HorizontalTextAlignment="Center">
+                        <Label.FontSize>
+                            <OnPlatform x:TypeArguments ="x:Double" Android="35" iOS="20"/>
+                        </Label.FontSize>
+                    </Label>
+
+                </StackLayout>
+
+                <StackLayout>
+                    <StackLayout.Margin>
+                        <OnPlatform x:TypeArguments="Thickness" Android="0,75,0,0" iOS="0,70,0,0"/>
+                    </StackLayout.Margin>
+
+                        <forms:AnimationView
+                        x:Name="animationView"
+                        Grid.Row="1"
+                        Animation=""
+                        Loop="False"
+                        AutoPlay="False"
+                        OnFinish="AnimationView_OnFinish">
+
+                        <forms:AnimationView.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double" Android="250" iOS="300"/>
+                        </forms:AnimationView.HeightRequest>
+
+                        <forms:AnimationView.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double" Android="250" iOS="300"/>
+                        </forms:AnimationView.WidthRequest>
+
+
+                    </forms:AnimationView>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout.Margin>
+                        <OnPlatform x:TypeArguments="Thickness" Android="50,0,60,50" iOS="60,0,70,50"/>
+                    </StackLayout.Margin>
+                    <Button x:Name="btnStart" Text="Start" HorizontalOptions="StartAndExpand" BackgroundColor="Transparent" WidthRequest="85" HeightRequest="45" Font="verdana" FontAttributes="Bold" TextColor="SteelBlue" Clicked="Start_Btn_Clicked"/>
+                    <Button x:Name="btnPause" Text="Pause" HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent" WidthRequest="65" HeightRequest="45" Font="verdana" FontAttributes="Bold" TextColor="SteelBlue" Clicked="Pause_Btn_Clicked"/>
+                    <Button x:Name="btnReset" Text="Reset" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" WidthRequest="75" HeightRequest="45" Font="verdana" FontAttributes="Bold" TextColor="SteelBlue" Clicked="Reset_Btn_Clicked"/>
+                </StackLayout>
             </StackLayout>
-            <StackLayout>
-                <forms:VideoView x:Name="vidView"
-                                 WidthRequest="350"
-                                 HeightRequest="190"
-                                 InputTransparent="False"
-                                 BackgroundColor="AntiqueWhite"
-                                
-                                 
-                                 />
-            </StackLayout>
-                <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" HorizontalOptions="Center" Margin="0,0,0,0" BackgroundColor="White">
-                <Button x:Name="btnStart" Text="Start"  BackgroundColor="Transparent" WidthRequest="85" HeightRequest="45" Font="verdana" FontAttributes="Bold" TextColor="SteelBlue" Clicked="Start_Btn_Clicked"/>
-                <Button x:Name="btnPause" Text="Pause"  BackgroundColor="Transparent" WidthRequest="65" HeightRequest="45" Font="verdana" FontAttributes="Bold" TextColor="SteelBlue" Clicked="Pause_Btn_Clicked"/>
-                <Button x:Name="btnReset" Text="Reset"  BackgroundColor="Transparent" WidthRequest="75" HeightRequest="45" Font="verdana" FontAttributes="Bold" TextColor="SteelBlue" Clicked="Reset_Btn_Clicked"/>
-            </StackLayout>
-        </StackLayout>
-    </ContentPage.Content>
+                
+           </ScrollView>     
+        </ContentPage.Content>
     </ContentPage>
 
-
-
-
-</TabbedPage>
+    
+    
+    
+</controls:CustomTabbedPage>

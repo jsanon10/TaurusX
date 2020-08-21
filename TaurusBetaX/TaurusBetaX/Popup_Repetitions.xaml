@@ -11,7 +11,7 @@
     <StackLayout Margin="12" Padding="24" Spacing="24" BackgroundColor="White" HorizontalOptions="Center" VerticalOptions="Center">
 
         <StackLayout VerticalOptions="CenterAndExpand">
-            <Entry x:Name="my_WorkoutEntry" HorizontalTextAlignment="Center" Placeholder="Name of my workout" MaxLength="22">
+            <Entry x:Name="my_WorkoutEntry" HorizontalTextAlignment="Center" Placeholder="Name of my workout" MaxLength="22" FontAttributes="Bold">
             </Entry>
         </StackLayout>
 
@@ -22,7 +22,7 @@
                 HorizontalOptions="CenterAndExpand" 
                    FontSize="12"/>
 
-            <local:Toro_Picker x:Name="SetExercisePicker"  FontSize="16" TextColor="SteelBlue" HorizontalOptions="Center" WidthRequest="200" Title="Pick an Exercise" VerticalOptions="Center" AbsoluteLayout.LayoutBounds="0, 0, 0, 0" SelectedIndexChanged="SetExercisePicker_SelectedIndexChanged" >
+            <local:Toro_Picker x:Name="SetExercisePicker"  FontSize="16" TitleColor="Green" HorizontalOptions="Center" WidthRequest="200" Title=" " VerticalOptions="Center" AbsoluteLayout.LayoutBounds="0, 0, 0, 0" SelectedIndexChanged="SetExercisePicker_SelectedIndexChanged" >
             </local:Toro_Picker>
 
         </StackLayout>
@@ -33,9 +33,13 @@
                 HorizontalOptions="Center"
                    FontSize="12"/>
 
-            <local:Toro_Picker x:Name="SetRepPicker"  TextColor="SteelBlue" FontSize="16" HorizontalOptions="Center" WidthRequest="50" Title="Pick a repetition count" VerticalOptions="Center" AbsoluteLayout.LayoutBounds="0, 0, 0, 0" SelectedIndexChanged="SetRepPicker_SelectedIndexChanged" >
+            <local:Toro_Picker x:Name="SetRepPicker"  TitleColor="Green" FontSize="16" HorizontalOptions="Center" WidthRequest="50" Title=" " VerticalOptions="Center" AbsoluteLayout.LayoutBounds="0, 0, 0, 0" SelectedIndexChanged="SetRepPicker_SelectedIndexChanged" >
             </local:Toro_Picker>
 
+        </StackLayout>
+
+        <StackLayout>
+            <Label x:Name="error_message" Text="" TextColor="red" FontSize ="{OnPlatform Android = 10, iOS = 15}"/>
         </StackLayout>
 
 

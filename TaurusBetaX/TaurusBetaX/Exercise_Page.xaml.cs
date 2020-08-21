@@ -1,15 +1,6 @@
-﻿using MediaManager;
-using MediaManager.Playback;
-using MediaManager.Library;
-using MediaManager.Media;
+﻿
 using Rg.Plugins.Popup.Services;
-using MediaManager.Player;
-using MediaManager.Queue;
-//using Plugin.MediaManager;
-//using Plugin.MediaManager.Abstractions.Enums;
-//using Plugin.MediaManager.Abstractions.EventArguments;
 using SQLite;
-using Plugin.TextToSpeech;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,7 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Threading;
+using Xamarin.Essentials;
 
+using Lottie.Forms.EventArguments;
 using TaurusBetaX.Model;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -26,7 +19,7 @@ using Xamarin.Forms.Xaml;
 namespace TaurusBetaX
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Exercise_Page : TabbedPage
+    public partial class Exercise_Page : CustomTabbedPage
     {
         int count = 0;
         bool is_paid = true;
@@ -38,6 +31,7 @@ namespace TaurusBetaX
         int origin;
         string mExercise;
         string mWork;
+        string mWork_1 = "Week 1";
         string mWorkType;
         string done_checkmark = "small_round_check.jpg";
         bool is_exerciseDone;
@@ -52,16 +46,16 @@ namespace TaurusBetaX
         int hours_countdown_2;
         int minutes_countdown_2;
         bool is_waiting;
+        bool vibrationOnBool;
         int is_active;
+        int delay1;
+        int delay2;
 
         DateTime today_datetime = DateTime.Now;
         string today_string;
         DateTime yesterday_datetime;
         string yesterday_string;
         DateTime next_workout_date;
-
-        //int hours_countdown;
-        //int minutes_countdown;
 
         int day_difference;
         int hour_difference;
@@ -72,13 +66,15 @@ namespace TaurusBetaX
         // public override event MediaItemFinishedEventHandler MediaItemFinished;
         //public void Current_MediaFinished(object sender, MediaManager.Media.MediaItemEventArgs e)
 
-        public Exercise_Page(int newID, string newWorkout, string newExercise, string newWorkType, int newCount, bool eX_done, bool wK_done, int ex_count, int wk_count, bool waiting, int hours, int minutes)
+        public Exercise_Page(int newID, string newWorkout, string newExercise, string newWorkType, int newCount, bool eX_done, bool wK_done, int ex_count, int wk_count, bool waiting, int hours, int minutes, bool paid)
         {
             InitializeComponent();
 
+            is_paid = paid;
+
             btnPause.IsEnabled = false;
             btnReset.IsEnabled = true;
-            btnReset.Text = "Cancel";
+            btnReset.Text = "Exit";
             mID = newID;
             mCount = newCount;
             mWork = newWorkout;
@@ -88,6 +84,9 @@ namespace TaurusBetaX
             is_workoutDone = wK_done;
             is_waiting = waiting;
             wkDone_count = wk_count;
+            txtTimer.FontSize = 100;
+
+           // CrossTextToSpeech.Current.Dispose();
 
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
             {
@@ -106,130 +105,307 @@ namespace TaurusBetaX
 
                 btnStart.IsEnabled = false;
 
-                CrossTextToSpeech.Current.Speak("Go to the exercise tab");
-                Thread.Sleep(1000);
-                CrossTextToSpeech.Current.Speak("Then Press the start button, to begin");
+                    TextToSpeech.SpeakAsync("Go to the exercise tab", new SpeechOptions
+                    {
+                        Pitch = 0.0f
+                    }) ; 
+                    Thread.Sleep(800);
+                    TextToSpeech.SpeakAsync("Then Press the start button, to begin", new SpeechOptions
+                    {
+                        Pitch = 0.0f
+                    });
 
-                
+                    
+                }
 
+                //Verify vibrate status
+                var verifyVibrate = (from v in setworkouts
+                                     where v.MyWorkout.Equals(mWork)
+                                     select v.VibrationOn).ToList();
+
+                vibrationOnBool = verifyVibrate[0];
+
+                if (vibrationOnBool == true)
+                {
+                    vibrateButton.Text = "On   ";
+                    vibrateButton.TextColor = Color.Green;
+                }
+
+                else if (vibrationOnBool == false)
+                {
+                    vibrateButton.Text = "Off   ";
+                    vibrateButton.TextColor = Color.LightGray;
+                }
+
+
+            }
+
+            if (is_paid == true)
+            {
+
+                switch (newWorkType)
+                {
+                    case "TKegel":
+                        webInstruction.Source = "https://www.toruflex.com/traditional-kegel";
+                        delay1 = 1000;
+                        delay2 = 6000;
+                        videoUrl = "KegelTrad.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "squeeze";
+                        action2 = "release";
+                        break;
+
+                    case "RKegel":
+                        webInstruction.Source = "https://www.toruflex.com/reverse-kegel";
+                        delay1 = 1000;
+                        delay2 = 6000;
+                        videoUrl = "KegelRev.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "expand";
+                        action2 = "relax";
+                        break;
+
+                    case "HSquat":
+                        webInstruction.Source = "https://www.toruflex.com/sumo-heel-squat";
+                        delay1 = 1000;
+                        delay2 = 6000;
+                        videoUrl = "HeelSquat.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "squat";
+                        action2 = "rise up";
+                        break;
+
+                    case "FSquat":
+                        webInstruction.Source = "https://www.toruflex.com/sumo-heel-squat";
+                        delay1 = 1000;
+                        delay2 = 6000;
+                        videoUrl = "HeelSquat.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "squat";
+                        action2 = "rise up";
+                        break;
+
+                    case "Hold_Squat":
+                        webInstruction.Source = "https://www.toruflex.com/crunches";
+                        delay1 = 1000;
+                        delay2 = 6000;
+                        videoUrl = "HeelSquat.json";
+                        animationView.Animation = videoUrl;
+                        //action1 = "hold";
+                        action2 = "hold";
+                        break;
+
+                    case "CKegel":
+                        webInstruction.Source = "https://www.toruflex.com/bridge";
+                        delay1 = 1000;
+                        delay2 = 6000;
+                        videoUrl = "HeelSquat.json";
+                        animationView.Animation = videoUrl;
+                        break;
+
+                    case "TKegel_FREE":
+                        webInstruction.Source = "https://www.toruflex.com/traditional-kegel";
+                        delay1 = 1000;
+                        delay2 = 6000;
+                        videoUrl = "KegelTrad.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "squeeze";
+                        action2 = "release";
+                        break;
+
+                    case "RKegel_FREE":
+                        webInstruction.Source = "https://www.toruflex.com/reverse-kegel";
+                        delay1 = 1000;
+                        delay2 = 6000;
+                        videoUrl = "KegelRev.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "expand";
+                        action2 = "relax";
+                        break;
+
+                    case "HSquat_FREE":
+                        webInstruction.Source = "https://www.toruflex.com/sumo-heel-squat";
+                        delay1 = 1000;
+                        delay2 = 6000;
+                        videoUrl = "HeelSquat.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "squat";
+                        break;
+
+                    case "FSquat_FREE":
+                        webInstruction.Source = "https://www.toruflex.com/sumo-heel-squat";
+                        delay1 = 1000;
+                        delay2 = 6000;
+                        videoUrl = "HeelSquat.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "squat";
+                        action2 = "rise up";
+                        break;
+
+                    case "Hold_Squat_FREE":
+                        webInstruction.Source = "https://www.toruflex.com/crunches";
+                        delay1 = 1000;
+                        delay2 = 6000;
+                        videoUrl = "HeelSquat.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "hold";
+                        action2 = "hold";
+                        break;
                 }
 
             }
 
-                
-            
-
-            //CrossMediaManager.Current.MediaFinished += Current_MediaFinished;
-            CrossMediaManager.Current.MediaItemFinished += Current_MediaFinished;
-
-
-            switch (newWorkType)
+            else if (is_paid == false)
             {
-                case "TKegel":
-                    directions_img1.Source = "WWW30minutewalk.jpg";
-                    videoUrl = "https://axel.isouard.fr/media/mov_bbb.mp4";
-                    action1 = "squeeze";
-                    action2 = "release";
-                    break;
+                switch (newWorkType)
+                {
 
-                case "RKegel":
-                    directions_img1.Source = "WWWbadknees.jpg";
-                    directions_img2.Source = "WWWcatchingfire.jpg";
-                    videoUrl = "https://axel.isouard.fr/media/mov_bbb.mp4";
-                    action1 = "expand";
-                    action2 = "relax";
-                    break;
+                    case "TKegel":
+                        webInstruction.Source = "https://www.toruflex.com/traditional-kegel";
+                        delay1 = 1000;
+                        delay2 = 6000;
+                        videoUrl = "KegelTrad.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "squeeze";
+                        action2 = "release";
+                        break;
 
-                case "HSquat":
-                    directions_img1.Source = "WWWcatchingfire.jpg";
-                    directions_img2.Source = "WWW30minutewalk.jpg";
-                    videoUrl = "https://axel.isouard.fr/media/mov_bbb.mp4";
-                    action1 = "squat";
-                    action2 = "rise up";
-                    break;
+                    case "RKegel":
+                        webInstruction.Source = "https://www.toruflex.com/reverse-kegel";
+                        delay1 = 1000;
+                        delay2 = 6000;
+                        videoUrl = "KegelRev.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "expand";
+                        action2 = "relax";
+                        break;
 
-                case "FSquat":
-                    directions_img1.Source = "WWWepicabsintro.jpg";
-                    videoUrl = "https://axel.isouard.fr/media/mov_bbb.mp4";
-                    action1 = "squat";
-                    action2 = "rise up";
-                    break;
+                    case "HSquat":
+                        webInstruction.Source = "https://www.toruflex.com/sumo-heel-squat";
+                        delay1 = 1000;
+                        delay2 = 6000;
+                        videoUrl = "HeelSquat.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "squat";
+                        action2 = "rise up";
+                        break;
 
-                case "Hold_Squat":
-                    directions_img1.Source = "WWWepicarmintro.jpg";
-                    videoUrl = "https://axel.isouard.fr/media/mov_bbb.mp4";
-                    action1 = "hold";
-                    action2 = "hold";
-                    break;
+                    case "FSquat":
+                        webInstruction.Source = "https://www.toruflex.com/sumo-heel-squat";
+                        delay1 = 1000;
+                        delay2 = 6000;
+                        videoUrl = "HeelSquat.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "squat";
+                        action2 = "rise up";
+                        break;
 
-                case "CKegel":
-                    directions_img1.Source = "WWWepicarmintro.jpg";
-                    videoUrl = "https://axel.isouard.fr/media/mov_bbb.mp4";
-                    break;
+                    case "Hold_Squat":
+                        webInstruction.Source = "https://www.toruflex.com/crunches";
+                        delay1 = 1000;
+                        delay2 = 6000;
+                        videoUrl = "HeelSquat.json";
+                        animationView.Animation = videoUrl;
+                        //action1 = "hold";
+                        action2 = "hold";
+                        break;
 
-                case "TKegel_FREE":
-                    directions_img1.Source = "WWW30minutewalk.jpg";
-                    directions_img2.Source = "WWWepicarmintro.jpg";
-                    videoUrl = "https://axel.isouard.fr/media/mov_bbb.mp4";
-                    action1 = "squeeze";
-                    action2 = "release";
-                    break;
+                    case "CKegel":
+                        webInstruction.Source = "https://www.toruflex.com/bridge";
+                        delay1 = 1000;
+                        delay2 = 6000;
+                        videoUrl = "HeelSquat.json";
+                        animationView.Animation = videoUrl;
+                        break;
 
-                case "RKegel_FREE":
-                    directions_img1.Source = "WWWbadknees.jpg";
-                    videoUrl = "https://axel.isouard.fr/media/mov_bbb.mp4";
-                    action1 = "expand";
-                    action2 = "relax";
-                    break;
+                    case "TKegel_FREE":
+                        webInstruction.Source = "https://www.toruflex.com/traditional-kegel";
+                        delay1 = 1000;
+                        delay2 = 6000;
+                        videoUrl = "KegelTrad.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "squeeze";
+                        action2 = "release";
+                        break;
 
-                case "HSquat_FREE":
-                    directions_img1.Source = "WWWcatchingfire.jpg";
-                    videoUrl = "https://axel.isouard.fr/media/mov_bbb.mp4";
-                    action1 = "squat";
-                    break;
+                    case "RKegel_FREE":
+                        webInstruction.Source = "https://www.toruflex.com/reverse-kegel";
+                        delay1 = 1000;
+                        delay2 = 6000;
+                        videoUrl = "KegelRev.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "expand";
+                        action2 = "relax";
+                        break;
 
-                case "FSquat_FREE":
-                    directions_img1.Source = "WWWepicabsintro.jpg";
-                    videoUrl = "https://axel.isouard.fr/media/mov_bbb.mp4";
-                    action1 = "squat";
-                    action2 = "rise up";
-                    break;
+                    case "HSquat_FREE":
+                        webInstruction.Source = "https://www.toruflex.com/sumo-heel-squat";
+                        delay1 = 1000;
+                        delay2 = 6000;
+                        videoUrl = "HeelSquat.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "squat";
+                        break;
 
-                case "Hold_Squat_FREE":
-                    directions_img1.Source = "WWWepicarmintro.jpg";
-                    videoUrl = "https://axel.isouard.fr/media/mov_bbb.mp4";
-                    action1 = "hold";
-                    action2 = "hold";
-                    break;
+                    case "FSquat_FREE":
+                        webInstruction.Source = "https://www.toruflex.com/sumo-heel-squat";
+                        delay1 = 1000;
+                        delay2 = 6000;
+                        videoUrl = "HeelSquat.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "squat";
+                        action2 = "rise up";
+                        break;
+
+                    case "Hold_Squat_FREE":
+                        webInstruction.Source = "https://www.toruflex.com/crunches";
+                        delay1 = 1000;
+                        delay2 = 6000;
+                        videoUrl = "HeelSquat.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "hold";
+                        action2 = "hold";
+                        break;
+                }
             }
 
-           btnStart.IsEnabled = true;
-
+            btnStart.IsEnabled = true;
         }
 
-        public void Current_MediaFinished(object sender, MediaItemEventArgs e)
-        {
-            
-                count++;
 
-                text_Count = count.ToString();
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                txtTimer.Text = "" + count;
-                });
+
+        private void AnimationView_OnFinish(object sender, EventArgs e)
+        {
+            count++;
+
+            text_Count = count.ToString();
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                txtTimer.FontSize = 100;
+                txtTimer.Text = "" + count;               
+            });
 
             if (count <= mCount)
             {
 
-                CrossTextToSpeech.Current.Speak(action2);
-                CrossTextToSpeech.Current.Speak(text_Count);
-            }
-         
+                TextToSpeech.SpeakAsync(action2, new SpeechOptions
+                {
+                    Pitch = 0.0f
+                });
 
+                TextToSpeech.SpeakAsync(text_Count, new SpeechOptions
+                {
+                    Pitch = 0.0f
+                });
+
+                //after 'release' delay
+                Thread.Sleep(delay2);
+            }
 
             Play_Exercise();
-
         }
+
+       
 
         public void Play_Exercise()
         {
@@ -238,64 +414,72 @@ namespace TaurusBetaX
 
                 if (count == 0)
                 {
-                    CrossTextToSpeech.Current.Speak("Ready");
-                    CrossTextToSpeech.Current.Speak("Set");
-                    CrossTextToSpeech.Current.Speak("Go");
-                    CrossTextToSpeech.Current.Speak(action1);
-                    CrossMediaManager.Current.PlayFromResource("threefourth.mp4");
+
+                    TextToSpeech.SpeakAsync("ready..... set..... go", new SpeechOptions
+                    {
+                        Pitch = 0.0f
+                       
+                    });
+
+                    if (vibrationOnBool == true)
+                    {
+                        Vibration.Vibrate();
+                    }
+
+                    TextToSpeech.SpeakAsync(action1, new SpeechOptions
+                    {
+                        Pitch = 0.0f
+                    });
+
+                   //squeeze delay
+                   Thread.Sleep(3000);
+       
+                   animationView.Play();
+          
                 }
+
                 else
                 {
-                    CrossTextToSpeech.Current.Speak(action1);
-                    CrossMediaManager.Current.SeekToStart();
-                    CrossMediaManager.Current.Play();
+
+                    if (vibrationOnBool == true)
+                    {
+                        Vibration.Vibrate();
+                    }
+
+                    TextToSpeech.SpeakAsync(action1, new SpeechOptions
+                    {
+                        Pitch = 0.0f
+                    });
+
+                    animationView.Play();
+
                 }
             }
-
-
             else
             {
+
                 Device.BeginInvokeOnMainThread(() =>
                 {
+                    TextToSpeech.SpeakAsync(action2, new SpeechOptions
+                    {
+                        Pitch = 0.0f
+                    });
 
-                    CrossMediaManager.Current.Stop();
+                    animationView.AbortAnimation(videoUrl);
                     btnStart.Text = "<< Back";
-                    txtTimer.Text = "End of Set";
+                    txtTimer.Text = "End of the exercise";
                     btnPause.IsEnabled = false;
                     btnStart.IsEnabled = true;
                     txtTimer.FontSize = 30;
-                    //CrossMediaManager.Current.MediaQueue.Clear();
-                    CrossMediaManager.Current.Queue.Clear();
-                    //CrossMediaManager.Current.MediaFinished -= Current_MediaFinished;
-                    CrossMediaManager.Current.MediaItemFinished -= Current_MediaFinished;
-                    //CrossMediaManager.Current.
+                    instruction_page.IsEnabled = true;
+                    count = mCount;
 
+                    Thread.Sleep(2000);
+                    TextToSpeech.SpeakAsync("End of the exercise", new SpeechOptions
+                    {
+                        Pitch = 0.0f
+                    });
                 });
-
-            }
-        }
-
-        public void Play_Active_Workout()
-        {
-
-            if (is_waiting == false)
-            {
-
-                if (btnStart.Text == "Resume")
-                {
-                    CrossMediaManager.Current.Play();
-
-                }
-
-                else if (count < mCount)
-                {
-                    Play_Exercise();
-                }
-
-
-                if (count >= mCount && btnStart.Text == "<< Back")
-                {
-                    count = 0;
 
                     if (is_exerciseDone == false)
                     {
@@ -316,14 +500,56 @@ namespace TaurusBetaX
                         //var setworkouts = conn.Table<WeekTraining>().ToList();
                     }
 
-                    App.Current.MainPage = new Week_Go_ExerciseList_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count);
+            }
+        }
+
+        public void Play_Active_Workout()
+        {
+
+            if (is_waiting == false)
+            {
+
+                if (btnStart.Text == "Resume")
+                {
+                    //CrossMediaManager.Current.Play();
+                    animationView.Play();
+
+                }
+
+                else if (count < mCount)
+                {
+                    Play_Exercise();
+                }
+
+
+                if (count >= mCount && btnStart.Text == "<< Back")
+                {
+                    //END OF EXERCISE
+
+                    count = 0;
+
+                    App.Current.MainPage = new Week_Go_ExerciseList_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count, is_paid);
                 }
 
                 else
                 {
 
                     txtStatus.Text = "";
-                    txtTimer.FontSize = 50;
+                    switch (Device.RuntimePlatform)
+                    {
+                        case Device.iOS:
+                        txtTimer.FontSize = 100;
+                            break;
+                        case Device.Android:
+                            txtTimer.FontSize = 100;
+                                break; ;
+                        default:
+                            txtTimer.FontSize = 100;
+                            break;
+                    }
+
+
+                    //txtTimer.FontSize = 50;
                     btnStart.Text = "Start";
                     btnReset.Text = "Reset";
                     btnPause.IsEnabled = true;
@@ -408,25 +634,24 @@ namespace TaurusBetaX
 
                     if (is_waiting == true)
                     {
-                        PopupNavigation.Instance.PushAsync(new Popup_Wait_Hours(hours_countdown_2, minutes_countdown_2, mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count, is_waiting));
+                        PopupNavigation.Instance.PushAsync(new Popup_Wait_Hours(hours_countdown_2, minutes_countdown_2, mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count, is_waiting, is_paid));
                     }
                     else
                     {
-                        App.Current.MainPage = new Week_Go_ExerciseList_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count);
-
+                        App.Current.MainPage = new Week_Go_ExerciseList_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count, is_paid);
                     }
 
                 }
 
             }
 
-
-
         }
 
         private void Start_Btn_Clicked(object sender, EventArgs e)
         {
-            using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+            instruction_page.IsEnabled = false;
+
+            using (var conn = new SQLiteConnection(App.DatabaseLocation))
             {
 
                 //Pulling data from SQLITE database and add them to a List
@@ -469,8 +694,7 @@ namespace TaurusBetaX
                         PopupNavigation.Instance.PushAsync(new Popup_Alert_Active_Page(verify_Active[0]));
                     }
                     else if (wkDone_count >= 4)
-                    {
-     
+                    {   
                         PopupNavigation.Instance.PushAsync(new Popup_Max_Day(verify_Active[0]));
                     }
 
@@ -513,8 +737,6 @@ namespace TaurusBetaX
 
                 }
 
-
-
             }
 
         }
@@ -525,44 +747,89 @@ namespace TaurusBetaX
             btnPause.IsEnabled = false;
             btnStart.IsEnabled = true;
             btnStart.Text = "Resume";
-            CrossMediaManager.Current.Pause();
-            CrossTextToSpeech.Current.Dispose();
+            animationView.Pause();
         }
 
         private void Reset_Btn_Clicked(object sender, EventArgs e)
         {
 
-            if (count <= 0 && btnReset.Text == "Cancel" && page != 5 && is_paid == true)
+            if (count <= 0 && btnReset.Text == "Exit" && page != 5 && is_paid == true)
             {
 
-                App.Current.MainPage = new Week_Go_ExerciseList_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count);
-                CrossTextToSpeech.Current.Dispose();
+                App.Current.MainPage = new Week_Go_ExerciseList_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count, is_paid);
+                //CrossTextToSpeech.Current.Dispose();
             }
 
-            if (count <= 0 && btnReset.Text == "Cancel" && page != 5 && is_paid == false)
+            if (count <= 0 && btnReset.Text == "Exit" && page != 5 && is_paid == false)
             {
-                App.Current.MainPage = new Week_Go_ExerciseList_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count);
-                CrossTextToSpeech.Current.Dispose();
+                App.Current.MainPage = new Week_Go_ExerciseList_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count, is_paid);
+                //CrossTextToSpeech.Current.Dispose();
             }
 
             else if (count > 0)
             {
                 txtStatus.Text = "";
-                txtTimer.FontSize = 50;
+                txtTimer.FontSize = 100;
                 btnStart.IsEnabled = true;
                 btnPause.IsEnabled = false;
                 count = 0;
-                btnReset.Text = "Cancel";
+                btnReset.Text = "Exit";
                 btnStart.Text = "Start";
-                CrossMediaManager.Current.MediaItemFinished += Current_MediaFinished;
-                CrossMediaManager.Current.Stop();
+                animationView.Pause();
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     txtTimer.Text = "" + count;
                 });
-                CrossTextToSpeech.Current.Dispose();
-                App.Current.MainPage = new Exercise_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count, is_waiting, hours_countdown_2, minutes_countdown_2);
+
+                //App.Current.MainPage = new Exercise_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count, is_waiting, hours_countdown_2, minutes_countdown_2, is_paid);
             }
+        }
+
+        private void vibrateButton_Clicked(object sender, EventArgs e)
+        {
+            if (vibrationOnBool == true)
+            {
+                Vibration.Cancel();
+                vibrateButton.TextColor = Color.LightGray;
+                vibrateButton.Text = "Off   ";
+                vibrationOnBool = false;
+
+
+                using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+                {
+                    conn.CreateTable <WeekTraining> ();
+
+                    conn.Execute("UPDATE WeekTraining SET VibrationOn= false WHERE MyWorkout=?", mWork);
+                }
+            }
+
+            else if (vibrationOnBool == false)
+            {
+                vibrateButton.TextColor = Color.Green;
+                vibrateButton.Text = "On   ";
+                vibrationOnBool = true;
+
+                using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+                {
+                    conn.CreateTable<WeekTraining>();
+
+                    conn.Execute("UPDATE WeekTraining SET VibrationOn= true WHERE MyWorkout=?", mWork);
+                }
+
+            }
+        }
+
+
+
+        protected override bool OnBackButtonPressed()
+        {
+            App.Current.MainPage = new Week_Go_ExerciseList_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count, is_paid);
+            return true;
+        }
+
+        private void webInstruction_Navigated(object sender, WebNavigatedEventArgs e)
+        {
+            LoadingLabel.IsVisible = false;
         }
     }
 }

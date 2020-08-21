@@ -13,29 +13,78 @@
     </ContentPage.ToolbarItems>-->
 
 
-    <ListView x:Name="exercise_Listview" ItemSelected="Exercise_Listview_Selected" RowHeight="35">
+    <ListView x:Name="exercise_Listview" ItemTapped="exercise_Listview_ItemTapped" SeparatorVisibility="None" >
+        <ListView.RowHeight>
+            <OnPlatform x:TypeArguments ="x:Int32" Android="60" iOS="90"/>
+        </ListView.RowHeight>
+        
         <ListView.Header>
             <StackLayout>
-                <StackLayout  BackgroundColor="#2196F3" Orientation="Horizontal" HeightRequest="33">
-                    <Button x:Name="navigate_back_button"  Image="back_button_blue.png" BackgroundColor="#2196F3" WidthRequest="45" HorizontalOptions="StartAndExpand" Clicked="Navigate_back_button_Clicked"/>
-                    <Label Text ="Edit Exercise(s)" TextColor="white" FontSize="14" FontFamily="Arial" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" BackgroundColor="#2196F3" Margin="0,0,0,0" />
-                    <Button x:Name="add_exercise_button" Text="+ Add" TextColor="White" FontSize="10" BackgroundColor="#2196F3" HorizontalOptions="EndAndExpand" WidthRequest="50"  Clicked="Add_exercise_button_Clicked"/>
+                <StackLayout  BackgroundColor="#002f5d" Orientation="Horizontal" HeightRequest="{OnPlatform Android = 66, iOS = 65}">
+                    <Button x:Name="navigate_back_button"  Image="dark_arrow_blue_back_small.png" BackgroundColor="#002f5d" HorizontalOptions="StartAndExpand" Clicked="Navigate_back_button_Clicked">
+                        <Button.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double" Android ="85" iOS="65"/>
+                        </Button.WidthRequest>
+                        <Button.Margin>
+                            <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="10,0,0,0"/>
+                        </Button.Margin>
+
+                        <Button.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double" Android ="15" iOS="65"/>
+                        </Button.HeightRequest>
+                    </Button>
+
+                    <Label Text ="Edit Exercise(s)" TextColor="white" FontSize="{OnPlatform Android= 25, iOS= 20}" FontFamily="Arial" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" BackgroundColor="#002f5d" Margin="0,0,0,0">
+                        <Label.Margin>
+                            <OnPlatform x:TypeArguments="Thickness" Android="0,15,0,0" iOS="5,20,0,0"/>
+                        </Label.Margin>
+                    </Label>
+
+                    <Button x:Name="add_exercise_button" Text="+ Add" TextColor="White"  FontSize="{OnPlatform Android=14, iOS=14}" BackgroundColor="#002f5d" HorizontalOptions="EndAndExpand" Clicked="Add_exercise_button_Clicked">
+                        <Button.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double" Android ="85" iOS="65"/>
+                        </Button.WidthRequest>
+                        <Button.Margin>
+                            <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="10,0,0,0"/>
+                        </Button.Margin>
+
+                        <Button.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double" Android ="15" iOS="65"/>
+                        </Button.HeightRequest>
+                    </Button>
+                    
                 </StackLayout >
                 <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" >
-                 <Label x:Name="workoutTitle" TextColor="Gray" FontSize="20" FontFamily="Arial" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" />
-                    <Label Text ="____________________________________" HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" />
+                    <Label x:Name="workoutTitle" TextColor="Gray" FontSize="{OnPlatform Android=25, iOS=28}" FontFamily="Arial" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" />
+                    <Label Text ="____________________________________" HorizontalOptions="CenterAndExpand" Margin="0,0,0,20" />
                </StackLayout>
                 </StackLayout>
         </ListView.Header>
+        
+        
+        
         <ListView.ItemTemplate>
             <DataTemplate>
                 <!--<TextCell Text="{Binding Exercise}" TextColor="SteelBlue" Detail="{Binding Reps}"   DetailColor="red"/>-->
-                <ViewCell>
-                <StackLayout BackgroundColor="White" Orientation="Vertical" Margin="15,0,15,0">
+                <ViewCell  StyleId="white">
+                    <StackLayout BackgroundColor="White" Orientation="Vertical" Margin="50,0,50,0">
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding Exercise}" TextColor="#f35e20" />
-                            <Label Text="{Binding Reps}" HorizontalOptions="EndAndExpand" TextColor="#503026" />
-                       </StackLayout>
+                            <Label Text="{Binding Exercise}" TextColor="#f35e20" >
+                                <Label.FontSize>
+                                    <OnPlatform x:TypeArguments ="x:Double" Android="18" iOS="22"/>
+                                </Label.FontSize>
+                            </Label>
+                            <Label Text="{Binding Reps}" HorizontalOptions="EndAndExpand" TextColor="#503026">
+                                <Label.FontSize>
+                                    <OnPlatform x:TypeArguments ="x:Double" Android="16" iOS="18"/>
+                                </Label.FontSize>
+
+                                <Label.Margin>
+                                    <OnPlatform x:TypeArguments="Thickness" Android="0,3,0,0" iOS="0,2,0,0"/>
+                                </Label.Margin>
+
+                            </Label>
+                        </StackLayout>
                 </StackLayout>
                 </ViewCell>
             </DataTemplate>

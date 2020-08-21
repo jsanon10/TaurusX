@@ -10,15 +10,53 @@
 
 
 
-    <ListView x:Name="workout_Listview" ItemTapped="Workout_Listview_ItemTapped">
+    <ListView x:Name="workout_Listview" ItemTapped="Workout_Listview_ItemTapped" SeparatorVisibility="None">
+
+        <ListView.RowHeight>
+            <OnPlatform x:TypeArguments ="x:Int32" Android="90" iOS="90"/>
+        </ListView.RowHeight>
+
         <ListView.Header>
-            <StackLayout >
-                <StackLayout Orientation="Horizontal" HeightRequest="33" BackgroundColor="#2196F3">
-                    <Button x:Name="navigate_back_button"  Image="back_button_blue.png" BackgroundColor="#2196F3" WidthRequest="45"  HorizontalOptions="StartAndExpand" Clicked="Navigate_back_button_Clicked"/>
+            <StackLayout>
+                <StackLayout Orientation="Horizontal" BackgroundColor="#002f5d">
+                    <Button x:Name="navigate_back_button"  Image="dark_arrow_blue_back_small.png" BackgroundColor="#002f5d" HorizontalOptions="StartAndExpand" Clicked="Navigate_back_button_Clicked">
+                        <Button.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double" Android ="85" iOS="65"/>
+                        </Button.WidthRequest>
+                        <Button.Margin>
+                            <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="10,0,0,0"/>
+                        </Button.Margin>
+
+                        <Button.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double" Android ="15" iOS="65"/>
+                        </Button.HeightRequest>
+                    </Button>
+
+                    <Image Source="Toruflex_dark_small.png" HorizontalOptions="CenterAndExpand"/>
+
+                    <Button x:Name="blank_button"  Text="Reset" TextColor="#002f5d" FontSize="9" BackgroundColor="#002f5d" HorizontalOptions="EndAndExpand">
+                        <Button.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double" Android ="85" iOS="65"/>
+                        </Button.WidthRequest>
+                        <Button.FontSize>
+                            <OnPlatform x:TypeArguments ="x:Double" Android="10" iOS="12"/>
+                        </Button.FontSize>
+                    </Button>
+
+                    <StackLayout.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double" Android ="66" iOS="65"/>
+                    </StackLayout.HeightRequest>
+
                 </StackLayout>
-                <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" >
-                    <Label Text="Four Weeks Training" TextColor="Gray" FontSize="20" FontFamily="Arial" FontAttributes="Bold"  HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" />
-                    <Label Text ="____________________________________" HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" />
+                
+                
+                <StackLayout HorizontalOptions="CenterAndExpand" Margin="10,0,0,0" >
+                    <Label Text="Four Weeks Training" TextColor="Gray" FontFamily="Arial" FontAttributes="Bold"  HorizontalOptions="CenterAndExpand" Margin="10,0,0,0">
+                        <Label.FontSize>
+                            <OnPlatform x:TypeArguments ="x:Double" Android="25" iOS="34"/>
+                        </Label.FontSize>
+                    </Label>
+                    <Label Text ="____________________________________" HorizontalOptions="CenterAndExpand" Margin="0,20,0,25" />
                 </StackLayout>
             </StackLayout>
         </ListView.Header>
@@ -35,16 +73,36 @@
 
         <ListView.ItemTemplate>
             <DataTemplate>
-                <ViewCell x:Name="weekWorkout_ViewCell">
-                    <StackLayout BackgroundColor="White" Orientation="Vertical" Margin="15,0,15,0">
+                <ViewCell x:Name="weekWorkout_ViewCell" StyleId="white">
+                    <StackLayout BackgroundColor="White" Orientation="Vertical" Margin="55,0,55,0" >
                         <StackLayout Orientation="Horizontal">
-                            <!--<Label x:Name="exercise_name" Text="{Binding MyWorkout}" TextColor="SteelBlue" />
-                            <Label x:Name="reps_name" Text="{Binding WkDone_count}" HorizontalOptions="EndAndExpand" TextColor="red" FontSize="9" />-->
-                            <Label Text="{Binding Path=Key}" TextColor="SteelBlue"/>
-                            <Label x:Name="workout_done_count" Text="{Binding Path=Value}" HorizontalOptions="EndAndExpand" TextColor="OrangeRed" FontSize="9" />
-                            <Label Text="Day(s) completed" HorizontalOptions="End" TextColor="LightSlateGray" FontSize="8" />
-                            
-                            
+                            <Label Text="{Binding Path=Key}" TextColor="SteelBlue" VerticalOptions="Center">
+                                <Label.FontSize>
+                                    <OnPlatform x:TypeArguments ="x:Double" Android="24" iOS="28"/>
+                                </Label.FontSize>
+                            </Label>
+                            <Label x:Name="workout_done_count" Text="{Binding Path=Value}" HorizontalOptions="EndAndExpand" TextColor="OrangeRed" FontSize="9" VerticalOptions="Center" Margin="0,7,0,0">
+
+                                <Label.Margin>
+                                    <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,7,0,0"/>
+                                </Label.Margin>
+
+
+                                <Label.FontSize>
+                                    <OnPlatform x:TypeArguments ="x:Double" Android="16" iOS="15"/>
+                                </Label.FontSize>
+                            </Label>
+                            <Label Text="Day(s) completed" HorizontalOptions="End" TextColor="LightSlateGray" FontSize="8" VerticalOptions="Center">
+
+                                <Label.Margin>
+                                    <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,7,0,0"/>
+                                </Label.Margin>
+
+                                <Label.FontSize>
+                                    <OnPlatform x:TypeArguments ="x:Double" Android="16" iOS="15"/>
+                                </Label.FontSize>
+                            </Label>
+
                         </StackLayout>
                     </StackLayout>
                 </ViewCell>

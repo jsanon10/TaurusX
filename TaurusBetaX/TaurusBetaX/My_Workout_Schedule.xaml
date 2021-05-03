@@ -184,7 +184,7 @@
                             <OnPlatform x:TypeArguments="Thickness" Android="0,20,0,0" iOS="0,20,0,40"/>
                         </StackLayout.Margin>
                     </StackLayout>
-                    <TimePicker x:Name="scheduled_time" HorizontalOptions="Center" Margin ="0,25,0,0" PropertyChanged="Scheduled_time_PropertyChanged"/>
+                    <TimePicker x:Name="scheduled_time"  HorizontalOptions="Center" Margin ="0,25,0,0" PropertyChanged="Scheduled_time_PropertyChanged"/>
                 </StackLayout>
                 
 

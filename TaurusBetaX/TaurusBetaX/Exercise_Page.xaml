@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <controls:CustomTabbedPage  xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"            
+             xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"            
              BarBackgroundColor="White"
              BarTextColor="SteelBlue"
              SelectedTabColor="SteelBlue"
@@ -113,24 +113,24 @@
                         <OnPlatform x:TypeArguments="Thickness" Android="0,75,0,0" iOS="0,70,0,0"/>
                     </StackLayout.Margin>
 
-                        <forms:AnimationView
+                    <lottie:AnimationView
                         x:Name="animationView"
                         Grid.Row="1"
                         Animation=""
-                        Loop="False"
                         AutoPlay="False"
-                        OnFinish="AnimationView_OnFinish">
+                        OnFinishedAnimation="AnimationView_OnFinish">
+                            
 
-                        <forms:AnimationView.HeightRequest>
+                            <lottie:AnimationView.HeightRequest>
                             <OnPlatform x:TypeArguments="x:Double" Android="250" iOS="300"/>
-                        </forms:AnimationView.HeightRequest>
+                        </lottie:AnimationView.HeightRequest>
 
-                        <forms:AnimationView.WidthRequest>
+                        <lottie:AnimationView.WidthRequest>
                             <OnPlatform x:TypeArguments="x:Double" Android="250" iOS="300"/>
-                        </forms:AnimationView.WidthRequest>
+                        </lottie:AnimationView.WidthRequest>
 
 
-                    </forms:AnimationView>
+                    </lottie:AnimationView>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">

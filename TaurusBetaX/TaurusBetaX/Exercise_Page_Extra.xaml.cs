@@ -55,8 +55,8 @@ namespace TaurusBetaX
 
 
         public Exercise_Page_Extra(int newID, string newWorkout, string newExercise, string newWorkType, int newCount, bool eX_done, bool wK_done, int ex_count, int wk_count, bool paid)
-		{
-			InitializeComponent ();
+        {
+            InitializeComponent();
 
             is_paid = paid;
 
@@ -167,7 +167,7 @@ namespace TaurusBetaX
                         break;
 
                     case "CKegel":
-                        webInstruction.Source = "https://www.toruflex.com/bridge";
+                        webInstruction.Source = "https://www.toruflex.com/crunches";
                         delay1 = 1000;
                         delay2 = 6000;
                         videoUrl = "HeelSquat.json";
@@ -222,6 +222,30 @@ namespace TaurusBetaX
                         action1 = "hold";
                         action2 = "hold";
                         break;
+
+                    case "HRKegel":
+                        webInstruction.Source = "https://www.toruflex.com/crunches";
+                        delay1 = 1000;
+                        delay2 = 3000;
+                        videoUrl = "HeelReverse.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "expand";
+                        action2 = "relax";
+                        break;
+
+
+                    case "Bridges":
+                        webInstruction.Source = "https://www.toruflex.com/bridge";
+                        delay1 = 1000;
+                        delay2 = 4000;
+                        videoUrl = "Bridges_1.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "rise";
+                        action2 = "relax";
+                        break;
+
+
+
                 }
 
             }
@@ -354,7 +378,8 @@ namespace TaurusBetaX
                 txtTimer.Text = "" + count;
             });
 
-            if (count <= mCount)
+
+            if (count <= mCount && count != 1)
             {
 
                 TextToSpeech.SpeakAsync(action2, new SpeechOptions
@@ -372,7 +397,42 @@ namespace TaurusBetaX
             }
 
             Play_Exercise();
+        }
 
+        public void PlayAndCount()
+        {
+            count++;
+
+            text_Count = count.ToString();
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                txtTimer.FontSize = 100;
+                txtTimer.Text = "" + count;
+
+                if (vibrationOnBool == true)
+                {
+                    Vibration.Vibrate();
+                }
+            });
+
+
+            if (count == 1)
+            {
+                TextToSpeech.SpeakAsync(text_Count, new SpeechOptions
+                {
+                    Pitch = 0.0f
+                });
+
+                TextToSpeech.SpeakAsync(action1, new SpeechOptions
+                {
+                    Pitch = 0.0f
+                });
+
+                Thread.Sleep(delay2);
+
+            }
+
+            animationView.PlayAnimation();
         }
 
         public void Play_Exercise()
@@ -389,20 +449,7 @@ namespace TaurusBetaX
 
                     });
 
-                    if (vibrationOnBool == true)
-                    {
-                        Vibration.Vibrate();
-                    }
-
-                    TextToSpeech.SpeakAsync(action1, new SpeechOptions
-                    {
-                        Pitch = 0.0f
-                    });
-
-                    //squeeze delay
-                    Thread.Sleep(3000);
-
-                    animationView.Play();
+                    PlayAndCount();
 
                 }
 
@@ -418,7 +465,7 @@ namespace TaurusBetaX
                         Pitch = 0.0f
                     });
 
-                    animationView.Play();
+                    animationView.PlayAnimation();
                 }
             }
             else
@@ -426,7 +473,12 @@ namespace TaurusBetaX
                 Device.BeginInvokeOnMainThread(() =>
                 {
 
- 
+                    TextToSpeech.SpeakAsync(action2, new SpeechOptions
+                    {
+                        Pitch = 0.0f
+                    });
+
+
                         animationView.AbortAnimation(videoUrl);
                         btnStart.Text = "<< Back";
                         txtTimer.Text = "End of the exercise";
@@ -466,8 +518,8 @@ namespace TaurusBetaX
                 }
 
             }
-        }
     
+        }
         private void Start_Btn_Clicked(object sender, EventArgs e)
         {
             instruction_page.IsEnabled = false;
@@ -475,7 +527,7 @@ namespace TaurusBetaX
             if (btnStart.Text == "Resume")
             {
 
-                animationView.Play();
+                animationView.PlayAnimation();
             }
 
             else if (count < mCount)
@@ -526,7 +578,7 @@ namespace TaurusBetaX
             btnStart.IsEnabled = true;
             btnStart.Text = "Resume";
             //CrossMediaManager.Current.Pause();
-            animationView.Pause();
+            animationView.PauseAnimation();
         }
 
         private void Reset_Btn_Clicked(object sender, EventArgs e)
@@ -547,7 +599,7 @@ namespace TaurusBetaX
                 App.Current.MainPage = new My_Go_ExerciseList_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count, is_paid);
             }
 
-            else
+            else if (count > 0)
             {
                 txtStatus.Text = "";
                 txtTimer.FontSize = 100;
@@ -556,7 +608,7 @@ namespace TaurusBetaX
                 count = 0;
                 btnReset.Text = "Exit";
                 btnStart.Text = "Start";
-                animationView.Pause();
+                animationView.PauseAnimation();
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     txtTimer.Text = "" + count;

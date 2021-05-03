@@ -53,7 +53,7 @@
                 <StackLayout HorizontalOptions="CenterAndExpand" Margin="10,0,0,0" >
                     <Label Text="Four Weeks Training" TextColor="Gray" FontFamily="Arial" FontAttributes="Bold"  HorizontalOptions="CenterAndExpand" Margin="10,0,0,0">
                         <Label.FontSize>
-                            <OnPlatform x:TypeArguments ="x:Double" Android="25" iOS="34"/>
+                            <OnPlatform x:TypeArguments ="x:Double" Android="25" iOS="30"/>
                         </Label.FontSize>
                     </Label>
                     <Label Text ="____________________________________" HorizontalOptions="CenterAndExpand" Margin="0,20,0,25" />
@@ -74,11 +74,11 @@
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell x:Name="weekWorkout_ViewCell" StyleId="white">
-                    <StackLayout BackgroundColor="White" Orientation="Vertical" Margin="55,0,55,0" >
+                    <StackLayout BackgroundColor="White" Orientation="Vertical" Margin="45,0,45,0" >
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding Path=Key}" TextColor="SteelBlue" VerticalOptions="Center">
+                            <Label Text="{Binding Path=Key}" TextColor="SteelBlue" VerticalOptions="Center" FontAttributes="Bold">
                                 <Label.FontSize>
-                                    <OnPlatform x:TypeArguments ="x:Double" Android="24" iOS="28"/>
+                                    <OnPlatform x:TypeArguments ="x:Double" Android="24" iOS="24"/>
                                 </Label.FontSize>
                             </Label>
                             <Label x:Name="workout_done_count" Text="{Binding Path=Value}" HorizontalOptions="EndAndExpand" TextColor="OrangeRed" FontSize="9" VerticalOptions="Center" Margin="0,7,0,0">
@@ -89,7 +89,7 @@
 
 
                                 <Label.FontSize>
-                                    <OnPlatform x:TypeArguments ="x:Double" Android="16" iOS="15"/>
+                                    <OnPlatform x:TypeArguments ="x:Double" Android="16" iOS="14"/>
                                 </Label.FontSize>
                             </Label>
                             <Label Text="Day(s) completed" HorizontalOptions="End" TextColor="LightSlateGray" FontSize="8" VerticalOptions="Center">
@@ -99,7 +99,7 @@
                                 </Label.Margin>
 
                                 <Label.FontSize>
-                                    <OnPlatform x:TypeArguments ="x:Double" Android="16" iOS="15"/>
+                                    <OnPlatform x:TypeArguments ="x:Double" Android="16" iOS="14"/>
                                 </Label.FontSize>
                             </Label>
 

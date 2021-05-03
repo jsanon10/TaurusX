@@ -30,104 +30,103 @@ namespace TaurusBetaX
 
             if (is_paid == false)
             {
-                workout_selection_button.TextColor = Color.LightGray;
-                workout_selection_button.BorderColor = Color.Gray;
+                //workout_selection_button.TextColor = Color.LightGray;
+                //workout_selection_button.BorderColor = Color.Gray;
             
             }
         }
 
-    
 
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            if (is_paid == true)
-            {
-                var assembly = Assembly.GetExecutingAssembly();
-                using (Stream stream = assembly.GetManifestResourceStream("TaurusBetaX.workouts.csv"))
-                using (var sr = new StreamReader(stream))
-                {
-                    /////////////////////////////
-                    string myresult = stream.ToString();
-                    ////////////////////////////
+        //private void Button_Clicked(object sender, EventArgs e)
+        //{
+        //    if (is_paid == true)
+        //    {
+        //        var assembly = Assembly.GetExecutingAssembly();
+        //        using (Stream stream = assembly.GetManifestResourceStream("TaurusBetaX.workouts.csv"))
+        //        using (var sr = new StreamReader(stream))
+        //        {
+        //            /////////////////////////////
+        //            string myresult = stream.ToString();
+        //            ////////////////////////////
 
-                    var reader = new CsvReader(sr);
-                    reader.Configuration.HeaderValidated = null;
-                    reader.Configuration.MissingFieldFound = null;
+        //            var reader = new CsvReader(sr);
+        //            reader.Configuration.HeaderValidated = null;
+        //            reader.Configuration.MissingFieldFound = null;
 
-                    //CSVReader will now read the whole file into an enumerable
-                    IEnumerable<WeekTraining> records = reader.GetRecords<WeekTraining>();
+        //            //CSVReader will now read the whole file into an enumerable
+        //            IEnumerable<WeekTraining> records = reader.GetRecords<WeekTraining>();
 
-                    //First 5 records in CSV file will be printed to the Output Window
-                    using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
-                    {
-                         conn.CreateTable<WeekTraining>();
-                        var allItems = conn.Table<WeekTraining>().ToList();
-                        int rowcount = allItems.Count();
+        //            //First 5 records in CSV file will be printed to the Output Window
+        //            using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+        //            {
+        //                 conn.CreateTable<WeekTraining>();
+        //                var allItems = conn.Table<WeekTraining>().ToList();
+        //                int rowcount = allItems.Count();
                         
                         
                         
-                        if (rowcount < 1)
-                        {   
+        //                if (rowcount < 1)
+        //                {   
 
-                            foreach (WeekTraining record in records)
-                            {
-                                conn.Execute("INSERT INTO WeekTraining (MyWorkout,Exercise,WorkoutType,Reps,ExDone,WkDone,ExDone_count,WkDone_count,Wait,Active,Checkmark,Yesterday) VALUES ('" + record.MyWorkout + "', '" + record.Exercise + "','" + record.WorkoutType + "','" + record.Reps + "','" + record.ExDone + "','" + record.WkDone + "','" + record.ExDone_count + "','" + record.WkDone_count + "','" + record.Wait + "','" + record.Active + "','" + record.Checkmark + "','" + record.Yesterday + "')");
+        //                    foreach (WeekTraining record in records)
+        //                    {
+        //                        conn.Execute("INSERT INTO WeekTraining (MyWorkout,Exercise,WorkoutType,Reps,ExDone,WkDone,ExDone_count,WkDone_count,Wait,Active,Checkmark,Yesterday) VALUES ('" + record.MyWorkout + "', '" + record.Exercise + "','" + record.WorkoutType + "','" + record.Reps + "','" + record.ExDone + "','" + record.WkDone + "','" + record.ExDone_count + "','" + record.WkDone_count + "','" + record.Wait + "','" + record.Active + "','" + record.Checkmark + "','" + record.Yesterday + "')");
 
-                            }
+        //                    }
 
-                            conn.Execute("UPDATE WeekTraining SET Active= true WHERE MyWorkout=?", "Week 1");
+        //                    conn.Execute("UPDATE WeekTraining SET Active= true WHERE MyWorkout=?", "Week 1");
 
-                            var allItems2 = conn.Table<WeekTraining>().ToList();
+        //                    var allItems2 = conn.Table<WeekTraining>().ToList();
 
-                        }
+        //                }
 
-                    }
+        //            }
 
-                }
+        //        }
 
-                App.Current.MainPage = new Week_WorkoutList_Page(is_paid);
+        //        App.Current.MainPage = new Week_WorkoutList_Page(is_paid);
 
-            }
+        //    }
 
-            else
-            {
-                var assembly = Assembly.GetExecutingAssembly();
-                using (Stream stream = assembly.GetManifestResourceStream("TaurusBetaX.workouts.csv"))
-                using (var sr = new StreamReader(stream))
-                {
-                    var reader = new CsvReader(sr);
-                    reader.Configuration.HeaderValidated = null;
-                    reader.Configuration.MissingFieldFound = null;
+        //    else
+        //    {
+        //        var assembly = Assembly.GetExecutingAssembly();
+        //        using (Stream stream = assembly.GetManifestResourceStream("TaurusBetaX.workouts.csv"))
+        //        using (var sr = new StreamReader(stream))
+        //        {
+        //            var reader = new CsvReader(sr);
+        //            reader.Configuration.HeaderValidated = null;
+        //            reader.Configuration.MissingFieldFound = null;
 
-                    //CSVReader will now read the whole file into an enumerable
-                    IEnumerable<WeekTraining> records = reader.GetRecords<WeekTraining>();
+        //            //CSVReader will now read the whole file into an enumerable
+        //            IEnumerable<WeekTraining> records = reader.GetRecords<WeekTraining>();
 
-                    //First 5 records in CSV file will be printed to the Output Window
-                    using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
-                    {
+        //            //First 5 records in CSV file will be printed to the Output Window
+        //            using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+        //            {
                        
 
-                        conn.CreateTable<WeekTraining>();
-                        var allItems = conn.Table<WeekTraining>().ToList();
-                        int rowcount = allItems.Count();
+        //                conn.CreateTable<WeekTraining>();
+        //                var allItems = conn.Table<WeekTraining>().ToList();
+        //                int rowcount = allItems.Count();
 
-                        if (rowcount > 1)
-                        {
-                            foreach (WeekTraining record in records)
-                            {
-                               // conn.Execute("INSERT INTO WeekTraining (MyWorkout,Exercise,WorkoutType,Reps,ExDone,WkDone,ExDone_count,WkDone_count,Wait,Active,Checkmark,Yesterday) VALUES ('" + record.MyWorkout + "', '" + record.Exercise + "','" + record.WorkoutType + "','" + record.Reps + "','" + record.ExDone + "','" + record.WkDone + "','" + record.ExDone_count + "','" + record.WkDone_count + "','" + record.Wait + "','" + record.Active + "','" + record.Checkmark + "','" + record.Yesterday + "')");
+        //                if (rowcount > 1)
+        //                {
+        //                    foreach (WeekTraining record in records)
+        //                    {
+        //                       // conn.Execute("INSERT INTO WeekTraining (MyWorkout,Exercise,WorkoutType,Reps,ExDone,WkDone,ExDone_count,WkDone_count,Wait,Active,Checkmark,Yesterday) VALUES ('" + record.MyWorkout + "', '" + record.Exercise + "','" + record.WorkoutType + "','" + record.Reps + "','" + record.ExDone + "','" + record.WkDone + "','" + record.ExDone_count + "','" + record.WkDone_count + "','" + record.Wait + "','" + record.Active + "','" + record.Checkmark + "','" + record.Yesterday + "')");
 
-                            }
+        //                    }
 
-                        }
-                    }
+        //                }
+        //            }
 
-                }
+        //        }
 
-                App.Current.MainPage = new Week_WorkoutList_Page(is_paid);
-            }
+        //        App.Current.MainPage = new Week_WorkoutList_Page(is_paid);
+        //    }
             
-        }
+        //}
 
         private void Workout_Selection_Clicked(object sender, EventArgs e)
         {
@@ -195,6 +194,109 @@ namespace TaurusBetaX
 
             App.Current.MainPage = new NewsPage(is_paid);
 
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+
+            if (is_paid == true)
+            {
+                var assembly = Assembly.GetExecutingAssembly();
+                using (Stream stream = assembly.GetManifestResourceStream("TaurusBetaX.workouts1.csv"))
+                using (var sr = new StreamReader(stream))
+                {
+                    /////////////////////////////
+                    string myresult = stream.ToString();
+                    ////////////////////////////
+
+                    var reader = new CsvReader(sr);
+                    reader.Configuration.HeaderValidated = null;
+                    reader.Configuration.MissingFieldFound = null;
+
+                    //CSVReader will now read the whole file into an enumerable
+                    IEnumerable<WeekTraining> records = reader.GetRecords<WeekTraining>();
+
+                    //First 5 records in CSV file will be printed to the Output Window
+                    using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+                    {
+                        conn.CreateTable<WeekTraining>();
+                        var allItems = conn.Table<WeekTraining>().ToList();
+                        int rowcount = allItems.Count();
+
+
+
+                        if (rowcount < 1)
+                        {
+
+                            foreach (WeekTraining record in records)
+                            {
+                                conn.Execute("INSERT INTO WeekTraining (MyWorkout,Exercise,WorkoutType,Reps,ExDone,WkDone,ExDone_count,WkDone_count,Wait,Active,Checkmark,Yesterday) VALUES ('" + record.MyWorkout + "', '" + record.Exercise + "','" + record.WorkoutType + "','" + record.Reps + "','" + record.ExDone + "','" + record.WkDone + "','" + record.ExDone_count + "','" + record.WkDone_count + "','" + record.Wait + "','" + record.Active + "','" + record.Checkmark + "','" + record.Yesterday + "')");
+
+                            }
+
+                            conn.Execute("UPDATE WeekTraining SET Active= true WHERE MyWorkout=?", "Week 1");
+
+                            var allItems2 = conn.Table<WeekTraining>().ToList();
+
+                        }
+
+                    }
+
+                }
+
+                App.Current.MainPage = new Week_WorkoutList_Page(is_paid);
+
+            }
+
+            else
+            {
+                var assembly = Assembly.GetExecutingAssembly();
+                using (Stream stream = assembly.GetManifestResourceStream("TaurusBetaX.workouts1.csv"))
+                using (var sr = new StreamReader(stream))
+                {
+                    /////////////////////////////
+                    string myresult = stream.ToString();
+                    ////////////////////////////
+
+                    var reader = new CsvReader(sr);
+                    reader.Configuration.HeaderValidated = null;
+                    reader.Configuration.MissingFieldFound = null;
+
+                    //CSVReader will now read the whole file into an enumerable
+                    IEnumerable<WeekTraining> records = reader.GetRecords<WeekTraining>();
+
+                    //First 5 records in CSV file will be printed to the Output Window
+                    using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+                    {
+                        conn.CreateTable<WeekTraining>();
+                        var allItems = conn.Table<WeekTraining>().ToList();
+                        int rowcount = allItems.Count();
+
+
+
+                        if (rowcount < 1)
+                        {
+
+                            foreach (WeekTraining record in records)
+                            {
+                                conn.Execute("INSERT INTO WeekTraining (MyWorkout,Exercise,WorkoutType,Reps,ExDone,WkDone,ExDone_count,WkDone_count,Wait,Active,Checkmark,Yesterday) VALUES ('" + record.MyWorkout + "', '" + record.Exercise + "','" + record.WorkoutType + "','" + record.Reps + "','" + record.ExDone + "','" + record.WkDone + "','" + record.ExDone_count + "','" + record.WkDone_count + "','" + record.Wait + "','" + record.Active + "','" + record.Checkmark + "','" + record.Yesterday + "')");
+
+                            }
+
+                            conn.Execute("UPDATE WeekTraining SET Active= true WHERE MyWorkout=?", "Week 1");
+
+                            var allItems2 = conn.Table<WeekTraining>().ToList();
+
+                        }
+
+                    }
+
+                }
+
+                App.Current.MainPage = new Week_WorkoutList_Page(is_paid);
+
+
+            }
         }
     }
 }

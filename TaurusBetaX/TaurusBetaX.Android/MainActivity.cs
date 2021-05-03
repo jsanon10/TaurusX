@@ -8,7 +8,6 @@ using Android.Widget;
 using Android.OS;
 //using TaurusBetaX.Droid.Implementations;
 //using TaurusBetaX.Helpers;
-using OpenId.AppAuth;
 using Org.Json;
 using System.IO;
 using MediaManager;
@@ -39,12 +38,12 @@ namespace TaurusBetaX.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
-           
+            //Lottie.Forms.AnimationView.Init(); 
             CrossMediaManager.Current.Init();
 
             Rg.Plugins.Popup.Popup.Init(this, bundle);
             string dbName = "workout_db.sqlite";
-            string csvName = "workouts.csv";
+            string csvName = "workouts1.csv";
             string folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             string fullpath = Path.Combine(folderPath, dbName);
             string csvpath = Path.Combine(folderPath, csvName);

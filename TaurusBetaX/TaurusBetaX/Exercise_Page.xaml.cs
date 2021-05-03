@@ -11,7 +11,7 @@ using System.Timers;
 using System.Threading;
 using Xamarin.Essentials;
 
-using Lottie.Forms.EventArguments;
+using Lottie.Forms;
 using TaurusBetaX.Model;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -196,7 +196,7 @@ namespace TaurusBetaX
                         break;
 
                     case "CKegel":
-                        webInstruction.Source = "https://www.toruflex.com/bridge";
+                        webInstruction.Source = "https://www.toruflex.com/crunches";
                         delay1 = 1000;
                         delay2 = 6000;
                         videoUrl = "HeelSquat.json";
@@ -251,6 +251,29 @@ namespace TaurusBetaX
                         action1 = "hold";
                         action2 = "hold";
                         break;
+
+                    case "HRKegel":
+                        webInstruction.Source = "https://www.toruflex.com/crunches";
+                        delay1 = 1000;
+                        delay2 = 3000;
+                        videoUrl = "HeelReverse.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "expand";
+                        action2 = "relax";
+                        break;
+
+
+                    case "Bridges":
+                        webInstruction.Source = "https://www.toruflex.com/bridge";
+                        delay1 = 1000;
+                        delay2 = 4000;
+                        videoUrl = "Bridges_1.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "rise";
+                        action2 = "relax";
+                        break;
+
+
                 }
 
             }
@@ -311,7 +334,7 @@ namespace TaurusBetaX
                         break;
 
                     case "CKegel":
-                        webInstruction.Source = "https://www.toruflex.com/bridge";
+                        webInstruction.Source = "https://www.toruflex.com/crunches";
                         delay1 = 1000;
                         delay2 = 6000;
                         videoUrl = "HeelSquat.json";
@@ -366,6 +389,29 @@ namespace TaurusBetaX
                         action1 = "hold";
                         action2 = "hold";
                         break;
+
+                    case "HRKegel":
+                        webInstruction.Source = "https://www.toruflex.com/crunches";
+                        delay1 = 1000;
+                        delay2 = 3000;
+                        videoUrl = "HeelReverse.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "expand";
+                        action2 = "relax";
+                        break;
+
+
+                    case "Bridges":
+                        webInstruction.Source = "https://www.toruflex.com/bridge";
+                        delay1 = 1000;
+                        delay2 = 4000;
+                        videoUrl = "Bridges_1.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "rise";
+                        action2 = "relax";
+                        break;
+
+
                 }
             }
 
@@ -382,10 +428,11 @@ namespace TaurusBetaX
             Device.BeginInvokeOnMainThread(() =>
             {
                 txtTimer.FontSize = 100;
-                txtTimer.Text = "" + count;               
+                txtTimer.Text = "" + count;
             });
 
-            if (count <= mCount)
+
+            if (count <= mCount && count != 1)
             {
 
                 TextToSpeech.SpeakAsync(action2, new SpeechOptions
@@ -405,7 +452,41 @@ namespace TaurusBetaX
             Play_Exercise();
         }
 
-       
+        public void PlayAndCount()
+        {
+            count++;
+
+            text_Count = count.ToString();
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                txtTimer.FontSize = 100;
+                txtTimer.Text = "" + count;
+
+                if (vibrationOnBool == true)
+                {
+                    Vibration.Vibrate();
+                }
+            });
+
+
+            if (count == 1)
+            {
+                TextToSpeech.SpeakAsync(text_Count, new SpeechOptions
+                {
+                    Pitch = 0.0f
+                });
+
+                TextToSpeech.SpeakAsync(action1, new SpeechOptions
+                {
+                    Pitch = 0.0f
+                });
+
+                Thread.Sleep(delay2);
+
+            }
+
+            animationView.PlayAnimation();
+        }
 
         public void Play_Exercise()
         {
@@ -415,26 +496,15 @@ namespace TaurusBetaX
                 if (count == 0)
                 {
 
+                    text_Count = count.ToString();
+
                     TextToSpeech.SpeakAsync("ready..... set..... go", new SpeechOptions
                     {
                         Pitch = 0.0f
                        
                     });
 
-                    if (vibrationOnBool == true)
-                    {
-                        Vibration.Vibrate();
-                    }
-
-                    TextToSpeech.SpeakAsync(action1, new SpeechOptions
-                    {
-                        Pitch = 0.0f
-                    });
-
-                   //squeeze delay
-                   Thread.Sleep(3000);
-       
-                   animationView.Play();
+                   PlayAndCount();
           
                 }
 
@@ -451,7 +521,7 @@ namespace TaurusBetaX
                         Pitch = 0.0f
                     });
 
-                    animationView.Play();
+                    animationView.PlayAnimation();
 
                 }
             }
@@ -512,7 +582,7 @@ namespace TaurusBetaX
                 if (btnStart.Text == "Resume")
                 {
                     //CrossMediaManager.Current.Play();
-                    animationView.Play();
+                    animationView.PlayAnimation();
 
                 }
 
@@ -747,7 +817,7 @@ namespace TaurusBetaX
             btnPause.IsEnabled = false;
             btnStart.IsEnabled = true;
             btnStart.Text = "Resume";
-            animationView.Pause();
+            animationView.PauseAnimation();
         }
 
         private void Reset_Btn_Clicked(object sender, EventArgs e)
@@ -775,7 +845,7 @@ namespace TaurusBetaX
                 count = 0;
                 btnReset.Text = "Exit";
                 btnStart.Text = "Start";
-                animationView.Pause();
+                animationView.PauseAnimation();
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     txtTimer.Text = "" + count;

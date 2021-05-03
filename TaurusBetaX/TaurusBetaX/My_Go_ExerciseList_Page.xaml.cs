@@ -123,7 +123,7 @@ namespace TaurusBetaX
                 mID = selectedExercise.Id;
       
                
-                App.Current.MainPage = new Exercise_Page_Extra(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count, is_paid);
+               App.Current.MainPage = new Exercise_Page_Extra(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count, is_paid);
                 
             }
 

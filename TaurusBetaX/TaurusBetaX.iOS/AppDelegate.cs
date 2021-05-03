@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Foundation;
-using OpenId.AppAuth;
 using UIKit;
 //using Plugin.MediaManager.Forms.iOS;
 using Xamarin.Forms;
@@ -23,7 +22,7 @@ namespace TaurusBetaX.iOS
     {
 
         // The authorization flow session which receives the return URL from SFSafariViewController.
-        public IAuthorizationFlowSession CurrentAuthorizationFlow { get; set; }
+        //public IAuthorizationFlowSession CurrentAuthorizationFlow { get; set; }
 
         // This method is invoked when the application has loaded and is ready to run. In this 
         // method you should instantiate the window, load the UI into it and then make the window
@@ -69,7 +68,7 @@ namespace TaurusBetaX.iOS
             //VideoViewRenderer.Init();
             CrossMediaManager.Current.Init();
             string dbName = "workout_db.sqlite";
-            string csvName = "workouts.csv";
+            string csvName = "workouts1.csv";
             string folderPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "..", "Library");
             string fullpath = Path.Combine(folderPath, dbName);
             string csvpath = Path.Combine(folderPath, csvName);

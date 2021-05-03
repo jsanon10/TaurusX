@@ -1,11 +1,22 @@
 MyWorkout,Exercise,WorkoutType,Reps,ExDone,WkDone,ExDone_count,WkDone_count,Checkmark,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday,TimeIs,IsScheduled,Notification_ID,Workout_Status,VibrationOn,WorkoutReady
-Kegels Workouts,Traditional Kegel,TKegel,20,FALSE,FALSE,0,0,small_round_nocheck.jpg,TRUE,FALSE,FALSE,TRUE,FALSE,TRUE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
-Kegels Workouts,Reverse Kegel,RKegel,20,FALSE,FALSE,0,0,small_round_nocheck.jpg,TRUE,FALSE,FALSE,TRUE,FALSE,TRUE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
-Kegels Workouts,Traditional Kegel,TKegel,30,FALSE,FALSE,0,0,small_round_nocheck.jpg,TRUE,FALSE,FALSE,TRUE,FALSE,TRUE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
-Kegels Workouts,Reverse Kegel,RKegel,30,FALSE,FALSE,0,0,small_round_nocheck.jpg,TRUE,FALSE,FALSE,TRUE,FALSE,TRUE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
-Full Workout,Traditional Kegel,TKegel,20,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
-Full Workout,Reverse Kegel,RKegel,20,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
-Full Workout,Sumo Heel Squat,FSquat,10,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
-Full Workout,Sumo Heel Squat,FSquat,10,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
-Full Workout,Sumo Heel Squat,FSquat,10,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
-Full Workout,Hold Squat,Hold_Squat,10,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
+Monday Workout,Traditional Kegel,TKegel,20,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
+Monday Workout,Reverse Kegel,RKegel,20,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
+Monday Workout,Sumo Heel Squat,FSquat,10,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
+Monday Workout,Sumo Heel Squat,FSquat,10,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
+Monday Workout,Sumo Heel Squat,FSquat,10,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
+Monday Workout,Hold Squat,Hold_Squat,10,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
+Monday Workout,Bridge (Hip Raise),Bridges,10,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
+Wednesday Workout,Traditional Kegel,TKegel,20,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
+Wednesday Workout,Reverse Kegel,RKegel,20,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
+Wednesday Workout,Sumo Heel Squat,FSquat,10,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
+Wednesday Workout,Sumo Heel Squat,FSquat,10,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
+Wednesday Workout,Sumo Heel Squat,FSquat,10,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
+Wednesday Workout,Hold Squat,Hold_Squat,10,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
+Wednesday Workout,Bridge (Hip Raise),Bridges,10,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
+Friday Workout,Traditional Kegel,TKegel,20,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
+Friday Workout,Reverse Kegel,RKegel,20,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
+Friday Workout,Sumo Heel Squat,FSquat,10,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
+Friday Workout,Sumo Heel Squat,FSquat,10,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
+Friday Workout,Sumo Heel Squat,FSquat,10,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
+Friday Workout,Hold Squat,Hold_Squat,10,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE
+Friday Workout,Bridge (Hip Raise),Bridges,10,FALSE,FALSE,0,0,small_round_nocheck.jpg,FALSE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,7:00:00,TRUE,10,Ready,TRUE,TRUE

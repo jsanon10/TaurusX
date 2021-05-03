@@ -152,15 +152,14 @@ namespace TaurusBetaX
             SetRepPicker.Items.Add("100");
 
 
-            SetExercisePicker.Items.Add("Bridges (Hip Raise)");
-            SetExercisePicker.Items.Add("BC Crunches (Long)");
-            SetExercisePicker.Items.Add("BC Crunches (Short)");
-            SetExercisePicker.Items.Add("Reverse Kegel (Long)");
-            SetExercisePicker.Items.Add("Reverse Kegel (Short)");
-            SetExercisePicker.Items.Add("Reverse Back Kegel");
+            SetExercisePicker.Items.Add("Bridge (Hip Raise)");
+            SetExercisePicker.Items.Add("Sitting Kegel (Long)");
+            SetExercisePicker.Items.Add("Sitting Kegel (Short)");
+            SetExercisePicker.Items.Add("Reverse Kegel");
+            SetExercisePicker.Items.Add("Traditional Kegel");
             SetExercisePicker.Items.Add("Heel Half Squats");
             SetExercisePicker.Items.Add("Sumo Heel Squats");
-            SetExercisePicker.Items.Add("Hold Heel Squat");
+            SetExercisePicker.Items.Add("Heel Reverse Kegel");
 
         }
 
@@ -180,28 +179,41 @@ namespace TaurusBetaX
             {
                 case "Traditional Kegel":
                     w_choice_type = "TKegel";
-         
                     break;
+
+                case "Bridge (Hip Raise)":
+                    w_choice_type = "Bridges";
+                    break;
+
+                case "Sitting Kegel (Long)":
+                    w_choice_type = "SKLong";
+                    break;
+
+                case "Sitting Kegel (Short)":
+                    w_choice_type = "SKShort";
+                    break;
+
+
 
                 case "Reverse Kegel":
                     w_choice_type = "RKegel";
                     break;
 
-                case "Reverse Back Kegel":
-                    w_choice_type = "CKegel";
+                case "Heel Reverse Kegel":
+                    w_choice_type = "HRKegel";
                     break;
-
-                case "Low Heel Hold Squat":
-                    w_choice_type = "Hold_Squat";
+ 
+                case "Warmup Half Squats":
+                    w_choice_type = "HSquat";
                     break;
 
                 case "Sumo Heel Squats":
                     w_choice_type = "FSquat";
                     break;
 
-                case "Half Heel Squats":
-                    w_choice_type = "HSquat";
-                    break;
+
+
+
 
             }
 

@@ -45,19 +45,19 @@
             </StackLayout>
   
 
-            <StackLayout Margin="0,-6,0,0" BackgroundColor="White" >
-               
-               
-              <StackLayout Orientation ="Horizontal">
-                    <StackLayout>
-                            <Image Source = "{OnPlatform Android = calendar_CLIP_225.png, iOS = calendar_CLIP_300.png}"/>
-                    </StackLayout>
-                  
-                    <StackLayout Orientation="Vertical">
+            <StackLayout BackgroundColor="White" HeightRequest="225" HorizontalOptions="Center">
+
+                    <StackLayout.Margin>
+                        <OnPlatform x:TypeArguments="Thickness" Android="0,10,0,0" iOS="0,20,0,0"/>
+                    </StackLayout.Margin>
+
+                    <StackLayout Orientation ="Horizontal">
+                                  
+                    <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
                         
                         <Label  FontFamily="Arial" TextColor="SteelBlue" Margin="12,5,0,0" HorizontalOptions="Start" VerticalOptions="Start" FontSize ="{OnPlatform Android = 80, iOS = 90}" WidthRequest="200"  FontAttributes="Bold" >
                             <Label.FontSize>
-                                <OnPlatform x:TypeArguments ="x:Double" Android="18" iOS="22"/>
+                                <OnPlatform x:TypeArguments ="x:Double" Android="18" iOS="20"/>
                             </Label.FontSize>
 
                             <Label.Text>
@@ -65,41 +65,55 @@
                             </Label.Text>
                         </Label>
 
-                        <Label  FontFamily="Arial" TextColor="Gray" Margin="12,5,0,20" HorizontalOptions="Start" VerticalOptions="Start" FontSize ="{OnPlatform Android = 18, iOS = 16}" WidthRequest="200" >
+                        <Label  FontFamily="Arial" TextColor="Gray" Margin="12,5,0,20" HorizontalOptions="Start" VerticalOptions="Center" FontSize ="{OnPlatform Android = 18, iOS = 16}" WidthRequest="200" >
+                        
                             <!--<Label  HorizontalOptions="FillAndExpand" FontFamily="Arial" TextColor="Gray" Margin="12,0,0,0">-->
                             <Label.FontSize>
-                                <OnPlatform x:TypeArguments ="x:Double" Android="14" iOS="16"/>
+                                <OnPlatform x:TypeArguments ="x:Double" Android="12" iOS="14"/>
                             </Label.FontSize>
 
                             <Label.Text>
                                 &#x0a;
-                            &#x0a; The “4 Weeks Training Program” assists you through a variety of daily exercises designed to gradually strengthen the 3 primary muscles that are essential to improve your erection in four weeks.
+                            &#x0a; The “4 Weeks Training Program” assists you through a variety of daily exercises designed to gradually strengthen the 3 primary muscles that are essential to improve your erection in four weeks.                    
                            </Label.Text>
                         </Label>
 
-                        <StackLayout VerticalOptions="End">
-                            <Button x:Name="week_workout_button"  Text="Start" HorizontalOptions="Center" VerticalOptions="End" HeightRequest="{OnPlatform Android = 48, iOS = 50}" WidthRequest="{OnPlatform Android = 205, iOS = 190}" BackgroundColor="Transparent" Font="verdana" BorderColor="LightBlue" BorderWidth="1" FontAttributes="Bold" TextColor="Green" Clicked="Button_Clicked"/>
-                        </StackLayout>
+                        <!--<StackLayout VerticalOptions="End">
+                                <Button x:Name="week_workout_button"  Text="Start" HorizontalOptions="Center" VerticalOptions="End" HeightRequest="{OnPlatform Android = 48, iOS = 50}" WidthRequest="{OnPlatform Android = 205, iOS = 190}"  BackgroundColor="Transparent" Font="verdana" BorderColor="LightBlue" BorderWidth="1" FontAttributes="Bold" TextColor="Green" Clicked="Button_Clicked"/>
+                        </StackLayout>-->
 
                     </StackLayout>
+
+                    <StackLayout VerticalOptions="Center">
+                        
+                            <Image Source = "{OnPlatform Android = calendar_CLIP_225.png, iOS = calendar_CLIP_300.png}">
+
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                    Tapped="TapGestureRecognizer_Tapped"
+                                    NumberOfTapsRequired="1" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        
+                        </StackLayout>
                
               </StackLayout>
             
            </StackLayout>
 
-                <StackLayout Margin="0,50,0,0" BackgroundColor="White">
+            <StackLayout BackgroundColor="White" HeightRequest="225" HorizontalOptions="Center">
+                    <StackLayout.Margin>
+                        <OnPlatform x:TypeArguments="Thickness" Android="0,25,0,0" iOS="0,55,0,0"/>
+                    </StackLayout.Margin>
 
 
-                <StackLayout Orientation ="Horizontal">
-                    <StackLayout>
-                            <Image Source = "{OnPlatform Android = checklist_CLIP_225.png, iOS = checklist_CLIP_300.png}"/>
-                    </StackLayout>
+                    <StackLayout Orientation ="Horizontal"> 
 
-                    <StackLayout Orientation="Vertical">
+                    <StackLayout Orientation="Vertical" VerticalOptions="Center">
 
                         <Label  FontFamily="Arial" TextColor="SteelBlue" Margin="12,5,0,0" HorizontalOptions="Start" VerticalOptions="Start" FontSize ="{OnPlatform Android = 80, iOS = 90}" WidthRequest="200"  FontAttributes="Bold" >
                             <Label.FontSize>
-                                <OnPlatform x:TypeArguments ="x:Double" Android="18" iOS="22"/>
+                                <OnPlatform x:TypeArguments ="x:Double" Android="18" iOS="20"/>
                             </Label.FontSize>
 
                             <Label.Text>
@@ -107,22 +121,35 @@
                             </Label.Text>
                         </Label>
 
-                        <Label  FontFamily="Arial" TextColor="Gray" Margin="12,5,0,20" HorizontalOptions="Start" VerticalOptions="Start" FontSize ="{OnPlatform Android = 18, iOS = 16}" WidthRequest="200" >
+                        <Label  FontFamily="Arial" TextColor="Gray" Margin="12,5,0,40" HorizontalOptions="Start" VerticalOptions="FillAndExpand" FontSize ="{OnPlatform Android = 18, iOS = 16}" WidthRequest="200" >
                             <Label.FontSize>
-                                <OnPlatform x:TypeArguments ="x:Double" Android="14" iOS="16"/>
+                                <OnPlatform x:TypeArguments ="x:Double" Android="12" iOS="14"/>
                             </Label.FontSize>
 
                             <Label.Text>
                                 &#x0a;
-                            &#x0a; The Workout Selection option allows you to select individual exercises that you’ll be able to perform at your own pace and repetitions. You can use this option after the 4 Weeks program to customize your own weekly exercise routine.
+                            &#x0a; The Workout Selection option allows you to select individual exercises that you’ll be able to perform at your own pace and repetitions. You can use this option after the 4 Weeks program to customize your own weekly exercise routine.                    
+                                &#x0a;
                             </Label.Text>
                         </Label>
 
-                        <StackLayout VerticalOptions="EndAndExpand">
+                        <!--<StackLayout VerticalOptions="EndAndExpand">
                             <Button x:Name="workout_selection_button" Text="Start" HorizontalOptions="Center" VerticalOptions="End"  HeightRequest="{OnPlatform Android = 48, iOS = 50}" WidthRequest="{OnPlatform Android = 205, iOS = 190}" BackgroundColor="Transparent" Font="verdana" BorderColor="LightBlue" BorderWidth="1" FontAttributes="Bold" TextColor="Green" Clicked="Workout_Selection_Clicked"/>
-                        </StackLayout>
+                        </StackLayout>-->
 
                     </StackLayout>
+
+                         <StackLayout VerticalOptions="Start">
+                            <Image Source = "{OnPlatform Android = checklist_CLIP_225.png, iOS = checklist_CLIP_300.png}">
+                                
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                    Tapped="Workout_Selection_Clicked"
+                                    NumberOfTapsRequired="1" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                                
+                         </StackLayout>
 
                 </StackLayout>
 

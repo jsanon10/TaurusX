@@ -54,7 +54,7 @@
                     <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,10,0,40"/>
                 </StackLayout.Margin>
 
-                <WebView x:Name="webInstruction" HeightRequest="1000" WidthRequest="1000"  Navigated="webInstruction_Navigated"/>
+                <WebView x:Name="webInstruction" HeightRequest="1000" WidthRequest="1000"  Navigated="Web_Instruction_Navigated"/>
                 <Label x:Name="LoadingLabel" Text="LOADING......" FontAttributes="Bold" TextColor="Red" IsVisible="True"/>
             </StackLayout>
         </ContentPage.Content>
@@ -68,14 +68,14 @@
             <ScrollView>
                 <StackLayout BackgroundColor="White">
 
-                <StackLayout HeightRequest="100">
-                    <StackLayout.Margin>
-                        <OnPlatform x:TypeArguments="Thickness" Android="0,10,0,0" iOS="0,100,0,0"/>
-                    </StackLayout.Margin>
+                    <StackLayout HeightRequest="100">
+                        <StackLayout.Margin>
+                            <OnPlatform x:TypeArguments="Thickness" Android="0,10,0,0" iOS="0,100,0,0"/>
+                        </StackLayout.Margin>
 
-                    <StackLayout Orientation="Horizontal" >
+                        <StackLayout Orientation="Horizontal" >
                             <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
-                                <Button x:Name="vibrateButton" Text="  " BackgroundColor="Transparent" WidthRequest="100" HeightRequest="20" ImageSource="small_vibrate_phone.jpg" Font="verdana" Clicked="vibrateButton_Clicked" >
+                                <Button x:Name="vibrateButton" Text="  " BackgroundColor="Transparent" WidthRequest="100" HeightRequest="20" ImageSource="small_vibrate_phone.jpg" Font="verdana" Clicked="Vibrate_Btn_Clicked" >
                                     <Button.Margin>
                                         <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,0,0,0"/>
                                     </Button.Margin>
@@ -89,7 +89,7 @@
                                     </Label.FontSize>
                                 </Label>
                             </StackLayout>
-                        
+
                             <StackLayout Orientation="Vertical" HorizontalOptions="EndAndExpand">
                                 <Button Text="" BackgroundColor="Transparent" WidthRequest="100" HeightRequest="20">
                                     <Button.Margin>
@@ -98,56 +98,53 @@
                                 </Button>
                             </StackLayout>
 
+                        </StackLayout>
+
+                        <Label x:Name="txtStatus"  Text="" FontAttributes="Bold" HorizontalTextAlignment="Center">
+                            <Label.FontSize>
+                                <OnPlatform x:TypeArguments ="x:Double" Android="35" iOS="20"/>
+                            </Label.FontSize>
+                        </Label>
+
                     </StackLayout>
 
-                    <Label x:Name="txtStatus"  Text="" FontAttributes="Bold" HorizontalTextAlignment="Center">
-                        <Label.FontSize>
-                            <OnPlatform x:TypeArguments ="x:Double" Android="35" iOS="20"/>
-                        </Label.FontSize>
-                    </Label>
+                    <StackLayout>
+                        <StackLayout.Margin>
+                            <OnPlatform x:TypeArguments="Thickness" Android="0,75,0,0" iOS="0,70,0,0"/>
+                        </StackLayout.Margin>
 
-                </StackLayout>
-
-                <StackLayout>
-                    <StackLayout.Margin>
-                        <OnPlatform x:TypeArguments="Thickness" Android="0,75,0,0" iOS="0,70,0,0"/>
-                    </StackLayout.Margin>
-
-                    <lottie:AnimationView
+                        <lottie:AnimationView
                         x:Name="animationView"
                         Grid.Row="1"
                         Animation=""
                         AutoPlay="False"
-                        OnFinishedAnimation="AnimationView_OnFinish">
-                            
+                        OnFinishedAnimation="Animation_View_On_Finish">
+
 
                             <lottie:AnimationView.HeightRequest>
-                            <OnPlatform x:TypeArguments="x:Double" Android="250" iOS="300"/>
-                        </lottie:AnimationView.HeightRequest>
+                                <OnPlatform x:TypeArguments="x:Double" Android="300" iOS="300"/>
+                            </lottie:AnimationView.HeightRequest>
 
-                        <lottie:AnimationView.WidthRequest>
-                            <OnPlatform x:TypeArguments="x:Double" Android="250" iOS="300"/>
-                        </lottie:AnimationView.WidthRequest>
+                            <lottie:AnimationView.WidthRequest>
+                                <OnPlatform x:TypeArguments="x:Double" Android="300" iOS="300"/>
+                            </lottie:AnimationView.WidthRequest>
 
 
-                    </lottie:AnimationView>
+                        </lottie:AnimationView>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout.Margin>
+                            <OnPlatform x:TypeArguments="Thickness" Android="50,0,60,50" iOS="60,0,70,50"/>
+                        </StackLayout.Margin>
+                        <Button x:Name="btnStart" Text="Start" HorizontalOptions="StartAndExpand" BackgroundColor="Transparent" WidthRequest="85" HeightRequest="45" Font="verdana" FontAttributes="Bold" TextColor="SteelBlue" Clicked="Start_Btn_Clicked"/>
+                        <Button x:Name="btnPause" Text="Pause" HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent" WidthRequest="65" HeightRequest="45" Font="verdana" FontAttributes="Bold" TextColor="SteelBlue" Clicked="Pause_Btn_Clicked"/>
+                        <Button x:Name="btnReset" Text="Reset" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" WidthRequest="75" HeightRequest="45" Font="verdana" FontAttributes="Bold" TextColor="SteelBlue" Clicked="Reset_Btn_Clicked"/>
+                    </StackLayout>
                 </StackLayout>
 
-                <StackLayout Orientation="Horizontal">
-                    <StackLayout.Margin>
-                        <OnPlatform x:TypeArguments="Thickness" Android="50,0,60,50" iOS="60,0,70,50"/>
-                    </StackLayout.Margin>
-                    <Button x:Name="btnStart" Text="Start" HorizontalOptions="StartAndExpand" BackgroundColor="Transparent" WidthRequest="85" HeightRequest="45" Font="verdana" FontAttributes="Bold" TextColor="SteelBlue" Clicked="Start_Btn_Clicked"/>
-                    <Button x:Name="btnPause" Text="Pause" HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent" WidthRequest="65" HeightRequest="45" Font="verdana" FontAttributes="Bold" TextColor="SteelBlue" Clicked="Pause_Btn_Clicked"/>
-                    <Button x:Name="btnReset" Text="Reset" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" WidthRequest="75" HeightRequest="45" Font="verdana" FontAttributes="Bold" TextColor="SteelBlue" Clicked="Reset_Btn_Clicked"/>
-                </StackLayout>
-            </StackLayout>
-                
-           </ScrollView>     
+            </ScrollView>
         </ContentPage.Content>
     </ContentPage>
 
-    
-    
-    
 </controls:CustomTabbedPage>

@@ -59,20 +59,6 @@ namespace TaurusBetaX.Droid
             LoadApplication(new App(fullpath, csvpath));
 
             LocalNotificationsImplementation.NotificationIconId = Resource.Drawable.transparent_favicon;
-
-            
-
-
         }
-
-        //protected override void OnNewIntent(Intent intent)
-        //{
-        //    base.OnNewIntent(intent);
-
-        //    if (intent != null && LoginProvider.Current != null)
-        //    {
-        //        LoginProvider.Current.NotifyOfCallback(intent);
-        //    }
-        //}
     }
 }

@@ -58,7 +58,7 @@
                     <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,10,0,40"/>
                 </StackLayout.Margin>
 
-                <WebView x:Name="webInstruction" HeightRequest="1000" WidthRequest="1000"  Navigated="webInstruction_Navigated"/>
+                <WebView x:Name="webInstruction" HeightRequest="1000" WidthRequest="1000"  Navigated="Web_Instruction_Navigated"/>
                 <Label x:Name="LoadingLabel" Text="LOADING......" FontAttributes="Bold" TextColor="Red" IsVisible="True"/>
             </StackLayout>
 

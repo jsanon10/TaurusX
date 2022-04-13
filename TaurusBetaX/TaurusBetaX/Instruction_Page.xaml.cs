@@ -77,7 +77,7 @@ namespace TaurusBetaX
 
         }
 
-        private void webInstruction_Navigated(object sender, WebNavigatedEventArgs e)
+        private void Web_Instruction_Navigated(object sender, WebNavigatedEventArgs e)
         {
             LoadingLabel.IsVisible = false;
         }

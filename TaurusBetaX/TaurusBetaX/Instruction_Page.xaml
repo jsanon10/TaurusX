@@ -70,7 +70,7 @@
                         <Image x:Name ="directions_img2" />
                     </StackLayout>
                 </ScrollView>-->
-                    <WebView x:Name="webInstruction" HeightRequest="1000" WidthRequest="1000"  Navigated="webInstruction_Navigated"/>
+                    <WebView x:Name="webInstruction" HeightRequest="1000" WidthRequest="1000"  Navigated="Web_Instruction_Navigated"/>
                     <Label x:Name="LoadingLabel" Text="LOADING......" FontAttributes="Bold" TextColor="Red" IsVisible="True"/>
 
             </StackLayout>

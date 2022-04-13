@@ -153,14 +153,16 @@ namespace TaurusBetaX
 
 
             SetExercisePicker.Items.Add("Bridge (Hip Raise)");
-            SetExercisePicker.Items.Add("Sitting Kegel (Long)");
-            SetExercisePicker.Items.Add("Sitting Kegel (Short)");
-            SetExercisePicker.Items.Add("Reverse Kegel");
-            SetExercisePicker.Items.Add("Traditional Kegel");
-            SetExercisePicker.Items.Add("Heel Half Squats");
+            SetExercisePicker.Items.Add("Warmup Half Squats");
+            SetExercisePicker.Items.Add("Regular Kegel");
+            SetExercisePicker.Items.Add("Regular Kegel (Fast)");
+            SetExercisePicker.Items.Add("Regular Kegel (Hold)");
             SetExercisePicker.Items.Add("Sumo Heel Squats");
             SetExercisePicker.Items.Add("Heel Reverse Kegel");
-
+            SetExercisePicker.Items.Add("Reverse Kegel");
+            SetExercisePicker.Items.Add("Reverse Kegel (Fast)");
+            SetExercisePicker.Items.Add("Reverse Kegel (Hold)");
+            SetExercisePicker.Items.Add("Elevated Reverse Kegel");
         }
 
         private void SetRepPicker_SelectedIndexChanged(object sender, EventArgs e)
@@ -177,26 +179,28 @@ namespace TaurusBetaX
 
             switch (w_Exercise)
             {
-                case "Traditional Kegel":
+                case "Regular Kegel":
                     w_choice_type = "TKegel";
                     break;
 
-                case "Bridge (Hip Raise)":
-                    w_choice_type = "Bridges";
-                    break;
-
-                case "Sitting Kegel (Long)":
-                    w_choice_type = "SKLong";
-                    break;
-
-                case "Sitting Kegel (Short)":
-                    w_choice_type = "SKShort";
-                    break;
-
-
-
                 case "Reverse Kegel":
                     w_choice_type = "RKegel";
+                    break;
+
+                case "Regular Kegel (Fast)":
+                    w_choice_type = "TKegelRapid";
+                    break;
+
+                case "Reverse Kegel (Fast)":
+                    w_choice_type = "RKegelRapid";
+                    break;
+
+                case "Regular Kegel (Hold)":
+                    w_choice_type = "TKegelHold";
+                    break;
+
+                case "Reverse Kegel (Hold)":
+                    w_choice_type = "TKegelHold";
                     break;
 
                 case "Heel Reverse Kegel":
@@ -211,17 +215,14 @@ namespace TaurusBetaX
                     w_choice_type = "FSquat";
                     break;
 
-
-
-
-
+                case "Bridge (Hip Raise)":
+                    w_choice_type = "Bridges";
+                    break;
             }
-
         }
 
         private void Workout_Selection_Clicked(object sender, EventArgs e)
         {
-
             SetWorkout setworkout = new SetWorkout()
             {
                 Id = w_ID,
@@ -269,7 +270,6 @@ namespace TaurusBetaX
                 VibrationOn = w_vibrateBool,
 
                 WorkoutReady = true,
-
             };
 
             w_Workout = my_WorkoutEntry.Text;
@@ -342,18 +342,7 @@ namespace TaurusBetaX
                 {
                     error_message.Text = "Missing: Workout name and Exercise";
                 }
-
-
-
-
-
-
             }
-
-
-
-
         }
-
     }
 }

@@ -69,12 +69,6 @@ namespace TaurusBetaX
             
             this.BindingContext = MyViewModel.Instance;
             is_paid = paid;
-
-            // workout_Listview.la
-
-
-
-
         }
 
         protected override void OnAppearing()

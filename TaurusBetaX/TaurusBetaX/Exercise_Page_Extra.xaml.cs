@@ -48,6 +48,7 @@ namespace TaurusBetaX
         string text_Count;
         string action1;
         string action2;
+        float animationSpeed;
         bool vibrationOnBool;
 
         int delay1;
@@ -116,31 +117,89 @@ namespace TaurusBetaX
 
                 switch (newWorkType)
                 {
-                    case "TKegel":
+                    case "TKegelRapid":
                         webInstruction.Source = "https://www.toruflex.com/traditional-kegel";
-                        delay1 = 1000;
-                        delay2 = 6000;
-                        videoUrl = "KegelTrad.json";
+                        delay1 = 0;
+                        delay2 = 0;
+                        animationSpeed = 1.5f;
+                        videoUrl = "newKegelTrad.json";
                         animationView.Animation = videoUrl;
                         action1 = "squeeze";
                         action2 = "release";
                         break;
 
+                    case "TKegel":
+                        webInstruction.Source = "https://www.toruflex.com/traditional-kegel";
+                        delay1 = 1000;
+                        delay2 = 4000;
+                        animationSpeed = 1.0f;
+                        videoUrl = "newKegelTrad.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "squeeze";
+                        action2 = "release";
+                        break;
+
+                    case "TKegelHold":
+                        webInstruction.Source = "https://www.toruflex.com/traditional-kegel";
+                        delay1 = 0;
+                        delay2 = 0;
+                        animationSpeed = 2.0f;
+                        videoUrl = "KegelHold.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "";
+                        action2 = "";
+                        break;
+
                     case "RKegel":
                         webInstruction.Source = "https://www.toruflex.com/reverse-kegel";
                         delay1 = 1000;
-                        delay2 = 6000;
-                        videoUrl = "KegelRev.json";
+                        delay2 = 4000;
+                        animationSpeed = 1.0f;
+                        videoUrl = "newKegelRev.json";
                         animationView.Animation = videoUrl;
                         action1 = "expand";
                         action2 = "relax";
                         break;
 
+                    case "HRKegel":
+                        webInstruction.Source = "https://www.toruflex.com/reverse-kegel";
+                        delay1 = 1000;
+                        delay2 = 3000;
+                        animationSpeed = 1.0f;
+                        videoUrl = "HeelReverse.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "expand";
+                        action2 = "relax";
+                        break;
+
+                    case "RKegelRapid":
+                        webInstruction.Source = "https://www.toruflex.com/reverse-kegel";
+                        delay1 = 0;
+                        delay2 = 0;
+                        animationSpeed = 1.5f;
+                        videoUrl = "newKegelRev.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "expand";
+                        action2 = "relax";
+                        break;
+
+                    case "RKegelHold":
+                        webInstruction.Source = "https://www.toruflex.com/reverse-kegel";
+                        delay1 = 1000;
+                        delay2 = 4000;
+                        animationSpeed = 1.0f;
+                        videoUrl = "KegelReverseHold.json";
+                        animationView.Animation = videoUrl;
+                        action1 = "";
+                        action2 = "";
+                        break;
+
                     case "HSquat":
                         webInstruction.Source = "https://www.toruflex.com/sumo-heel-squat";
                         delay1 = 1000;
-                        delay2 = 6000;
-                        videoUrl = "HeelSquat.json";
+                        delay2 = 5000;
+                        animationSpeed = 0.6f;
+                        videoUrl = "HalfSquatWarmUp.json";
                         animationView.Animation = videoUrl;
                         action1 = "squat";
                         action2 = "rise up";
@@ -149,8 +208,9 @@ namespace TaurusBetaX
                     case "FSquat":
                         webInstruction.Source = "https://www.toruflex.com/sumo-heel-squat";
                         delay1 = 1000;
-                        delay2 = 6000;
-                        videoUrl = "HeelSquat.json";
+                        delay2 = 300;
+                        animationSpeed = 0.6f;
+                        videoUrl = "NewHeelSquat2.json";
                         animationView.Animation = videoUrl;
                         action1 = "squat";
                         action2 = "rise up";
@@ -159,8 +219,9 @@ namespace TaurusBetaX
                     case "Hold_Squat":
                         webInstruction.Source = "https://www.toruflex.com/crunches";
                         delay1 = 1000;
-                        delay2 = 6000;
-                        videoUrl = "HeelSquat.json";
+                        delay2 = 500;
+                        animationSpeed = 1.0f;
+                        videoUrl = "HalfSquatWarmUp.json";
                         animationView.Animation = videoUrl;
                         //action1 = "hold";
                         action2 = "hold";
@@ -170,6 +231,7 @@ namespace TaurusBetaX
                         webInstruction.Source = "https://www.toruflex.com/crunches";
                         delay1 = 1000;
                         delay2 = 6000;
+                        animationSpeed = 1.0f;
                         videoUrl = "HeelSquat.json";
                         animationView.Animation = videoUrl;
                         break;
@@ -178,7 +240,8 @@ namespace TaurusBetaX
                         webInstruction.Source = "https://www.toruflex.com/traditional-kegel";
                         delay1 = 1000;
                         delay2 = 6000;
-                        videoUrl = "KegelTrad.json";
+                        animationSpeed = 1.0f;
+                        videoUrl = "newKegelTrad.json";
                         animationView.Animation = videoUrl;
                         action1 = "squeeze";
                         action2 = "release";
@@ -188,7 +251,7 @@ namespace TaurusBetaX
                         webInstruction.Source = "https://www.toruflex.com/reverse-kegel";
                         delay1 = 1000;
                         delay2 = 6000;
-                        videoUrl = "KegelRev.json";
+                        videoUrl = "newKegelRev.json";
                         animationView.Animation = videoUrl;
                         action1 = "expand";
                         action2 = "relax";
@@ -207,6 +270,7 @@ namespace TaurusBetaX
                         webInstruction.Source = "https://www.toruflex.com/sumo-heel-squat";
                         delay1 = 1000;
                         delay2 = 6000;
+                        animationSpeed = 0.6f;
                         videoUrl = "HeelSquat.json";
                         animationView.Animation = videoUrl;
                         action1 = "squat";
@@ -217,35 +281,33 @@ namespace TaurusBetaX
                         webInstruction.Source = "https://www.toruflex.com/crunches";
                         delay1 = 1000;
                         delay2 = 6000;
+                        animationSpeed = 0.6f;
                         videoUrl = "HeelSquat.json";
                         animationView.Animation = videoUrl;
                         action1 = "hold";
                         action2 = "hold";
                         break;
 
-                    case "HRKegel":
-                        webInstruction.Source = "https://www.toruflex.com/crunches";
-                        delay1 = 1000;
-                        delay2 = 3000;
-                        videoUrl = "HeelReverse.json";
-                        animationView.Animation = videoUrl;
-                        action1 = "expand";
-                        action2 = "relax";
-                        break;
-
+                    //case "HRKegel":
+                    //    webInstruction.Source = "https://www.toruflex.com/crunches";
+                    //    delay1 = 1000;
+                    //    delay2 = 3000;
+                    //    videoUrl = "HeelReverse.json";
+                    //    animationView.Animation = videoUrl;
+                    //    action1 = "expand";
+                    //    action2 = "relax";
+                    //    break;
 
                     case "Bridges":
                         webInstruction.Source = "https://www.toruflex.com/bridge";
                         delay1 = 1000;
                         delay2 = 4000;
-                        videoUrl = "Bridges_1.json";
+                        animationSpeed = 1.0f;
+                        videoUrl = "NewHipRaise.json";
                         animationView.Animation = videoUrl;
                         action1 = "rise";
                         action2 = "relax";
                         break;
-
-
-
                 }
 
             }
@@ -259,7 +321,7 @@ namespace TaurusBetaX
                         webInstruction.Source = "https://www.toruflex.com/traditional-kegel";
                         delay1 = 1000;
                         delay2 = 6000;
-                        videoUrl = "KegelTrad.json";
+                        videoUrl = "newKegelTrad.json";
                         animationView.Animation = videoUrl;
                         action1 = "squeeze";
                         action2 = "release";
@@ -269,7 +331,7 @@ namespace TaurusBetaX
                         webInstruction.Source = "https://www.toruflex.com/reverse-kegel";
                         delay1 = 1000;
                         delay2 = 6000;
-                        videoUrl = "KegelRev.json";
+                        videoUrl = "newKegelRev.json";
                         animationView.Animation = videoUrl;
                         action1 = "expand";
                         action2 = "relax";
@@ -278,10 +340,10 @@ namespace TaurusBetaX
                     case "HSquat":
                         webInstruction.Source = "https://www.toruflex.com/sumo-heel-squat";
                         delay1 = 1000;
-                        delay2 = 6000;
-                        videoUrl = "HeelSquat.json";
+                        delay2 = 8000;
+                        videoUrl = "NewHeelSquat2.json";
                         animationView.Animation = videoUrl;
-                        action1 = "squat";
+                        action1 = "heelSquatBalanced.json";
                         action2 = "rise up";
                         break;
 
@@ -289,7 +351,7 @@ namespace TaurusBetaX
                         webInstruction.Source = "https://www.toruflex.com/sumo-heel-squat";
                         delay1 = 1000;
                         delay2 = 6000;
-                        videoUrl = "HeelSquat.json";
+                        videoUrl = "HeelSquatXL.json";
                         animationView.Animation = videoUrl;
                         action1 = "squat";
                         action2 = "rise up";
@@ -299,7 +361,7 @@ namespace TaurusBetaX
                         webInstruction.Source = "https://www.toruflex.com/crunches";
                         delay1 = 1000;
                         delay2 = 6000;
-                        videoUrl = "HeelSquat.json";
+                        videoUrl = "NewHeelSquat2.json";
                         animationView.Animation = videoUrl;
                         //action1 = "hold";
                         action2 = "hold";
@@ -309,7 +371,7 @@ namespace TaurusBetaX
                         webInstruction.Source = "https://www.toruflex.com/bridge";
                         delay1 = 1000;
                         delay2 = 6000;
-                        videoUrl = "HeelSquat.json";
+                        videoUrl = "NewHeelSquat2.json";
                         animationView.Animation = videoUrl;
                         break;
 
@@ -317,7 +379,7 @@ namespace TaurusBetaX
                         webInstruction.Source = "https://www.toruflex.com/traditional-kegel";
                         delay1 = 1000;
                         delay2 = 6000;
-                        videoUrl = "KegelTrad.json";
+                        videoUrl = "newKegelTrad.json";
                         animationView.Animation = videoUrl;
                         action1 = "squeeze";
                         action2 = "release";
@@ -327,7 +389,7 @@ namespace TaurusBetaX
                         webInstruction.Source = "https://www.toruflex.com/reverse-kegel";
                         delay1 = 1000;
                         delay2 = 6000;
-                        videoUrl = "KegelRev.json";
+                        videoUrl = "newKegelRev.json";
                         animationView.Animation = videoUrl;
                         action1 = "expand";
                         action2 = "relax";
@@ -337,7 +399,7 @@ namespace TaurusBetaX
                         webInstruction.Source = "https://www.toruflex.com/sumo-heel-squat";
                         delay1 = 1000;
                         delay2 = 6000;
-                        videoUrl = "HeelSquat.json";
+                        videoUrl = "NewHeelSquat2.json";
                         animationView.Animation = videoUrl;
                         action1 = "squat";
                         break;
@@ -346,7 +408,7 @@ namespace TaurusBetaX
                         webInstruction.Source = "https://www.toruflex.com/sumo-heel-squat";
                         delay1 = 1000;
                         delay2 = 6000;
-                        videoUrl = "HeelSquat.json";
+                        videoUrl = "NewHeelSquat2.json";
                         animationView.Animation = videoUrl;
                         action1 = "squat";
                         action2 = "rise up";
@@ -356,7 +418,7 @@ namespace TaurusBetaX
                         webInstruction.Source = "https://www.toruflex.com/crunches";
                         delay1 = 1000;
                         delay2 = 6000;
-                        videoUrl = "HeelSquat.json";
+                        videoUrl = "NewHeelSquat2.json";
                         animationView.Animation = videoUrl;
                         action1 = "hold";
                         action2 = "hold";
@@ -367,104 +429,68 @@ namespace TaurusBetaX
 
         }
 
-        private void AnimationView_OnFinish(object sender, EventArgs e)
+        public void SayAction(string speach)
         {
-            count++;
+            TextToSpeech.SpeakAsync(speach, new SpeechOptions
+            {
+                Pitch = 0.0f
+            });
+        }
 
+        public void Vibrate()
+        {
+            if (vibrationOnBool == true)
+            {
+                Vibration.Vibrate();
+            }
+        }
+
+
+        public void Play_And_Count()
+        {
+            Thread.Sleep(delay1);
+            count++;
             text_Count = count.ToString();
             Device.BeginInvokeOnMainThread(() =>
             {
                 txtTimer.FontSize = 100;
                 txtTimer.Text = "" + count;
-            });
 
+            });
 
             if (count <= mCount && count != 1)
             {
-
-                TextToSpeech.SpeakAsync(action2, new SpeechOptions
-                {
-                    Pitch = 0.0f
-                });
-
-                TextToSpeech.SpeakAsync(text_Count, new SpeechOptions
-                {
-                    Pitch = 0.0f
-                });
-
-                //after 'release' delay
+                SayAction(text_Count);
                 Thread.Sleep(delay2);
+                Play_Exercise();
             }
-
-            Play_Exercise();
-        }
-
-        public void PlayAndCount()
-        {
-            count++;
-
-            text_Count = count.ToString();
-            Device.BeginInvokeOnMainThread(() =>
+            else
             {
-                txtTimer.FontSize = 100;
-                txtTimer.Text = "" + count;
-
-                if (vibrationOnBool == true)
-                {
-                    Vibration.Vibrate();
-                }
-            });
-
-
-            if (count == 1)
-            {
-                TextToSpeech.SpeakAsync(text_Count, new SpeechOptions
-                {
-                    Pitch = 0.0f
-                });
-
-                TextToSpeech.SpeakAsync(action1, new SpeechOptions
-                {
-                    Pitch = 0.0f
-                });
-
-                Thread.Sleep(delay2);
-
+                Play_Exercise();
             }
-
-            animationView.PlayAnimation();
         }
 
         public void Play_Exercise()
         {
             if (count <= mCount)
             {
-
                 if (count == 0)
                 {
-
                     TextToSpeech.SpeakAsync("ready..... set..... go", new SpeechOptions
                     {
                         Pitch = 0.0f
-
                     });
 
-                    PlayAndCount();
-
+                    Thread.Sleep(3000);
+                    Play_And_Count();
                 }
-
                 else
                 {
-                    if (vibrationOnBool == true)
-                    {
-                        Vibration.Vibrate();
-                    }
-
-                    TextToSpeech.SpeakAsync(action1, new SpeechOptions
-                    {
-                        Pitch = 0.0f
-                    });
-
+                    animationView.PlayMinAndMaxProgress(0.1f, 1.0f);
+                    animationView.Speed = animationSpeed;
+                    SayAction(text_Count);
+                    SayAction(action1);
+                    Vibrate();
                     animationView.PlayAnimation();
                 }
             }
@@ -472,33 +498,27 @@ namespace TaurusBetaX
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-
-                    TextToSpeech.SpeakAsync(action2, new SpeechOptions
-                    {
-                        Pitch = 0.0f
-                    });
-
-
-                        animationView.AbortAnimation(videoUrl);
-                        btnStart.Text = "<< Back";
-                        txtTimer.Text = "End of the exercise";
-                        btnPause.IsEnabled = false;
-                        btnStart.IsEnabled = true;
-                        txtTimer.FontSize = 30;
-                        instruction_page.IsEnabled = true;
-
-                    Thread.Sleep(2000);
+                    Vibrate();
+                    SayAction(action2);
+                    animationView.AbortAnimation(videoUrl);
+                    btnStart.Text = "<< Back";
+                    txtTimer.Text = "End of the exercise";
+                    btnPause.IsEnabled = false;
+                    btnStart.IsEnabled = true;
+                    txtTimer.FontSize = 30;
+                    instruction_page.IsEnabled = true;
+                    count = mCount;
+                    animationView.PlayMinAndMaxProgress(0.0f, 0.0f);
                     TextToSpeech.SpeakAsync("End of the exercise", new SpeechOptions
                     {
                         Pitch = 0.0f
                     });
-
                 });
-
                 if (is_exerciseDone == false)
                 {
-                    is_exerciseDone = true;
 
+                    is_exerciseDone = true;
+                    is_workoutDone = true;
                 }
 
                 using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
@@ -520,6 +540,36 @@ namespace TaurusBetaX
             }
     
         }
+
+        private void Animation_View_On_Finish(object sender, EventArgs e)
+        {
+            count++;
+
+            Thread.Sleep(delay2);
+
+            if (count <= mCount && count != 1)
+            {
+                text_Count = count.ToString();
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    txtTimer.FontSize = 100;
+                    txtTimer.Text = "" + count;
+                });
+
+                animationView.AbortAnimation(videoUrl);
+
+                SayAction(action2);
+
+                Vibrate();
+
+                Play_Exercise();
+            }
+            else if (txtTimer.Text != "End of the exercise" && count > mCount)
+            {
+                Play_Exercise();
+            }
+        }
+
         private void Start_Btn_Clicked(object sender, EventArgs e)
         {
             instruction_page.IsEnabled = false;
@@ -577,7 +627,6 @@ namespace TaurusBetaX
             btnPause.IsEnabled = false;
             btnStart.IsEnabled = true;
             btnStart.Text = "Resume";
-            //CrossMediaManager.Current.Pause();
             animationView.PauseAnimation();
         }
 
@@ -616,7 +665,7 @@ namespace TaurusBetaX
             }
         }
 
-        private void vibrateButton2_Clicked(object sender, EventArgs e)
+        private void Vibrate_Btn_Clicked(object sender, EventArgs e)
         {
             if (vibrationOnBool == true)
             {
@@ -648,19 +697,19 @@ namespace TaurusBetaX
                 }
             }
 
+        }     
+
+        private void Web_Instruction_Navigated(object sender, WebNavigatedEventArgs e)
+        {
+
+            LoadingLabel.IsVisible = false;
+
         }
 
         protected override bool OnBackButtonPressed()
         {
             App.Current.MainPage = new My_Go_ExerciseList_Page(mID, mWork, mExercise, mWorkType, mCount, is_exerciseDone, is_workoutDone, exDone_count, wkDone_count, is_paid);
             return true;
-        }
-
-        private void webInstruction_Navigated(object sender, WebNavigatedEventArgs e)
-        {
-
-            LoadingLabel.IsVisible = false;
-
         }
     }
 }

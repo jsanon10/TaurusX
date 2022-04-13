@@ -55,7 +55,7 @@
                     <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,10,0,40"/>
                 </StackLayout.Margin>
 
-                <WebView x:Name="webInstruction" HeightRequest="1000" WidthRequest="1000"  Navigated="webInstruction_Navigated"/>
+                <WebView x:Name="webInstruction" HeightRequest="1000" WidthRequest="1000"  Navigated="Web_Instruction_Navigated"/>
                 <Label x:Name="LoadingLabel" Text="LOADING......" FontAttributes="Bold" TextColor="Red" IsVisible="True"/>
             </StackLayout>
         </ContentPage.Content>
@@ -77,7 +77,7 @@
 
                         <StackLayout Orientation="Horizontal" >
                             <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
-                                <Button x:Name="vibrateButton2" Text="  " BackgroundColor="Transparent" WidthRequest="100" HeightRequest="20" ImageSource="small_vibrate_phone.jpg" Font="verdana" Clicked="vibrateButton2_Clicked" >
+                                <Button x:Name="vibrateButton2" Text="  " BackgroundColor="Transparent" WidthRequest="100" HeightRequest="20" ImageSource="small_vibrate_phone.jpg" Font="verdana" Clicked="Vibrate_Btn_Clicked" >
                                     <Button.Margin>
                                         <OnPlatform x:TypeArguments="Thickness" Android="0,0,0,0" iOS="0,0,0,0"/>
                                     </Button.Margin>
@@ -120,15 +120,15 @@
                         Grid.Row="1"
                         Animation=""
                         AutoPlay="False"
-                        OnFinishedAnimation="AnimationView_OnFinish">
+                        OnFinishedAnimation="Animation_View_On_Finish">
 
 
                             <lottie:AnimationView.HeightRequest>
-                                <OnPlatform x:TypeArguments="x:Double" Android="250" iOS="300"/>
+                                <OnPlatform x:TypeArguments="x:Double" Android="300" iOS="300"/>
                             </lottie:AnimationView.HeightRequest>
 
                             <lottie:AnimationView.WidthRequest>
-                                <OnPlatform x:TypeArguments="x:Double" Android="250" iOS="300"/>
+                                <OnPlatform x:TypeArguments="x:Double" Android="300" iOS="300"/>
                             </lottie:AnimationView.WidthRequest>
 
 

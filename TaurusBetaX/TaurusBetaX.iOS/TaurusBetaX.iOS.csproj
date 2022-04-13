@@ -28,6 +28,7 @@
     <MtouchArch>i386, x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
+    <MtouchSdkVersion>15.0</MtouchSdkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -107,13 +108,21 @@
     <BundleResource Include="Resources\down_11.json" />
     <BundleResource Include="Resources\down_12.json" />
     <BundleResource Include="Resources\down_13.json" />
-    <BundleResource Include="Resources\KegelTrad.json" />
-    <BundleResource Include="Resources\KegelRev.json" />
     <BundleResource Include="Resources\KegelRev2L.json" />
-    <BundleResource Include="Resources\HeelSquat.json" />
     <BundleResource Include="Resources\data.json" />
-    <BundleResource Include="Resources\HeelReverse.json" />
     <BundleResource Include="Resources\Bridges_1.json" />
+    <BundleResource Include="Resources\HeelSquat.json" />
+    <BundleResource Include="Resources\HalfSquatWarmUp.json" />
+    <BundleResource Include="Resources\HipRaise90x.json" />
+    <BundleResource Include="Resources\NewHeelSquat.json" />
+    <BundleResource Include="Resources\NewHipRaise.json" />
+    <BundleResource Include="Resources\newKegelTrad.json" />
+    <BundleResource Include="Resources\newKegelRev.json" />
+    <BundleResource Include="Resources\NewHeelSquat2.json" />
+    <BundleResource Include="Resources\NewHeelSquat3.json" />
+    <BundleResource Include="Resources\KegelHold.json" />
+    <BundleResource Include="Resources\KegelReverseHold.json" />
+    <BundleResource Include="Resources\HeelReverse.json" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -188,34 +197,37 @@
     <PackageReference Include="CsvHelper">
       <Version>12.1.2</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers">
-      <Version>3.3.1</Version>
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers">
+      <Version>5.0.3</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Identity.Client">
-      <Version>4.10.0</Version>
+      <Version>4.36.2</Version>
     </PackageReference>
     <PackageReference Include="Nito.AsyncEx">
       <Version>5.0.0</Version>
     </PackageReference>
     <PackageReference Include="Plugin.MediaManager">
-      <Version>0.8.9</Version>
+      <Version>1.0.9</Version>
     </PackageReference>
     <PackageReference Include="Plugin.MediaManager.Forms">
-      <Version>0.8.9</Version>
+      <Version>1.0.9</Version>
     </PackageReference>
     <PackageReference Include="Rg.Plugins.Popup">
       <Version>1.2.0.223</Version>
     </PackageReference>
     <PackageReference Include="Serilog">
-      <Version>2.9.0</Version>
+      <Version>2.10.0</Version>
     </PackageReference>
     <PackageReference Include="sqlite-net-pcl">
       <Version>1.6.292</Version>
     </PackageReference>
     <PackageReference Include="System.IdentityModel.Tokens.Jwt">
-      <Version>5.6.0</Version>
+      <Version>6.13.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Speech">
+      <Version>6.0.0</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Notifier">
       <Version>3.0.1</Version>
@@ -224,9 +236,9 @@
       <Version>4.0.0.7</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Essentials">
-      <Version>1.6.1</Version>
+      <Version>1.7.2</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
     <PackageReference Include="XLabs.Forms">
       <Version>2.0.5782</Version>
     </PackageReference>

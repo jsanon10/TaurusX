@@ -71,7 +71,7 @@
     <PackageReference Include="Serilog" Version="2.10.0" />
     <PackageReference Include="sqlite-net-pcl" Version="1.6.292" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.13.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.34.0" />
     <PackageReference Include="System.Speech" Version="6.0.0" />
     <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
     <PackageReference Include="Xam.Plugins.TextToSpeech" Version="4.0.0.7" />
